@@ -11,7 +11,7 @@
     "strictNullChecks": true,
     "declaration": true,
     "removeComments": false,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "baseUrl": "./src"

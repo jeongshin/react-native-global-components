@@ -9,7 +9,8 @@
     "prepare": "husky install",
     "lint": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
     "typescript": "npx tsc --noemit",
-    "release": " npx release-it"
+    "release": " npx release-it",
+    "build": "yarn typescript && rm -rf dist && npx tsc"
   },
   "author": "JeongShin",
   "repository": "https://github.com/JeongShin/react-native-bottom-sheet-ui",
