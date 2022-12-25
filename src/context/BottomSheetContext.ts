@@ -1,5 +1,5 @@
-import React from "react";
-import { PanGestureHandlerProps } from "react-native-gesture-handler";
+import React from 'react';
+import { PanGestureHandlerProps } from 'react-native-gesture-handler';
 
 export type BottomSheetContextType = {
   show: () => void;
@@ -8,7 +8,7 @@ export type BottomSheetContextType = {
 };
 
 const BottomSheetContext = React.createContext<BottomSheetContextType | null>(
-  null
+  null,
 );
 
 export default BottomSheetContext;

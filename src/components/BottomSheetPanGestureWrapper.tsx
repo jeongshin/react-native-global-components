@@ -1,7 +1,7 @@
-import React from "react";
-import { PanGestureHandler } from "react-native-gesture-handler";
-import Animated from "react-native-reanimated";
-import useBottomSheetContext from "../hooks/useBottomSheetContext";
+import React from 'react';
+import { PanGestureHandler } from 'react-native-gesture-handler';
+import Animated from 'react-native-reanimated';
+import useBottomSheetContext from '../hooks/useBottomSheetContext';
 
 const BottomSheetPanHandlerWrapper: React.FC<
   React.PropsWithChildren<Record<string, never>>

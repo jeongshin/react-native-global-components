@@ -3,7 +3,7 @@ import React, {
   useImperativeHandle,
   useCallback,
   useMemo,
-} from "react";
+} from 'react';
 
 import {
   LayoutChangeEvent,
@@ -12,14 +12,14 @@ import {
   TouchableWithoutFeedback,
   ViewStyle,
   useWindowDimensions,
-} from "react-native";
+} from 'react-native';
 
 import {
   PanGestureHandlerGestureEvent,
   GestureEventPayload,
   PanGestureHandlerEventPayload,
   PanGestureHandlerProps,
-} from "react-native-gesture-handler";
+} from 'react-native-gesture-handler';
 
 import Animated, {
   useSharedValue,
@@ -30,18 +30,18 @@ import Animated, {
   runOnJS,
   WithTimingConfig,
   WithSpringConfig,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
 import {
   DEFAULT_BACKDROP_STYLE,
   DEFAULT_ANIM_CONFIG,
   DEFAULT_CONTAINER_STYLE,
   DEFAULT_SPRING_ANIM_CONFIG,
-} from "../constants";
+} from '../constants';
 
 import BottomSheetContext, {
   BottomSheetContextType,
-} from "../context/BottomSheetContext";
+} from '../context/BottomSheetContext';
 
 const BottomSheet = (
   {
@@ -56,7 +56,7 @@ const BottomSheet = (
     maxContentHeight,
     panGestureHandlerProps,
   }: BottomSheetProps,
-  ref: React.ForwardedRef<BottomSheetRef>
+  ref: React.ForwardedRef<BottomSheetRef>,
 ) => {
   const [visible, setVisible] = useState(false);
 
@@ -80,7 +80,7 @@ const BottomSheet = (
       y.value = withTiming(0, animationConfig);
       dimOpacity.value = withTiming(maxDimOpacity, animationConfig);
     },
-    [animationConfig, maxDimOpacity]
+    [animationConfig, maxDimOpacity],
   );
 
   const animateReset = useCallback(() => {
@@ -94,7 +94,7 @@ const BottomSheet = (
 
       y.value = withTiming(height, animationConfig, () => runOnJS(cb)());
     },
-    [height, animationConfig]
+    [height, animationConfig],
   );
 
   const hide = useCallback(() => {
@@ -111,7 +111,7 @@ const BottomSheet = (
       }
       animateReset();
     },
-    [hide, animateReset, shouldHideOnPanEnd]
+    [hide, animateReset, shouldHideOnPanEnd],
   );
 
   const onGestureEvent =
@@ -131,7 +131,7 @@ const BottomSheet = (
         },
         onEnd: (event) => runOnJS(handleGestureEnd)(event),
       },
-      [maxDimOpacity, hide, handleGestureEnd]
+      [maxDimOpacity, hide, handleGestureEnd],
     );
 
   const show = useCallback(() => {
@@ -145,7 +145,7 @@ const BottomSheet = (
       setLayoutHeight(_layoutHeight);
       animateShow(_layoutHeight);
     },
-    [visible, animateShow]
+    [visible, animateShow],
   );
 
   const animatedBottomSheetStyle = useAnimatedStyle(() => ({
@@ -188,8 +188,7 @@ const BottomSheet = (
             animatedBottomSheetStyle,
             containerStyle,
             { opacity: height === 0 ? 0 : 1 },
-          ]}
-        >
+          ]}>
           {children}
         </Animated.View>
       </BottomSheetContext.Provider>
@@ -199,13 +198,13 @@ const BottomSheet = (
 
 const styles = StyleSheet.create({
   dimBase: {
-    backgroundColor: "#000000",
-    width: "100%",
-    height: "100%",
+    backgroundColor: '#000000',
+    width: '100%',
+    height: '100%',
   },
   bottomSheetContainer: {
-    width: "100%",
-    position: "absolute",
+    width: '100%',
+    position: 'absolute',
     bottom: 0,
     left: 0,
   },
@@ -262,7 +261,7 @@ export type BottomSheetProps = {
    * use `resetAnimationConfig` to customize animation
    */
   shouldHideOnPanEnd?: (
-    event: Readonly<GestureEventPayload & PanGestureHandlerEventPayload>
+    event: Readonly<GestureEventPayload & PanGestureHandlerEventPayload>,
   ) => boolean;
 
   /**

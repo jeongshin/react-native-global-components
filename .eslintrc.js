@@ -1,39 +1,37 @@
 module.exports = {
   root: true,
-  extends: ["@react-native-community", "prettier"],
-  plugins: [
-    "@typescript-eslint",
-    "react",
-    "react-native",
-    "react-hooks",
-    "prettier",
-    "import",
+  parser: '@typescript-eslint/parser',
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'plugin:react/recommended',
   ],
+  ignorePatterns: ['**/*.js'],
+  plugins: ['@typescript-eslint', 'react-hooks', 'prettier', 'import'],
   rules: {
-    "no-console": ["error", { allow: ["warn", "error"] }],
-    "prettier/prettier": "error",
-    "react-hooks/exhaustive-deps": "off",
-    "import/order": [
-      "warn",
+    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'import/order': [
+      'warn',
       {
-        groups: ["builtin", "external", ["parent", "sibling"], "index", "type"],
+        groups: ['builtin', 'external', ['parent', 'sibling'], 'index', 'type'],
         pathGroups: [
           {
-            pattern: "react+(|-native)",
-            group: "builtin",
-            position: "before",
+            pattern: 'react+(|-native)',
+            group: 'builtin',
+            position: 'before',
           },
           {
-            pattern: "@**",
-            group: "external",
-            position: "after",
+            pattern: '@**',
+            group: 'external',
+            position: 'after',
           },
         ],
         alphabetize: {
-          order: "asc",
+          order: 'asc',
           caseInsensitive: true,
         },
-        pathGroupsExcludedImportTypes: ["builtin"],
+        pathGroupsExcludedImportTypes: ['builtin'],
       },
     ],
   },
