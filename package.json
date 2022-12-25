@@ -6,7 +6,9 @@
   "module": "dist/index",
   "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "husky install",
+    "lint": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
+    "typescript": "npx tsc --noemit"
   },
   "author": "JeongShin",
   "repository": "https://github.com/JeongShin/react-native-bottom-sheet-ui",
@@ -18,6 +20,8 @@
     "eslint": "^8.30.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
     "react": "~17.0.2",
     "react-native": "^0.66.3",
@@ -30,5 +34,11 @@
     "react-native": "*",
     "react-native-gesture-handler": ">=1.10.1",
     "react-native-reanimated": ">=2.2.0"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   }
 }
