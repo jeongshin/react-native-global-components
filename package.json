@@ -14,6 +14,8 @@
   "repository": "https://github.com/JeongShin/react-native-bottom-sheet-ui",
   "license": "ISC",
   "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
     "@react-native-community/eslint-config": "^3.2.0",
     "@types/react": "17.0.2",
     "@types/react-native": "^0.66.3",
