@@ -1,30 +1,38 @@
 {
   "git": {
-    "push": true,
-    "tagName": "v${version}",
-    "commitMessage": "feat: release v${version}",
-    "changelog": "auto-changelog --stdout --unreleased --template ./templates/changelog-template.hbs"
-  },
-  "github": {
-    "release": true,
-    "releaseNotes": "auto-changelog --stdout --unreleased --template ./templates/release-template.hbs"
+    "commitMessage": "chore: release ${version}",
+    "tagName": "v${version}"
   },
   "npm": {
-    "publish": false
+    "publish": true
+  },
+  "github": {
+    "release": true
   },
   "plugins": {
     "@release-it/conventional-changelog": {
-      "infile": "CHANGELOG.md",
       "preset": {
         "name": "conventionalcommits",
         "types": [
           {
             "type": "feat",
-            "section": "Features 🚀"
+            "section": "✨ Features"
           },
           {
             "type": "fix",
-            "section": "Bug Fixes 🐛"
+            "section": "🐛 Bug Fixes"
+          },
+          {
+            "type": "perf",
+            "section": "💨 Performance Improvements"
+          },
+          {
+            "type": "chore(deps)",
+            "section": "🛠️ Dependency Upgrades"
+          },
+          {
+            "type": "docs",
+            "section": "📚 Documentation"
           },
           {
             "type": "refactor",
@@ -33,8 +41,5 @@
         ]
       }
     }
-  },
-  "hooks": {
-    "after:bump": "auto-changelog -p --template ./templates/changelog-template.hbs"
   }
 }
