@@ -13,6 +13,12 @@
   "author": "JeongShin",
   "repository": "https://github.com/JeongShin/react-native-bottom-sheet-ui",
   "license": "ISC",
+  "keywords": [
+    "react",
+    "react-native",
+    "bottom-sheet",
+    "reanimated"
+  ],
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
