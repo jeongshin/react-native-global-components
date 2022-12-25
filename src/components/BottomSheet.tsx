@@ -27,11 +27,17 @@ import Animated, {
   useAnimatedStyle,
   useAnimatedGestureHandler,
   withTiming,
-  Easing,
   runOnJS,
   WithTimingConfig,
   WithSpringConfig,
 } from "react-native-reanimated";
+
+import {
+  DEFAULT_BACKDROP_STYLE,
+  DEFAULT_ANIM_CONFIG,
+  DEFAULT_CONTAINER_STYLE,
+  DEFAULT_SPRING_ANIM_CONFIG,
+} from "../constants";
 
 import BottomSheetContext, {
   BottomSheetContextType,
@@ -189,27 +195,6 @@ const BottomSheet = (
       </BottomSheetContext.Provider>
     </View>
   );
-};
-
-const DEFAULT_ANIM_CONFIG: WithTimingConfig = {
-  duration: 300,
-  easing: Easing.bezier(0.25, 0.1, 0.25, 1),
-};
-
-const DEFAULT_BACKDROP_STYLE: ViewStyle = {
-  backgroundColor: "#000000",
-  opacity: 0.5,
-};
-
-const DEFAULT_CONTAINER_STYLE: ViewStyle = {
-  borderTopLeftRadius: 24,
-  borderTopRightRadius: 24,
-  overflow: "hidden",
-};
-
-const DEFAULT_SPRING_ANIM_CONFIG: WithSpringConfig = {
-  stiffness: 50,
-  mass: 0.7,
 };
 
 const styles = StyleSheet.create({
