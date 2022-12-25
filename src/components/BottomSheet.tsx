@@ -49,7 +49,7 @@ const BottomSheet = (
     shouldHideOnPanEnd,
     maxContentHeight,
     panGestureHandlerProps,
-  }: React.PropsWithChildren<BottomSheetProps>,
+  }: BottomSheetProps,
   ref: React.ForwardedRef<BottomSheetRef>
 ) => {
   const [visible, setVisible] = useState(false);
@@ -227,6 +227,11 @@ const styles = StyleSheet.create({
 });
 
 export type BottomSheetProps = {
+  /**
+   * react children
+   */
+  children?: React.ReactElement;
+
   /**
    * maximum value of content height
    */
