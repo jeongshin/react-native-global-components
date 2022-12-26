@@ -1,9 +1,9 @@
-import { ViewStyle } from "react-native";
+import { ViewStyle } from 'react-native';
 import {
   Easing,
   WithSpringConfig,
   WithTimingConfig,
-} from "react-native-reanimated";
+} from 'react-native-reanimated';
 
 export const DEFAULT_ANIM_CONFIG: WithTimingConfig = {
   duration: 300,
@@ -11,14 +11,14 @@ export const DEFAULT_ANIM_CONFIG: WithTimingConfig = {
 };
 
 export const DEFAULT_BACKDROP_STYLE: ViewStyle = {
-  backgroundColor: "#000000",
+  backgroundColor: '#000000',
   opacity: 0.5,
 };
 
 export const DEFAULT_CONTAINER_STYLE: ViewStyle = {
   borderTopLeftRadius: 24,
   borderTopRightRadius: 24,
-  overflow: "hidden",
+  overflow: 'hidden',
 };
 
 export const DEFAULT_SPRING_ANIM_CONFIG: WithSpringConfig = {

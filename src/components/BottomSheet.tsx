@@ -50,8 +50,9 @@ const BottomSheet = (
     backdropStyle = DEFAULT_BACKDROP_STYLE,
     containerStyle = DEFAULT_CONTAINER_STYLE,
     resetAnimationConfig = DEFAULT_SPRING_ANIM_CONFIG,
-    hideOnDimPress = true,
-    onDismissed,
+    shouldHideOnBackdropPress = true,
+    onHidden,
+    onShown,
     shouldHideOnPanEnd,
     maxContentHeight,
     panGestureHandlerProps,
@@ -71,16 +72,21 @@ const BottomSheet = (
   const maxDimOpacity = backdropStyle.opacity ?? 1;
 
   const height = maxContentHeight
-    ? maxContentHeight
+    ? Math.min(maxContentHeight, layoutHeight, deviceHeight)
     : Math.min(layoutHeight, deviceHeight);
 
   const animateShow = useCallback(
     (contentHeight: number) => {
       y.value = contentHeight;
-      y.value = withTiming(0, animationConfig);
+
+      y.value = withTiming(0, animationConfig, () => {
+        // if (!onShown) return;
+        // runOnJS(onShown)();
+      });
+
       dimOpacity.value = withTiming(maxDimOpacity, animationConfig);
     },
-    [animationConfig, maxDimOpacity],
+    [animationConfig, maxDimOpacity, onShown],
   );
 
   const animateReset = useCallback(() => {
@@ -91,7 +97,6 @@ const BottomSheet = (
   const animateHide = useCallback(
     (cb: () => void) => {
       dimOpacity.value = withTiming(0, animationConfig);
-
       y.value = withTiming(height, animationConfig, () => runOnJS(cb)());
     },
     [height, animationConfig],
@@ -100,7 +105,7 @@ const BottomSheet = (
   const hide = useCallback(() => {
     animateHide(() => {
       setVisible(false);
-      onDismissed && onDismissed();
+      onHidden && onHidden();
     });
   }, [animateHide]);
 
@@ -174,7 +179,9 @@ const BottomSheet = (
 
   return (
     <View style={StyleSheet.absoluteFill}>
-      <TouchableWithoutFeedback disabled={!hideOnDimPress} onPress={hide}>
+      <TouchableWithoutFeedback
+        disabled={!shouldHideOnBackdropPress}
+        onPress={hide}>
         <Animated.View
           style={[styles.dimBase, StyleSheet.absoluteFill, animatedDimStyle]}
         />
@@ -240,7 +247,7 @@ export type BottomSheetProps = {
   /**
    * flag to hide bottom sheet on dim
    */
-  hideOnDimPress?: boolean;
+  shouldHideOnBackdropPress?: boolean;
 
   /**
    * style of bottom sheet container
@@ -267,7 +274,12 @@ export type BottomSheetProps = {
   /**
    * callback on bottom sheet dismissed
    */
-  onDismissed?: () => void;
+  onHidden?: () => void;
+
+  /**
+   * callback on bottom sheet shown
+   */
+  onShown?: () => void;
 };
 
 export type BottomSheetRef = {
