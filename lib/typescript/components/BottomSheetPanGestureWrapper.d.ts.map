@@ -1,1 +1,0 @@
-{"version":3,"file":"BottomSheetPanGestureWrapper.d.ts","sourceRoot":"","sources":["../../../src/components/BottomSheetPanGestureWrapper.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,MAAM,OAAO,CAAC;AAK1B,QAAA,MAAM,4BAA4B,EAAE,KAAK,CAAC,EAAE,CAC1C,iCAAiC,CASlC,CAAC;AAEF,KAAK,iCAAiC,GAAG;IACvC,QAAQ,CAAC,EAAE,KAAK,CAAC,YAAY,CAAC;CAC/B,CAAC;AAEF,eAAe,4BAA4B,CAAC"}
