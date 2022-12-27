@@ -4,6 +4,11 @@ import { GlobalComponentDisplayName } from '@/types';
 class GlobalComponentUIManager {
   private map = new Map<GlobalComponentDisplayName, React.FC<any>>();
 
+  /**
+   * register custom component.
+   * @param param.name {GlobalComponentDisplayName} name of global components
+   * @param param.Component {React.FC<any>} function component to render
+   */
   public registerUIComponent<N extends GlobalComponentDisplayName>({
     name,
     Component,
@@ -20,6 +25,12 @@ class GlobalComponentUIManager {
     this.map.set(name, Component);
   }
 
+  /**
+   * get currently registered function component
+   *
+   * @param name {GlobalComponentDisplayName} name of global components
+   * @returns null if not exists
+   */
   public getRegisteredUIComponent<N extends GlobalComponentDisplayName>(
     name: N,
   ): React.FC<any> | null {

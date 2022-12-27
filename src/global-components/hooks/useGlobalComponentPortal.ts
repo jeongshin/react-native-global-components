@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import GlobalComponentManager from '../GlobalComponentStateManager';
+import GlobalComponentManager from '../manager/GlobalComponentStateManager';
 import { GlobalComponentDisplayName } from '@/types';
 
-const useGlobalComponent = <T>(name: GlobalComponentDisplayName) => {
+const useGlobalComponentPortal = <T>(name: GlobalComponentDisplayName) => {
   const [visible, setVisible] = useState(false);
   const [state, setState] = useState<T | null>(null);
 
@@ -24,4 +24,4 @@ const useGlobalComponent = <T>(name: GlobalComponentDisplayName) => {
   };
 };
 
-export default useGlobalComponent;
+export default useGlobalComponentPortal;

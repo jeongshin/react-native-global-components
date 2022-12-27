@@ -2,21 +2,23 @@ import React from 'react';
 import ConfirmationPopUpContext, {
   ConfirmationPopUpProps,
 } from './ConfirmationPopUpContext';
-import useGlobalComponent from '@/global-components/hooks/useGlobalComponent';
+import useGlobalComponentPortal from '@/global-components/hooks/useGlobalComponentPortal';
+import GlobalComponentUIManager from '@/global-components/manager/GlobalComponentUIManager';
 import { GlobalComponentDisplayName } from '@/types';
 
 const ConfirmationPopUp = () => {
-  const { visible, state } = useGlobalComponent<ConfirmationPopUpProps>(
-    GlobalComponentDisplayName.ConfirmationPopUp,
-  );
+  const name = GlobalComponentDisplayName.ConfirmationPopUp;
+
+  const { visible, state } =
+    useGlobalComponentPortal<ConfirmationPopUpProps>(name);
 
   if (!visible || !state) return;
 
-  // const Component =
+  const Component = GlobalComponentUIManager.getRegisteredUIComponent(name);
 
   return (
     <ConfirmationPopUpContext.Provider value={state}>
-      {}
+      {Component && <Component />}
     </ConfirmationPopUpContext.Provider>
   );
 };
