@@ -79,5 +79,8 @@
       "eslint --fix",
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "rxjs": "^7.2.0"
   }
 }

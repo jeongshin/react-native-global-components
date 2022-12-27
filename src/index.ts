@@ -8,4 +8,4 @@ export { default as BottomSheetPanGestureWrapper } from './components/BottomShee
 
 export { default as useBottomSheetContext } from './hooks/useBottomSheetContext';
 
-export { default as GlobalComponentUIManager } from './global-components/manager/GlobalComponentUIManager';
+export { default as GlobalComponentUIManager } from './global-components/manager/GlobalComponentView';

@@ -1,11 +1,10 @@
-export enum GlobalComponentDisplayName {
-  ConfirmationPopUp = 'ConfirmationPopUp',
-}
+export type GlobalComponentPropsList = {
+  ConfirmationPopUp: {
+    yesText: string;
+    noText?: string;
+    onPressYes?: () => void;
+    onPressNo?: () => void;
+  };
+};
 
-// export type GlobalComponentType = {
-//   displayName: GlobalComponentDisplayName;
-
-//   Component: React.FC<any>;
-
-//   show<T>(params: Omit<T, 'displayName'>): void;
-// };
+export type GlobalComponentName = keyof GlobalComponentPropsList;

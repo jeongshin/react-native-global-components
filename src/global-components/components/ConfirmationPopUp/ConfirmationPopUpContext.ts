@@ -1,13 +1,8 @@
 import React from 'react';
+import { GlobalComponentPropsList } from '@/types';
 
-const ConfirmationPopUpContext =
-  React.createContext<null | ConfirmationPopUpProps>(null);
-
-export type ConfirmationPopUpProps = {
-  yesText: string;
-  noText?: string;
-  onPressYes?: () => void;
-  onPressNo?: () => void;
-};
+const ConfirmationPopUpContext = React.createContext<
+  null | GlobalComponentPropsList['ConfirmationPopUp']
+>(null);
 
 export default ConfirmationPopUpContext;
