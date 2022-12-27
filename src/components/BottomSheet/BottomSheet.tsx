@@ -32,16 +32,16 @@ import Animated, {
   WithSpringConfig,
 } from 'react-native-reanimated';
 
+import BottomSheetContext, {
+  BottomSheetContextType,
+} from '../../context/BottomSheetContext';
+
 import {
   DEFAULT_BACKDROP_STYLE,
   DEFAULT_ANIM_CONFIG,
   DEFAULT_CONTAINER_STYLE,
   DEFAULT_SPRING_ANIM_CONFIG,
-} from '../constants';
-
-import BottomSheetContext, {
-  BottomSheetContextType,
-} from '../context/BottomSheetContext';
+} from './constants';
 
 const BottomSheet = (
   {
@@ -80,8 +80,8 @@ const BottomSheet = (
       y.value = contentHeight;
 
       y.value = withTiming(0, animationConfig, () => {
-        // if (!onShown) return;
-        // runOnJS(onShown)();
+        if (!onShown) return;
+        runOnJS(onShown)();
       });
 
       dimOpacity.value = withTiming(maxDimOpacity, animationConfig);

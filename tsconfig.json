@@ -14,7 +14,10 @@
     "isolatedModules": false,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": ["src/**/*.tsx", "src/**/*.d.ts", "src/**/*.ts"],
   "exclude": ["node_modules"]
