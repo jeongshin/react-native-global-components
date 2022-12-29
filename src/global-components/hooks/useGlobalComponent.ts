@@ -7,6 +7,9 @@ const useGlobalComponent = <
   P extends GlobalComponentPropsList[T],
 >() => {
   /**
+   * render component.
+   * if screen in use push props and render later when screen is free
+   *
    * @prop {T} name name of component to render
    * @prop {P} props props of component to render
    */
@@ -15,7 +18,14 @@ const useGlobalComponent = <
   }, []);
 
   /**
+   * clear pending render list.
    *
+   * @example
+   * cancel all pending render list & render next immediately
+   * ```ts
+   * clear();
+   * show('Component', {...props});
+   * ````
    */
   const clear = useCallback(() => {
     GlobalComponentController.clear();

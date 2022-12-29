@@ -1,4 +1,4 @@
-import { Subject, timer, filter } from 'rxjs';
+import { Subject, timer } from 'rxjs';
 import { GlobalComponentPropsList } from '@/types';
 
 class GlobalComponentController<T extends { name: string }> {
@@ -63,17 +63,17 @@ class GlobalComponentController<T extends { name: string }> {
   /**
    * clear queue & screen
    */
-  public clear() {
+  public clear(): void {
     this.queue = [];
     this.locked = false;
   }
 
   /**
-   *
-   * @returns
+   * get subject
+   * @returns {Subject<T>} subject
    */
-  public subscribe() {
-    return this.subject.subscribe();
+  public getSubject(): Subject<T> {
+    return this.subject;
   }
 }
 

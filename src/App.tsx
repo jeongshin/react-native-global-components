@@ -5,7 +5,7 @@ const App = () => {
   const { show } = useGlobalComponent();
 
   useEffect(() => {
-    show('ConfirmationPopUp', { text: '123' });
+    // show('ConfirmationPopUp', { text: '123' });
   }, []);
 
   return <></>;
