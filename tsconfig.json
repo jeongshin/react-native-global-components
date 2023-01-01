@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "outDir": "./dist",
+    "outDir": "./lib",
     "lib": ["esnext"],
     "jsx": "react",
     "strict": true,
@@ -13,8 +13,7 @@
     "removeComments": false,
     "isolatedModules": false,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "baseUrl": "./src"
+    "moduleResolution": "node"
   },
   "include": ["src/**/*.tsx", "src/**/*.d.ts", "src/**/*.ts"],
   "exclude": ["node_modules"]
