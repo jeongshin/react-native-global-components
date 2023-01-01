@@ -6,6 +6,6 @@ export {
 
 export { default as BottomSheetPanGestureWrapper } from './components/BottomSheet/BottomSheetPanGestureWrapper';
 
-export { default as useBottomSheetContext } from './hooks/useBottomSheetContext';
+export { default as useBottomSheetContext } from './global-components/context/useBottomSheetContext';
 
-export { default as GlobalComponentUIManager } from './global-components/manager/GlobalComponentView';
+export { default as createPopUp } from './global-components/components/PopUp';
