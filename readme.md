@@ -38,7 +38,7 @@ $ npm install react-native-global-components
 
 ## Methods
 
-#### show
+#### `show`
 
 Request render. props type `P` is inferred from custom Component. See how it works section above for details.
 
@@ -46,7 +46,7 @@ Request render. props type `P` is inferred from custom Component. See how it wor
 show: (props: P) => void;
 ```
 
-#### hide
+#### `hide`
 
 Request unmount. Nothing happens if not component is mounted.
 
@@ -54,15 +54,15 @@ Request unmount. Nothing happens if not component is mounted.
 hide: () => void;
 ```
 
-#### clear
+#### `clear`
 
 Request unmount and clear all render list.
 
 ```ts
-hide: () => void;
+clear: () => void;
 ```
 
-#### setDelay
+#### `setDelay`
 
 Delay is time in milliseconds gap between switching global components. (default: 300ms)
 Changing delay can have side effects for same type global components.
@@ -73,7 +73,7 @@ ex) components created by `createPopUp` have shared delay
 setDelay: (delay: number) => void;
 ```
 
-#### Portal
+#### `Portal`
 
 Portal is host component to handle render request. Highly recommend to put top-level component.
 
@@ -83,7 +83,7 @@ Portal: () => JSX.Element;
 
 if using [react navigation](https://reactnavigation.org/), recommend to put under `NavigationContainer`.
 
-```tsx
+```ts
 <NavigationContainer>
   <BottomTabNavigator />
 </NavigationContainer>
