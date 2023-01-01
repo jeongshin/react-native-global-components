@@ -1,6 +1,6 @@
 {
-  "name": "react-native-bottom-sheet-ui",
-  "version": "0.4.2",
+  "name": "react-native-global-components",
+  "version": "0.0.1",
   "description": "Simple & easy bottom sheet UI",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -18,7 +18,7 @@
     "build": "bob build"
   },
   "author": "JeongShin",
-  "repository": "https://github.com/JeongShin/react-native-bottom-sheet-ui",
+  "repository": "https://github.com/JeongShin/react-native-global-components",
   "license": "ISC",
   "keywords": [
     "react",
