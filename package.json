@@ -1,6 +1,6 @@
 {
   "name": "react-native-global-components",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple & easy bottom sheet UI",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
