@@ -11,7 +11,7 @@
     "src/"
   ],
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "npx husky install",
     "lint": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
     "typescript": "npx tsc --noemit",
     "release": "rm -rf lib && yarn build && release-it",

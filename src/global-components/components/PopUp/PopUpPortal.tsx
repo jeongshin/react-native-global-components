@@ -3,9 +3,9 @@ import PopUpManager from './PopUpManager';
 import {
   GlobalComponentContext,
   UpdateGlobalComponentContext,
-} from '@/global-components/context/GlobalComponentContext';
-import useGlobalComponent from '@/hooks/useGlobalComponent';
-import { PortalProps } from '@/types';
+} from '../../context/GlobalComponentContext';
+import useGlobalComponent from '../../../hooks/useGlobalComponent';
+import { PortalProps } from '../../../types';
 
 const PopUpPortal: React.FC<PortalProps> = ({ name }) => {
   const { visible, updateState, state } = useGlobalComponent(

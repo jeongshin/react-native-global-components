@@ -5,8 +5,8 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { DEFAULT_WITH_TIMING_CONFIG } from '@/global-components/constant';
-import { AnimationProps, UpdateStateProps } from '@/types';
+import { DEFAULT_WITH_TIMING_CONFIG } from '../../../global-components/constant';
+import { AnimationProps, UpdateStateProps } from '../../../types';
 
 interface FadeAnimationWrapperProps extends AnimationProps, UpdateStateProps {
   children?: React.ReactNode;

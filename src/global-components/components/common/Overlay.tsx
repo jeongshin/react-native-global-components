@@ -6,8 +6,8 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { DEFAULT_WITH_TIMING_CONFIG } from '@/global-components/constant';
-import { OverlayProps, UpdateStateProps } from '@/types';
+import { DEFAULT_WITH_TIMING_CONFIG } from '../../../global-components/constant';
+import { OverlayProps, UpdateStateProps } from '../../../types';
 
 interface IOverlayProps extends OverlayProps, UpdateStateProps {
   //

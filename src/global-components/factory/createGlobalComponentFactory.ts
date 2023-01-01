@@ -1,8 +1,8 @@
 import React from 'react';
 import GlobalComponentManager from '../manager/GlobalComponentManager';
 import createPortal from './createPortal';
-import { PortalProps } from '@/types';
-import { InferFCProps } from '@/types/utils';
+import { PortalProps } from '../../types';
+import { InferFCProps } from '../../types/utils';
 
 function createGlobalComponentFactory({
   Manager,
