@@ -83,11 +83,24 @@ Portal: () => JSX.Element;
 
 if using [react navigation](https://reactnavigation.org/), recommend to put under `NavigationContainer`.
 
-```ts
-<NavigationContainer>
-  <BottomTabNavigator />
-</NavigationContainer>
-<ConfirmPopUp.Portal />
+```tsx
+export default function RootNavigator() {
+  useEffect(() => {
+    // for clean up hot reload
+    return () => {
+      ConfirmPopUp.clear();
+    };
+  }, []);
+
+  return (
+    <>
+      <NavigationContainer>
+        <BottomTabNavigator />
+      </NavigationContainer>
+      <ConfirmPopUp.Portal />
+    </>
+  );
+}
 ```
 
 ## Usage
@@ -137,13 +150,3 @@ const handlePress = () => {
 ### Others
 
 ### Tips
-
-clean up
-
-```tsx
-useEffect(() => {
-  return () => {
-    ConfirmPopUp.clear();
-  };
-}, []);
-```
