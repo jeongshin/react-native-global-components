@@ -2,7 +2,7 @@ import React from 'react';
 import {
   GlobalComponentContext,
   UpdateGlobalComponentContext,
-} from './GlobalComponentContext';
+} from '../context';
 
 export const useGlobalComponentState = <S>() => {
   const context = React.useContext(GlobalComponentContext);

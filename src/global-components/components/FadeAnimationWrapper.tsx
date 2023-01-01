@@ -1,27 +1,39 @@
 import React, { useEffect } from 'react';
+
 import Animated, {
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { DEFAULT_WITH_TIMING_CONFIG } from '../../../global-components/constant';
-import { AnimationProps, UpdateStateProps } from '../../../types';
+
+import { AnimationProps, UpdateStateProps } from '../../types';
+import { DEFAULT_WITH_TIMING_CONFIG } from '../constant';
 
 interface FadeAnimationWrapperProps extends AnimationProps, UpdateStateProps {
   children?: React.ReactNode;
 }
 
 /**
+ * Wrapper to use fade in/out animation rendering children components.
  *
  * @param {React.ReactNode} p.children
+ * @param {WithTimingConfig} p.animationConfig
  *
- * @returns
+ * @example
+ *
+ * ```tsx
+ * const context = useUpdateGlobalComponentState();
+ *
+ * <FadeAnimationWrapper {...context}>
+ *   <CustomUI />
+ * </FadeAnimationWrapper>
+ * ```
  */
 const FadeAnimationWrapper: React.FC<FadeAnimationWrapperProps> = ({
   children,
-  animationWithTimingConfig: animationConfig = DEFAULT_WITH_TIMING_CONFIG,
   addHideAnimation,
+  animationConfig = DEFAULT_WITH_TIMING_CONFIG,
 }) => {
   const opacity = useSharedValue(0);
 
@@ -30,11 +42,13 @@ const FadeAnimationWrapper: React.FC<FadeAnimationWrapperProps> = ({
   }));
 
   useEffect(() => {
-    withTiming(1, animationConfig);
+    opacity.value = withTiming(1, animationConfig);
 
     addHideAnimation(() => {
       return new Promise((resolve) => {
-        withTiming(0, animationConfig, () => runOnJS(resolve)());
+        opacity.value = withTiming(0, animationConfig, () =>
+          runOnJS(resolve)(),
+        );
       });
     });
   }, []);

@@ -1,4 +1,5 @@
 import { Subject, timer } from 'rxjs';
+import logger from '../../logger';
 
 type RenderCommand = { name: string; props: any };
 type RemoveCommand = { name: string };
@@ -88,6 +89,9 @@ class GlobalComponentManager {
   public clear(): void {
     this.queue = [];
     this.locked = false;
+    Array.from(this.map).forEach(([name]) => {
+      this.remove({ name });
+    });
   }
 
   /**
@@ -127,8 +131,8 @@ class GlobalComponentManager {
     Component: React.FC<any>;
   }): void {
     if (this.map.has(name)) {
-      console.warn(
-        '[GlobalComponentManager] Component already registered. name should be unique.',
+      logger.log(
+        'Component already registered. name should be unique.\nBut it is safe to ignore this warning if it occurred because of hot module replacement.',
       );
       return;
     }
@@ -143,10 +147,7 @@ class GlobalComponentManager {
    * @returns null if not exists
    */
   public getComponent(name: string): React.FC<any> | null {
-    if (!this.map.has(name))
-      console.log(
-        `[GlobalComponentManager] Component ${name} is not registered`,
-      );
+    if (!this.map.has(name)) logger.log(`Component ${name} is not registered`);
 
     return this.map.get(name) || null;
   }

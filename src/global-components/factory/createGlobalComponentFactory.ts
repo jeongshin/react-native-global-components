@@ -1,8 +1,8 @@
 import React from 'react';
-import GlobalComponentManager from '../manager/GlobalComponentManager';
-import createPortal from './createPortal';
 import { PortalProps } from '../../types';
 import { InferFCProps } from '../../types/utils';
+import GlobalComponentManager from '../manager/GlobalComponentManager';
+import createPortal from './createPortal';
 
 function createGlobalComponentFactory({
   Manager,
@@ -28,7 +28,6 @@ function createGlobalComponentFactory({
        * This will be fixed in future version.
        *
        * @param {P} props props are inferred from custom component props.
-       * @returns {void}
        *
        * @example
        * ```tsx
@@ -46,8 +45,14 @@ function createGlobalComponentFactory({
        * Hide component if component is mounted.
        *
        * Nothing happens if component is not mounted.
+       *
        */
       hide: (): void => Manager.remove({ name }),
+
+      /**
+       * Clear current queue and all visible components.
+       */
+      clear: (): void => Manager.clear(),
 
       /**
        * Set min delay in milliseconds before render next.
@@ -58,7 +63,6 @@ function createGlobalComponentFactory({
        * therefore, consider side effects of changing default delay value.
        *
        * @param {number} delay (default: 300)
-       * @returns {void}
        */
 
       setDelay: (delay: number): void => Manager.setDelay(delay),

@@ -1,11 +1,11 @@
 import React from 'react';
-import PopUpManager from './PopUpManager';
+import { PortalProps } from '../../types';
 import {
   GlobalComponentContext,
   UpdateGlobalComponentContext,
-} from '../../context/GlobalComponentContext';
-import useGlobalComponent from '../../../hooks/useGlobalComponent';
-import { PortalProps } from '../../../types';
+} from '../context';
+import useGlobalComponent from '../hooks/useGlobalComponent';
+import PopUpManager from './PopUpManager';
 
 const PopUpPortal: React.FC<PortalProps> = ({ name }) => {
   const { visible, updateState, state } = useGlobalComponent(
@@ -22,7 +22,7 @@ const PopUpPortal: React.FC<PortalProps> = ({ name }) => {
   return (
     <GlobalComponentContext.Provider value={state}>
       <UpdateGlobalComponentContext.Provider value={updateState}>
-        <Component />
+        <Component {...state} />
       </UpdateGlobalComponentContext.Provider>
     </GlobalComponentContext.Provider>
   );

@@ -31,7 +31,7 @@ export interface AnimationProps {
   /**
    * animation used to overlay
    */
-  animationWithTimingConfig?: WithTimingConfig;
+  animationConfig?: WithTimingConfig;
 }
 
 export interface PortalProps {
