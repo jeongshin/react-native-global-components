@@ -4,7 +4,7 @@ import { PanGestureHandler } from 'react-native-gesture-handler';
 
 import Animated from 'react-native-reanimated';
 
-import useBottomSheetContext from '../../hooks/useBottomSheetContext';
+import useBottomSheetContext from '../../context/useBottomSheetContext';
 
 const BottomSheetPanHandlerWrapper: React.FC<
   BottomSheetPanHandlerWrapperProps

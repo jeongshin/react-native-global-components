@@ -1,6 +1,6 @@
 {
-  "name": "react-native-bottom-sheet-ui",
-  "version": "0.4.2",
+  "name": "react-native-global-components",
+  "version": "0.0.1",
   "description": "Simple & easy bottom sheet UI",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -11,14 +11,14 @@
     "src/"
   ],
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "npx husky install",
     "lint": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
     "typescript": "npx tsc --noemit",
     "release": "rm -rf lib && yarn build && release-it",
-    "build": "bob build"
+    "build": "npx bob build"
   },
   "author": "JeongShin",
-  "repository": "https://github.com/JeongShin/react-native-bottom-sheet-ui",
+  "repository": "https://github.com/JeongShin/react-native-global-components",
   "license": "ISC",
   "keywords": [
     "react",
@@ -79,5 +79,8 @@
       "eslint --fix",
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "rxjs": "^7.2.0"
   }
 }
