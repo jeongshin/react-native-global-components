@@ -1,5 +1,3 @@
-// @refresh reset
-
 import React, {
   useCallback,
   useEffect,
@@ -8,15 +6,13 @@ import React, {
   useState,
 } from 'react';
 import { filter, tap } from 'rxjs';
-import { Animation, UpdateStateProps } from '../../types';
+import { Animation, Props, UpdateStateProps } from '../../types';
 import GlobalComponentManager from '../manager/GlobalComponentManager';
 
-const useGlobalComponent = <S>(
+const useGlobalComponent = <S extends Props>(
   manager: GlobalComponentManager,
   name: string,
 ) => {
-  const firstRendered = useRef(false);
-
   const [visible, setVisible] = useState(false);
 
   const [state, setState] = useState<S | null>(null);
@@ -44,23 +40,6 @@ const useGlobalComponent = <S>(
   }, []);
 
   /**
-   * subscribe render command
-   */
-  useEffect(() => {
-    const subscription = manager
-      .observeRender()
-      .pipe(
-        filter((s): s is { name: string; props: S } => s.name === name),
-        tap((s) => show(s.props)),
-      )
-      .subscribe();
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
-
-  /**
    * subscribe remove command
    */
   useEffect(() => {
@@ -77,22 +56,9 @@ const useGlobalComponent = <S>(
     };
   }, []);
 
-  /**
-   * notify manager component unmounted
-   */
-  useEffect(() => {
-    if (!firstRendered.current) {
-      firstRendered.current = true;
-      return;
-    }
-
-    if (visible) return;
-
-    manager.complete();
-  }, [visible]);
-
   return {
     state,
+    show,
     setState,
     visible,
     setVisible,

@@ -1,14 +1,14 @@
 import React from 'react';
 import { PortalProps } from '../../types';
 import { InferFCProps } from '../../types/utils';
-import GlobalComponentManager from '../manager/GlobalComponentManager';
+import GlobalModalManager from '../manager/GlobalModalManager';
 import createPortal from './createPortal';
 
 function createGlobalComponentFactory({
   Manager,
   Portal,
 }: {
-  Manager: GlobalComponentManager;
+  Manager: GlobalModalManager;
   Portal: React.FC<PortalProps>;
 }) {
   return function <T extends React.FC<any>, P extends InferFCProps<T>>({
@@ -64,7 +64,6 @@ function createGlobalComponentFactory({
        *
        * @param {number} delay (default: 300)
        */
-
       setDelay: (delay: number): void => Manager.setDelay(delay),
 
       /**

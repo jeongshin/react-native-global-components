@@ -1,3 +1,3 @@
-import GlobalComponentManager from '../manager/GlobalComponentManager';
+import GlobalModalManager from '../manager/GlobalModalManager';
 
-export default new GlobalComponentManager();
+export default new GlobalModalManager({ delay: 300 });

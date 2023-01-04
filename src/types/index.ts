@@ -18,7 +18,13 @@ export interface OverlayProps extends AnimationProps {
    * max opacity of overlay
    * default: 0.5
    */
-  opacity?: number;
+  maxOpacity?: number;
+
+  /**
+   * min opacity of overlay
+   * default: 0
+   */
+  minOpacity?: number;
 
   /**
    * hex color of overlay
@@ -61,5 +67,7 @@ export interface UpdateStateProps {
 }
 
 export type Animation = () => Promise<void>;
+
+export type Props = Record<string, any>;
 
 // export type GlobalComponentName = 'PopUp' | 'BottomSheet' | 'SnackBar';

@@ -1,60 +1,19 @@
 import { Subject, timer } from 'rxjs';
 import logger from '../../logger';
-
-type RenderCommand = { name: string; props: any };
-type RemoveCommand = { name: string };
+import { RemoveCommand, RenderCommand } from '../../types/manager';
 
 class GlobalComponentManager {
-  private map = new Map<string, React.FC<any>>();
-
-  constructor({ delay = 300 }: { delay?: number } = {}) {
-    this.delay = delay;
-  }
-
-  /**
-   * delay in milliseconds to render next component
-   */
-  private delay: number;
-
-  /**
-   * flag screen in use
-   */
-  private locked = false;
+  protected map = new Map<string, React.FC<any>>();
 
   /**
    * observable for render command
    */
-  private render$ = new Subject<RenderCommand>();
+  protected render$ = new Subject<RenderCommand>();
 
   /**
    * observable for remove command
    */
-  private remove$ = new Subject<RemoveCommand>();
-
-  /**
-   * component props list queue
-   */
-  private queue: RenderCommand[] = [];
-
-  /**
-   * render component
-   * if screen in use, push props and render later when screen is free.
-   *
-   * @param  {RenderCommand} command
-   * @returns {void} of component props in queue
-   */
-  public render(command: RenderCommand): void {
-    if (this.locked) {
-      this.queue.push(command);
-      return;
-    }
-
-    this.locked = true;
-
-    this.render$.next(command);
-
-    return;
-  }
+  protected remove$ = new Subject<RemoveCommand>();
 
   /**
    * unmount component if component is mounted.
@@ -65,33 +24,6 @@ class GlobalComponentManager {
    */
   public remove(command: RemoveCommand): void {
     this.remove$.next(command);
-  }
-
-  /**
-   * notify screen is free to use.
-   * render next component if exists in queue.
-   */
-  public complete(): void {
-    this.locked = false;
-
-    const props = this.queue.shift();
-
-    if (!props) return;
-
-    timer(this.delay).subscribe(() => {
-      this.render(props);
-    });
-  }
-
-  /**
-   * clear queue & screen
-   */
-  public clear(): void {
-    this.queue = [];
-    this.locked = false;
-    Array.from(this.map).forEach(([name]) => {
-      this.remove({ name });
-    });
   }
 
   /**
@@ -108,14 +40,6 @@ class GlobalComponentManager {
    */
   public observeRemove(): Subject<RemoveCommand> {
     return this.remove$;
-  }
-
-  /**
-   * change delay in ms
-   * @param {number} delay
-   */
-  public setDelay(delay: number) {
-    this.delay = delay;
   }
 
   /**

@@ -1,63 +1,40 @@
-import React, { useCallback, useEffect } from 'react';
-
+import React, { useEffect } from 'react';
 import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
-
-import Animated, {
-  runOnJS,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
-
-import { OverlayProps, UpdateStateProps } from '../../types';
-import { DEFAULT_WITH_TIMING_CONFIG } from '../constant';
-
-interface IOverlayProps extends OverlayProps, UpdateStateProps {
-  //
-}
+import Animated from 'react-native-reanimated';
+import { OverlayProps } from '../../types';
+import useFadeAnimationStyle from '../hooks/useFadeAnimationStyle';
+import useUpdateGlobalComponentState from '../hooks/useUpdateGlobalComponentState';
 
 /**
  * Dim overlay with fade animation.
  *
  * @example
  * ```tsx
- * const context = useUpdateGlobalComponentState();
  *
  * return (
  *   <Container>
- *     <Overlay {...context} {...overlayProps} />
+ *     <Overlay {...overlayProps} />
  *   </Container>
  * );
  * ```
  *
  * @see {OverlayProps} see OverlayProps for props description.
  */
-const Overlay: React.FC<IOverlayProps> = ({
-  addHideAnimation,
-  hide,
+const Overlay: React.FC<OverlayProps> = ({
   hideOnPressOverlay = false,
   enableBackPressHandler = true,
-  opacity = 0.5,
+  maxOpacity = 0.5,
+  minOpacity,
   overlayColor = '#000000',
-  animationConfig: animationConfig = DEFAULT_WITH_TIMING_CONFIG,
+  animationConfig,
 }) => {
-  const overlayOpacity = useSharedValue(0);
+  const { style } = useFadeAnimationStyle({
+    maxOpacity,
+    minOpacity,
+    animationConfig,
+  });
 
-  const animatedStyle = useAnimatedStyle(() => ({
-    opacity: overlayOpacity.value,
-  }));
-
-  useEffect(() => {
-    overlayOpacity.value = withTiming(opacity, animationConfig);
-
-    addHideAnimation(() => {
-      return new Promise((resolve) => {
-        overlayOpacity.value = withTiming(0, animationConfig, () =>
-          runOnJS(resolve)(),
-        );
-      });
-    });
-  }, []);
+  const { hide } = useUpdateGlobalComponentState();
 
   useEffect(() => {
     if (!enableBackPressHandler) return;
@@ -68,9 +45,9 @@ const Overlay: React.FC<IOverlayProps> = ({
     <TouchableWithoutFeedback disabled={!hideOnPressOverlay} onPress={hide}>
       <Animated.View
         style={[
+          style,
           StyleSheet.absoluteFill,
           { backgroundColor: overlayColor },
-          animatedStyle,
         ]}
       />
     </TouchableWithoutFeedback>

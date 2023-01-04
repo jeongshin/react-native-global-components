@@ -4,17 +4,15 @@ import {
   GlobalComponentContext,
   UpdateGlobalComponentContext,
 } from '../context';
-import PopUpManager from './PopUpManager';
-import usePopUp from './usePopUp';
+import SnackBarManager from './SnackBarManager';
+import useSnackBar from './useSnackBar';
 
-const PopUpPortal: React.FC<PortalProps> = ({ name }) => {
-  const { visible, updateState, state } = usePopUp(name);
+const SnackBarPortal: React.FC<PortalProps> = ({ name }) => {
+  const { state, updateState } = useSnackBar(name);
 
-  if (!visible || !state) return <></>;
+  const Component = SnackBarManager.getComponent(name);
 
-  const Component = PopUpManager.getComponent(name);
-
-  if (!Component) return <></>;
+  if (!Component || !state) return <></>;
 
   return (
     <GlobalComponentContext.Provider value={state}>
@@ -25,4 +23,4 @@ const PopUpPortal: React.FC<PortalProps> = ({ name }) => {
   );
 };
 
-export default PopUpPortal;
+export default SnackBarPortal;
