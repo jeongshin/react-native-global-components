@@ -148,7 +148,7 @@ const handlePress = () => {
 
 | Key      | Type                         | Default     | Description                                                                                                       |
 | -------- | ---------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------- |
-| position | `'top'` \| `'bottom'`        | `'bottom'`  | absolute position of snackbar                                                                                     |
+| position | 'top' \| 'bottom'            | 'bottom'    | absolute position of snackbar                                                                                     |
 | duration | number                       | 3000        | duration in milliseconds for how long to display snackbar. If `undefined`, never disappear until user interaction |
 | offsetY  | number                       | 50          | offset in px from absolute position                                                                               |
 | style    | AnimatedStyleProp<ViewStyle> | `undefined` | reanimated style                                                                                                  |
