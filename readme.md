@@ -146,12 +146,12 @@ const handlePress = () => {
 
 ## Props
 
-| Key      | Required | Type                         | Default     | Description                                                                                                       |
-| -------- | -------- | ---------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------- |
-| position | false    | 'top' \| 'bottom'            | 'bottom'    | absolute position of snackbar                                                                                     |
-| duration | false    | number                       | 3000        | duration in milliseconds for how long to display snackbar. If `undefined`, never disappear until user interaction |
-| offsetY  | false    | number                       | 50          | offset in px from absolute position                                                                               |
-| style    | false    | AnimatedStyleProp<ViewStyle> | `undefined` | reanimated style                                                                                                  |
+| Key      | Type                         | Default     | Description                                                                                                       |
+| -------- | ---------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------- |
+| position | 'top' \| 'bottom'            | 'bottom'    | absolute position of snackbar                                                                                     |
+| duration | number                       | 3000        | duration in milliseconds for how long to display snackbar. If `undefined`, never disappear until user interaction |
+| offsetY  | number                       | 50          | offset in px from absolute position                                                                               |
+| style    | AnimatedStyleProp<ViewStyle> | `undefined` | reanimated style                                                                                                  |
 
 ## Methods
 
