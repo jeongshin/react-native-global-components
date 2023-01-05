@@ -7,17 +7,17 @@
 
 > what is global component? 🤔
 
-Global components definition in this project is components that used commonly and globally with user interactions usually Modal based UI
+In this project, global component definition is 'components that used commonly and globally with user interactions'.
 
-This project provides **easy to use and fully customizable** implement of global components.
+Global component provides **easy to use and fully customizable** implement of Modal Based UI.
 
 ## How it works
 
-- Provides global component API for `SnackBar`, `PopUp`, `BottomSheet`
+- Provides global component API for `Snackbar`, `Popup`, `BottomSheet`
 - Prevents **overlapped rendering** same type global components using rx observable and queue
 - Once screen is occupied by global component, later `show` request is saved in queue and render asynchronously after previous global component is unmounted
-- Global components are grouped by its type, global components with different types can be rendered together in screen.
-- Only one global component can be mounted with same type.
+- Global components are grouped by its type, global components with different types can be rendered together in screen
+- Only one global component can be mounted with same type
 
 ## Dependencies
 
@@ -28,19 +28,25 @@ This project provides **easy to use and fully customizable** implement of global
 
 ## Getting Started
 
-```
+```sh
 $ yarn add react-native-global-components
 ```
 
-```
+```sh
 $ npm install react-native-global-components
 ```
+
+# Popup
+
+## Props
+
+No default props for popup. Props are inferred from your custom components.
 
 ## Methods
 
 #### `show`
 
-Request render. props type `P` is inferred from custom Component. See how it works section above for details.
+Request render. props type `P` is inferred from custom component.
 
 ```ts
 show: (props: P) => void;
@@ -65,9 +71,10 @@ clear: () => void;
 #### `setDelay`
 
 Delay is time in milliseconds gap between switching global components. (default: 300ms)
-Changing delay can have side effects for same type global components.
 
-ex) components created by `createPopUp` have shared delay
+Changing delay can have side effects for same type global components
+
+ex) All pop-ups created by `createPopup` factory have shared delay
 
 ```ts
 setDelay: (delay: number) => void;
@@ -75,7 +82,7 @@ setDelay: (delay: number) => void;
 
 #### `Portal`
 
-Portal is host component to handle render request. Highly recommend to put top-level component.
+Portal is host component to handle render request.
 
 ```ts
 Portal: () => JSX.Element;
@@ -86,9 +93,9 @@ if using [react navigation](https://reactnavigation.org/), recommend to put unde
 ```tsx
 export default function RootNavigator() {
   useEffect(() => {
-    // for clean up hot reload
+    // recommend for clean up prev states on hot replacement
     return () => {
-      ConfirmPopUp.clear();
+      ConfirmPopup.clear();
     };
   }, []);
 
@@ -97,34 +104,30 @@ export default function RootNavigator() {
       <NavigationContainer>
         <BottomTabNavigator />
       </NavigationContainer>
-      <ConfirmPopUp.Portal />
+      <ConfirmPopup.Portal />
     </>
   );
 }
 ```
 
-## Usage
-
-### Pop Up
-
-create pop up with your custom UI
+## Examples
 
 ```ts
 // ./src/global-components/ConfirmPopUp.ts
-import { createPopUp } from 'react-native-global-components';
+import { createPopup } from 'react-native-global-components';
 
-interface MyConfirmPopUpProps {
+interface MyConfirmPopupProps {
   // any props you need
   title: string;
 }
 
-const MyConfirmPopUp: React.FC<MyConfirmPopUpProps> = (props) => {
+const MyConfirmPopup: React.FC<MyConfirmPopupProps> = (props) => {
   return <MyCustomUI {...props} />;
 };
 
-export default createPopUp({
+export default createPopup({
   name: 'ConfirmPopUp',
-  Component: MyConfirmPopUp,
+  Component: MyConfirmPopup,
 });
 ```
 
@@ -132,20 +135,55 @@ use anywhere
 
 ```tsx
 // App.tsx
-import ConfirmPopUp from '../global-components/ConfirmPopUp';
+import ConfirmPopup from '../global-components/ConfirmPopup';
 
 const handlePress = () => {
-  ConfirmPopUp.show({ title: 'hello~' });
+  ConfirmPopup.show({ title: 'hello~' });
 };
+```
+
+# Snackbar
+
+## Props
+
+| Key      | Type                         | Default     | Description                                                                                                       |
+| -------- | ---------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------- |
+| position | `'top'` \| `'bottom'`        | `'bottom'`  | absolute position of snackbar                                                                                     |
+| duration | number                       | 3000        | duration in milliseconds for how long to display snackbar. If `undefined`, never disappear until user interaction |
+| offsetY  | number                       | 50          | offset in px from absolute position                                                                               |
+| style    | AnimatedStyleProp<ViewStyle> | `undefined` | reanimated style                                                                                                  |
+
+## Methods
+
+#### `show`
+
+Request render. props type `P` is inferred from custom Component.
+
+Unlike Popup, Snackbar renders **immediately on show request** replacing previous rendered snackbar.
+
+```ts
+show: (props: P) => void;
+```
+
+#### `hide`
+
+Request unmount. Nothing happens if not component is mounted.
+
+```ts
+hide: () => void;
+```
+
+#### `Portal`
+
+Portal is host component to handle render request.
+
+```ts
+Portal: () => JSX.Element;
 ```
 
 ### Bottom Sheet
 
-> not implemented yet
-
-### Snack Bar
-
-> not implemented yet
+> not yet
 
 ### Others
 
