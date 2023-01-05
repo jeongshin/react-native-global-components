@@ -19,7 +19,6 @@
   },
   "author": "JeongShin",
   "repository": "https://github.com/JeongShin/react-native-global-components",
-  "license": "ISC",
   "keywords": [
     "react",
     "react-native",
@@ -82,5 +81,6 @@
   },
   "dependencies": {
     "rxjs": "^7.2.0"
-  }
+  },
+  "license": "MIT"
 }
