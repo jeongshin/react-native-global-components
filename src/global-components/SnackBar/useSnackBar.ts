@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { filter, of, switchMap, tap } from 'rxjs';
+import { delay, filter, of, switchMap, tap } from 'rxjs';
 import useGlobalComponent from '../hooks/useGlobalComponent';
 import { SnackbarProps } from './Snackbar';
 import SnackbarManager from './SnackbarManager';
@@ -12,7 +12,10 @@ const useSnackbar = <S extends SnackbarProps>(name: string) => {
     const subscription = SnackbarManager.observeRender()
       .pipe(
         filter((v): v is { name: string; props: S } => v.name === name),
-        switchMap((v) => of(v.props).pipe(tap(hideImmediate), tap(show))),
+        switchMap((v) =>
+          // TODO:  without delay??
+          of(v.props).pipe(tap(hideImmediate), delay(16), tap(show)),
+        ),
       )
       .subscribe();
 
