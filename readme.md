@@ -11,7 +11,7 @@ In this project, global component definition is components that used commonly an
 
 Global component provides **easy to use and fully customizable** implement of Modal Based UI.
 
-<img width="300" alt="snackbar_preview" src="./previews/sample_snackbar.gif">
+<img width="300" alt="snackbar_preview" src="./previews/sample_snackbar.gif"> <img width="300" alt="popup_preview" src="./previews/sample_popup.gif">
 
 ## How it works
 
@@ -97,7 +97,7 @@ export default function RootNavigator() {
   useEffect(() => {
     // recommend for clean up prev states on hot replacement
     return () => {
-      ConfirmPopup.clear();
+      InputPopup.clear();
     };
   }, []);
 
@@ -106,7 +106,7 @@ export default function RootNavigator() {
       <NavigationContainer>
         <BottomTabNavigator />
       </NavigationContainer>
-      <ConfirmPopup.Portal />
+      <InputPopup.Portal />
     </>
   );
 }
@@ -115,21 +115,39 @@ export default function RootNavigator() {
 ## Examples
 
 ```ts
-// ./src/global-components/ConfirmPopup.ts
-import { createPopup } from 'react-native-global-components';
+import {
+  createPopup,
+  Overlay,
+  useUpdateGlobalComponentState,
+  useFadeAnimationStyle,
+  KeyboardAvoidingContainer,
+  useSlideAnimationStyle,
+} from 'react-native-global-components';
 
-interface MyConfirmPopupProps {
-  // any props you need
-  title: string;
+interface InputPopupProps {
+  onConfirm: () => void;
 }
 
-const MyConfirmPopup: React.FC<MyConfirmPopupProps> = (props) => {
-  return <MyCustomUI {...props} />;
+const InputPopup: React.FC<InputPopupProps> = (props) => {
+  const { hide } = useUpdateGlobalComponentState();
+
+  const { style } = useFadeAnimationStyle();
+
+  const { style: slide } = useSlideAnimationStyle({ translateY: -30 });
+
+  return (
+    <KeyboardAvoidingContainer keyboardVerticalOffset={-100}>
+      <Overlay />
+      <Animated.View style={[styles.container, style, slide]}>
+        <PopupUI onPress={hide} {...props} />
+      </Animated.View>
+    </KeyboardAvoidingContainer>
+  );
 };
 
 export default createPopup({
-  name: 'ConfirmPopup',
-  Component: MyConfirmPopup,
+  name: 'InputPopup',
+  Component: InputPopup,
 });
 ```
 
@@ -137,10 +155,14 @@ use anywhere
 
 ```tsx
 // App.tsx
-import ConfirmPopup from '../global-components/ConfirmPopup';
+import { InputPopup } from './some-dir-to-global-components';
 
 const handlePress = () => {
-  ConfirmPopup.show({ title: 'hello~' });
+  InputPopup.show({
+    onConfirm: () => {
+      console.log('yay!');
+    },
+  });
 };
 ```
 
