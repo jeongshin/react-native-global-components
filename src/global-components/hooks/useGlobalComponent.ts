@@ -25,6 +25,11 @@ const useGlobalComponent = <S extends Props>(
     setVisible(false);
   }, []);
 
+  const hideImmediate = useCallback(() => {
+    setState(null);
+    setVisible(false);
+  }, []);
+
   const addHideAnimation = useCallback((animation: Animation) => {
     animations.current = [...animations.current, animation];
   }, []);
@@ -63,6 +68,7 @@ const useGlobalComponent = <S extends Props>(
     visible,
     setVisible,
     updateState,
+    hideImmediate,
   };
 };
 

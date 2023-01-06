@@ -11,29 +11,29 @@ import useUpdateGlobalComponentState from './useUpdateGlobalComponentState';
 
 const useSlideAnimationStyle = ({
   animationConfig = DEFAULT_WITH_TIMING_CONFIG,
-  slideY = 30,
+  translateY = 30,
 }: {
   animationConfig?: WithTimingConfig;
-  slideY?: number;
+  translateY?: number;
 }) => {
-  const translateY = useSharedValue(slideY);
+  const animation = useSharedValue(translateY);
 
   const { addHideAnimation } = useUpdateGlobalComponentState();
 
   const style = useAnimatedStyle(() => ({
     transform: [
       {
-        translateY: translateY.value,
+        translateY: animation.value,
       },
     ],
   }));
 
   useEffect(() => {
-    translateY.value = withTiming(0, animationConfig);
+    animation.value = withTiming(0, animationConfig);
 
     addHideAnimation(() => {
       return new Promise((resolve) => {
-        translateY.value = withTiming(slideY, animationConfig, () =>
+        animation.value = withTiming(translateY, animationConfig, () =>
           runOnJS(resolve)(),
         );
       });
