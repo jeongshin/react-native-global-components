@@ -13,9 +13,11 @@
   "scripts": {
     "prepare": "npx husky install",
     "lint": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
-    "typescript": "npx tsc --noemit",
-    "release": "rm -rf lib && yarn build && release-it",
-    "build": "npx bob build"
+    "typescript": "tsc --noemit",
+    "patch": "rm -rf lib && yarn build && release-it patch --npm.skipChecks",
+    "minor": "rm -rf lib && yarn build && release-it minor --npm.skipChecks",
+    "major": "rm -rf lib && yarn build && release-it major --npm.skipChecks",
+    "build": "bob build"
   },
   "author": "JeongShin",
   "repository": "https://github.com/JeongShin/react-native-global-components",
