@@ -1,9 +1,9 @@
 import React from 'react';
-import { PortalProps } from '../../types';
 import {
   GlobalComponentContext,
   UpdateGlobalComponentContext,
 } from '../context';
+import { PortalProps } from '../types';
 import PopupManager from './PopupManager';
 import usePopup from './usePopup';
 

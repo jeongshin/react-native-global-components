@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs';
-import logger from '../../logger';
+import logger from '../logger';
 
 class GlobalComponentManager {
   protected map = new Map<string, React.FC<any>>();

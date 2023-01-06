@@ -1,5 +1,5 @@
 import React from 'react';
-import { PortalProps } from '../../types';
+import { PortalProps } from '../types';
 
 const createPortal = (
   PortalComponent: React.FC<PortalProps>,

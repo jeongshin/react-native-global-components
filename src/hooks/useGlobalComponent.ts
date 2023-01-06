@@ -6,8 +6,8 @@ import React, {
   useState,
 } from 'react';
 import { filter, tap } from 'rxjs';
-import { Animation, Props, UpdateStateProps } from '../../types';
 import GlobalComponentManager from '../GlobalComponentManager';
+import { Animation, Props, UpdateStateProps } from '../types';
 
 const useGlobalComponent = <S extends Props>(
   manager: GlobalComponentManager,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { UpdateStateProps } from '../../types';
+import { UpdateStateProps } from '../types';
 
 export const UpdateGlobalComponentContext =
   React.createContext<UpdateStateProps | null>(null);

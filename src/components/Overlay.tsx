@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { OverlayProps } from '../../types';
 import useFadeAnimationStyle from '../hooks/useFadeAnimationStyle';
 import useUpdateGlobalComponentState from '../hooks/useUpdateGlobalComponentState';
+import { OverlayProps } from '../types';
 
 /**
  * Dim overlay with fade animation.

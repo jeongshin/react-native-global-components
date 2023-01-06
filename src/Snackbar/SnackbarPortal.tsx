@@ -1,9 +1,9 @@
 import React from 'react';
-import { PortalProps } from '../../types';
 import {
   GlobalComponentContext,
   UpdateGlobalComponentContext,
 } from '../context';
+import { PortalProps } from '../types';
 import SnackbarManager from './SnackbarManager';
 import useSnackbar from './useSnackbar';
 

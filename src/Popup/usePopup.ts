@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { filter, tap } from 'rxjs';
-import { Props } from '../../types';
 import useGlobalComponent from '../hooks/useGlobalComponent';
+import { Props } from '../types';
 import PopupManager from './PopupManager';
 
 const usePopup = <S extends Props>(name: string) => {

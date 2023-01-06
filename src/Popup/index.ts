@@ -1,6 +1,6 @@
 import React from 'react';
-import { InferFCProps } from '../../types/utils';
 import createPortal from '../factory/createPortal';
+import { InferFCProps } from '../types/utils';
 import PopupManager from './PopupManager';
 import PopupPortal from './PopupPortal';
 
