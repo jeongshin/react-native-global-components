@@ -14,7 +14,7 @@
     "prepare": "npx husky install",
     "lint": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
     "typescript": "npx tsc --noemit",
-    "patch": "rm -rf lib && yarn build && npx release-it patch --npm.skipChecks",
+    "patch": "rm -rf lib && yarn build && npx release-it patch",
     "minor": "rm -rf lib && yarn build && npx release-it minor",
     "major": "rm -rf lib && yarn build && npx release-it major",
     "build": "npx bob build"
