@@ -5,10 +5,10 @@ import {
   UpdateGlobalComponentContext,
 } from '../context';
 import PopupManager from './PopupManager';
-import usePopUp from './usePopup';
+import usePopup from './usePopup';
 
-const PopUpPortal: React.FC<PortalProps> = ({ name }) => {
-  const { visible, updateState, state } = usePopUp(name);
+const PopupPortal: React.FC<PortalProps> = ({ name }) => {
+  const { visible, updateState, state } = usePopup(name);
 
   if (!visible || !state) return <></>;
 
@@ -25,4 +25,4 @@ const PopUpPortal: React.FC<PortalProps> = ({ name }) => {
   );
 };
 
-export default PopUpPortal;
+export default PopupPortal;
