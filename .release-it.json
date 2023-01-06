@@ -14,7 +14,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "plugins": {
-    "release-it-yarn-workspaces": {
+    "@release-it-plugins/workspaces": {
       "skipChecks": true
     },
     "@release-it/conventional-changelog": {
