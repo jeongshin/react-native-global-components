@@ -1,10 +1,10 @@
 import React from 'react';
 import { InferFCProps } from '../../types/utils';
 import createPortal from '../factory/createPortal';
-import SnackBarManager from './SnackBarManager';
-import SnackBarPortal from './SnackBarPortal';
+import SnackbarManager from './SnackbarManager';
+import SnackbarPortal from './SnackbarPortal';
 
-function createSnackBarFactory() {
+function createSnackbarFactory() {
   return function <T extends React.FC<any>, P extends InferFCProps<T>>({
     name,
     Component,
@@ -12,7 +12,7 @@ function createSnackBarFactory() {
     name: string;
     Component: T;
   }) {
-    SnackBarManager.setComponent({ name, Component });
+    SnackbarManager.setComponent({ name, Component });
 
     return {
       /**
@@ -24,16 +24,8 @@ function createSnackBarFactory() {
        * @param {P} props props are inferred from custom component props.
        *
        * @example
-       * ```tsx
-       * const ConfirmPopUp = createPopUp({
-       *   name: 'ConfirmPopUp',
-       *   Component: (props: { title: string }) => <MyConfirmPopUp {...props} />,
-       * });
-       *
-       * ConfirmPopUp.show({ title: 'hello' });
-       * ```
        */
-      show: (props: P): void => SnackBarManager.render({ name, props }),
+      show: (props: P): void => SnackbarManager.render({ name, props }),
 
       /**
        * Hide component if component is mounted.
@@ -41,7 +33,7 @@ function createSnackBarFactory() {
        * Nothing happens if component is not mounted.
        *
        */
-      hide: (): void => SnackBarManager.remove({ name }),
+      hide: (): void => SnackbarManager.remove({ name }),
 
       /**
        * Portal to render component.
@@ -51,20 +43,20 @@ function createSnackBarFactory() {
        * @example
        *
        * ```tsx
-       * import { ConfirmationPopUp, SnackBar } from '../my-global-component-path';
+       * import { ConfirmationPopup, Snackbar } from '../my-global-component-path';
        * import { NavigationContainer } from '@react-navigation/native';
        * <>
        *   <NavigationContainer>
        *     <RootNavigator />
        *   </NavigationContainer>
-       *   <ConfirmationPopUp.Portal />
-       *   <SnackBar.Portal />
+       *   <ConfirmationPopup.Portal />
+       *   <Snackbar.Portal />
        * </>
        * ```
        */
-      Portal: createPortal(SnackBarPortal, { name }),
+      Portal: createPortal(SnackbarPortal, { name }),
     };
   };
 }
 
-export default createSnackBarFactory;
+export default createSnackbarFactory;

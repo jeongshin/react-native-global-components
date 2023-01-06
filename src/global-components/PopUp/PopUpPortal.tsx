@@ -4,15 +4,15 @@ import {
   GlobalComponentContext,
   UpdateGlobalComponentContext,
 } from '../context';
-import PopUpManager from './PopUpManager';
-import usePopUp from './usePopUp';
+import PopupManager from './PopupManager';
+import usePopUp from './usePopup';
 
 const PopUpPortal: React.FC<PortalProps> = ({ name }) => {
   const { visible, updateState, state } = usePopUp(name);
 
   if (!visible || !state) return <></>;
 
-  const Component = PopUpManager.getComponent(name);
+  const Component = PopupManager.getComponent(name);
 
   if (!Component) return <></>;
 

@@ -113,7 +113,7 @@ export default function RootNavigator() {
 ## Examples
 
 ```ts
-// ./src/global-components/ConfirmPopUp.ts
+// ./src/global-components/ConfirmPopup.ts
 import { createPopup } from 'react-native-global-components';
 
 interface MyConfirmPopupProps {
@@ -126,7 +126,7 @@ const MyConfirmPopup: React.FC<MyConfirmPopupProps> = (props) => {
 };
 
 export default createPopup({
-  name: 'ConfirmPopUp',
+  name: 'ConfirmPopup',
   Component: MyConfirmPopup,
 });
 ```

@@ -1,3 +1,3 @@
-import createSnackBarFactory from './factory';
+import createSnackbarFactory from './factory';
 
-export default createSnackBarFactory();
+export default createSnackbarFactory();

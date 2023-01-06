@@ -1,8 +1,9 @@
 import { timer } from 'rxjs';
-import { RenderCommand } from '../../types/manager';
-import GlobalComponentManager from '../manager/GlobalComponentManager';
+import GlobalComponentManager, {
+  RenderCommand,
+} from '../GlobalComponentManager';
 
-class PopUpManager extends GlobalComponentManager {
+class PopupManager extends GlobalComponentManager {
   /**
    * delay in milliseconds to render next component
    */
@@ -79,4 +80,4 @@ class PopUpManager extends GlobalComponentManager {
   }
 }
 
-export default new PopUpManager({ delay: 300 });
+export default new PopupManager({ delay: 300 });

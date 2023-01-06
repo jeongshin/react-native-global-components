@@ -2,18 +2,18 @@ import React, { useEffect, useRef } from 'react';
 import { filter, tap } from 'rxjs';
 import { Props } from '../../types';
 import useGlobalComponent from '../hooks/useGlobalComponent';
-import PopUpManager from './PopUpManager';
+import PopupManager from './PopupManager';
 
-const usePopUp = <S extends Props>(name: string) => {
+const usePopup = <S extends Props>(name: string) => {
   const firstRendered = useRef(false);
 
   const { show, state, visible, updateState } = useGlobalComponent(
-    PopUpManager,
+    PopupManager,
     name,
   );
 
   useEffect(() => {
-    const subscription = PopUpManager.observeRender()
+    const subscription = PopupManager.observeRender()
       .pipe(
         filter((s): s is { name: string; props: S } => s.name === name),
         tap((s) => show(s.props)),
@@ -36,7 +36,7 @@ const usePopUp = <S extends Props>(name: string) => {
 
     if (visible) return;
 
-    PopUpManager.complete();
+    PopupManager.complete();
   }, [visible]);
 
   return {
@@ -46,4 +46,4 @@ const usePopUp = <S extends Props>(name: string) => {
   };
 };
 
-export default usePopUp;
+export default usePopup;

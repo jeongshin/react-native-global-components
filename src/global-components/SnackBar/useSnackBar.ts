@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { filter, of, switchMap, tap } from 'rxjs';
 import useGlobalComponent from '../hooks/useGlobalComponent';
-import { SnackBarProps } from './SnackBar';
-import SnackBarManager from './SnackBarManager';
+import { SnackbarProps } from './Snackbar';
+import SnackbarManager from './SnackbarManager';
 
-const useSnackBar = <S extends SnackBarProps>(name: string) => {
+const useSnackbar = <S extends SnackbarProps>(name: string) => {
   const { show, visible, state, updateState } = useGlobalComponent<S>(
-    SnackBarManager,
+    SnackbarManager,
     name,
   );
 
   useEffect(() => {
-    const subscription = SnackBarManager.observeRender()
+    const subscription = SnackbarManager.observeRender()
       .pipe(
         filter((v): v is { name: string; props: S } => v.name === name),
         switchMap((v) => of(v.props).pipe(tap(show))),
@@ -30,4 +30,4 @@ const useSnackBar = <S extends SnackBarProps>(name: string) => {
   };
 };
 
-export default useSnackBar;
+export default useSnackbar;

@@ -3,7 +3,7 @@ import { ViewStyle } from 'react-native';
 
 import Animated, { AnimatedStyleProp } from 'react-native-reanimated';
 
-const SnackBar: React.FC<SnackBarProps> = ({
+const Snackbar: React.FC<SnackbarProps> = ({
   position = 'bottom',
   style,
   offsetY = 50,
@@ -29,7 +29,7 @@ const SnackBar: React.FC<SnackBarProps> = ({
   );
 };
 
-export interface SnackBarProps {
+export interface SnackbarProps {
   // duration?: number;
   children?: React.ReactNode;
   duration?: number;
@@ -38,4 +38,4 @@ export interface SnackBarProps {
   style?: AnimatedStyleProp<ViewStyle>;
 }
 
-export default SnackBar;
+export default Snackbar;

@@ -4,13 +4,13 @@ import {
   GlobalComponentContext,
   UpdateGlobalComponentContext,
 } from '../context';
-import SnackBarManager from './SnackBarManager';
-import useSnackBar from './useSnackBar';
+import SnackbarManager from './SnackbarManager';
+import useSnackbar from './useSnackbar';
 
-const SnackBarPortal: React.FC<PortalProps> = ({ name }) => {
-  const { state, updateState } = useSnackBar(name);
+const SnackbarPortal: React.FC<PortalProps> = ({ name }) => {
+  const { state, updateState } = useSnackbar(name);
 
-  const Component = SnackBarManager.getComponent(name);
+  const Component = SnackbarManager.getComponent(name);
 
   if (!Component || !state) return <></>;
 
@@ -23,4 +23,4 @@ const SnackBarPortal: React.FC<PortalProps> = ({ name }) => {
   );
 };
 
-export default SnackBarPortal;
+export default SnackbarPortal;

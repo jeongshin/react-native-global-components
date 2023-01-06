@@ -1,6 +1,5 @@
-import { Subject, timer } from 'rxjs';
+import { Subject } from 'rxjs';
 import logger from '../../logger';
-import { RemoveCommand, RenderCommand } from '../../types/manager';
 
 class GlobalComponentManager {
   protected map = new Map<string, React.FC<any>>();
@@ -76,5 +75,9 @@ class GlobalComponentManager {
     return this.map.get(name) || null;
   }
 }
+
+export type RenderCommand = { name: string; props: any };
+
+export type RemoveCommand = { name: string };
 
 export default GlobalComponentManager;

@@ -1,7 +1,8 @@
-import { RenderCommand } from '../../types/manager';
-import GlobalComponentManager from '../manager/GlobalComponentManager';
+import GlobalComponentManager, {
+  RenderCommand,
+} from '../GlobalComponentManager';
 
-class SnackBarManager extends GlobalComponentManager {
+class SnackbarManager extends GlobalComponentManager {
   constructor() {
     super();
   }
@@ -16,4 +17,4 @@ class SnackBarManager extends GlobalComponentManager {
   }
 }
 
-export default new SnackBarManager();
+export default new SnackbarManager();

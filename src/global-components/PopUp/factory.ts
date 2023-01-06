@@ -1,8 +1,8 @@
 import React from 'react';
 import { InferFCProps } from '../../types/utils';
 import createPortal from '../factory/createPortal';
-import PopUpManager from './PopUpManager';
-import PopUpPortal from './PopUpPortal';
+import PopupManager from './PopupManager';
+import PopupPortal from './PopupPortal';
 
 function createPopupFactory() {
   return function <T extends React.FC<any>, P extends InferFCProps<T>>({
@@ -12,7 +12,7 @@ function createPopupFactory() {
     name: string;
     Component: T;
   }) {
-    PopUpManager.setComponent({ name, Component });
+    PopupManager.setComponent({ name, Component });
 
     return {
       /**
@@ -25,15 +25,15 @@ function createPopupFactory() {
        *
        * @example
        * ```tsx
-       * const ConfirmPopUp = createPopUp({
-       *   name: 'ConfirmPopUp',
-       *   Component: (props: { title: string }) => <MyConfirmPopUp {...props} />,
+       * const ConfirmPopup = createPopup({
+       *   name: 'ConfirmPopup',
+       *   Component: (props: { title: string }) => <MyConfirmPopup {...props} />,
        * });
        *
-       * ConfirmPopUp.show({ title: 'hello' });
+       * ConfirmPopup.show({ title: 'hello' });
        * ```
        */
-      show: (props: P): void => PopUpManager.render({ name, props }),
+      show: (props: P): void => PopupManager.render({ name, props }),
 
       /**
        * Hide component if component is mounted.
@@ -41,24 +41,24 @@ function createPopupFactory() {
        * Nothing happens if component is not mounted.
        *
        */
-      hide: (): void => PopUpManager.remove({ name }),
+      hide: (): void => PopupManager.remove({ name }),
 
       /**
        * Clear current queue and all visible components.
        */
-      clear: (): void => PopUpManager.clear(),
+      clear: (): void => PopupManager.clear(),
 
       /**
        * Set min delay in milliseconds before render next.
        *
        * Delay is **shared value between same global component manager**.
        *
-       * For example, every global components created by `createPopUp` has shared delay value.
+       * For example, every global components created by `createPopup` has shared delay value.
        * therefore, consider side effects of changing default delay value.
        *
        * @param {number} delay (default: 300)
        */
-      setDelay: (delay: number): void => PopUpManager.setDelay(delay),
+      setDelay: (delay: number): void => PopupManager.setDelay(delay),
 
       /**
        * Portal to render component.
@@ -68,19 +68,19 @@ function createPopupFactory() {
        * @example
        *
        * ```tsx
-       * import { ConfirmationPopUp, SnackBar } from '../my-global-component-path';
+       * import { ConfirmationPopup, Snackbar } from '../my-global-component-path';
        * import { NavigationContainer } from '@react-navigation/native';
        * <>
        *   <NavigationContainer>
        *     <RootNavigator />
        *   </NavigationContainer>
-       *   <ConfirmationPopUp.Portal />
-       *   <SnackBar.Portal />
+       *   <ConfirmationPopup.Portal />
+       *   <Snackbar.Portal />
        * </>
        * ```
        */
 
-      Portal: createPortal(PopUpPortal, { name }),
+      Portal: createPortal(PopupPortal, { name }),
     };
   };
 }

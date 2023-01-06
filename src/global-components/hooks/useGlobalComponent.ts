@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { filter, tap } from 'rxjs';
 import { Animation, Props, UpdateStateProps } from '../../types';
-import GlobalComponentManager from '../manager/GlobalComponentManager';
+import GlobalComponentManager from '../GlobalComponentManager';
 
 const useGlobalComponent = <S extends Props>(
   manager: GlobalComponentManager,

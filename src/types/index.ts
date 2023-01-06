@@ -69,5 +69,3 @@ export interface UpdateStateProps {
 export type Animation = () => Promise<void>;
 
 export type Props = Record<string, any>;
-
-// export type GlobalComponentName = 'PopUp' | 'BottomSheet' | 'SnackBar';
