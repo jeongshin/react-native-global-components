@@ -11,6 +11,8 @@ In this project, global component definition is components that used commonly an
 
 Global component provides **easy to use and fully customizable** implement of Modal Based UI.
 
+<img width="300" alt="snackbar_preview" src="./previews/snackbar_sample.gif">
+
 ## How it works
 
 - Provides global component API for `Snackbar`, `Popup`, `BottomSheet`
@@ -144,7 +146,42 @@ const handlePress = () => {
 
 # Snackbar
 
-<img width="375" alt="snackbar_preview" src="./previews/snackbar_sample.gif">
+## Props
+
+| Key      | Type                         | Default     | Description                                                                                                       |
+| -------- | ---------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------- |
+| position | 'top' \| 'bottom'            | 'bottom'    | absolute position of snackbar                                                                                     |
+| duration | number                       | 3000        | duration in milliseconds for how long to display snackbar. If `undefined`, never disappear until user interaction |
+| offsetY  | number                       | 50          | offset in px from absolute position                                                                               |
+| style    | AnimatedStyleProp<ViewStyle> | `undefined` | reanimated style                                                                                                  |
+
+## Methods
+
+#### `show`
+
+Request render. props type `P` is inferred from custom Component.
+
+Unlike Popup, Snackbar renders **immediately on show request** replacing previous rendered snackbar.
+
+```ts
+show: (props: P) => void;
+```
+
+#### `hide`
+
+Request unmount. Nothing happens if not component is mounted.
+
+```ts
+hide: () => void;
+```
+
+#### `Portal`
+
+Portal is host component to handle render request.
+
+```ts
+Portal: () => JSX.Element;
+```
 
 ## Example
 
@@ -207,43 +244,6 @@ const App = () => {
     });
  }}>
 };
-```
-
-## Props
-
-| Key      | Type                         | Default     | Description                                                                                                       |
-| -------- | ---------------------------- | ----------- | ----------------------------------------------------------------------------------------------------------------- |
-| position | 'top' \| 'bottom'            | 'bottom'    | absolute position of snackbar                                                                                     |
-| duration | number                       | 3000        | duration in milliseconds for how long to display snackbar. If `undefined`, never disappear until user interaction |
-| offsetY  | number                       | 50          | offset in px from absolute position                                                                               |
-| style    | AnimatedStyleProp<ViewStyle> | `undefined` | reanimated style                                                                                                  |
-
-## Methods
-
-#### `show`
-
-Request render. props type `P` is inferred from custom Component.
-
-Unlike Popup, Snackbar renders **immediately on show request** replacing previous rendered snackbar.
-
-```ts
-show: (props: P) => void;
-```
-
-#### `hide`
-
-Request unmount. Nothing happens if not component is mounted.
-
-```ts
-hide: () => void;
-```
-
-#### `Portal`
-
-Portal is host component to handle render request.
-
-```ts
-Portal: () => JSX.Element;
 ```
 
 ### Bottom Sheet
