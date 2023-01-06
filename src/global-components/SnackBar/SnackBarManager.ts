@@ -1,3 +1,19 @@
-import GlobalSnackBarManager from '../manager/GlobalSnackBarManager';
+import { RenderCommand } from '../../types/manager';
+import GlobalComponentManager from '../manager/GlobalComponentManager';
 
-export default new GlobalSnackBarManager();
+class SnackBarManager extends GlobalComponentManager {
+  constructor() {
+    super();
+  }
+  /**
+   * render component
+   *
+   * @param  {RenderCommand} command
+   * @returns {void} of component props in queue
+   */
+  public render(command: RenderCommand): void {
+    this.render$.next(command);
+  }
+}
+
+export default new SnackBarManager();

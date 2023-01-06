@@ -1,8 +1,3 @@
-import createSnackBarFactory from '../factory/createSnackBarFactory';
-import SnackBarManager from './SnackBarManager';
-import SnackBarPortal from './SnackBarPortal';
+import createSnackBarFactory from './factory';
 
-export default createSnackBarFactory({
-  Portal: SnackBarPortal,
-  Manager: SnackBarManager,
-});
+export default createSnackBarFactory();

@@ -1,8 +1,3 @@
-import createGlobalComponentFactory from '../factory/createModalComponentFactory';
-import PopUpManager from './PopUpManager';
-import PopUpPortal from './PopUpPortal';
+import createPopupFactory from './factory';
 
-export default createGlobalComponentFactory({
-  Portal: PopUpPortal,
-  Manager: PopUpManager,
-});
+export default createPopupFactory();
