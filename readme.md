@@ -11,7 +11,7 @@ In this project, global component definition is components that used commonly an
 
 Global component provides **easy to use and fully customizable** implement of Modal Based UI.
 
-<img width="300" alt="snackbar_preview" src="./previews/snackbar_sample.gif">
+<img width="300" alt="snackbar_preview" src="./previews/sample_snackbar.gif">
 
 ## How it works
 
@@ -203,6 +203,7 @@ interface MySnackBarProps extends SnackbarProps {
   subtitle: string;
 }
 
+// implement custom component
 const MySnackBar: React.FC<MySnackBarProps> = ({
   title,
   subtitle,
@@ -231,18 +232,32 @@ export default createSnackbar({
   Component: MySnackBar,
 });
 
-// App.tsx
+//  App.tsx don't forget portal
 import { MySnackbar } from './some-dir-to-global-components';
 
 const App = () => {
-  return <Button onPress={() => {
-    MySnackbar.show({
-      title: `Jerry's AirPods`,
-      subtitle: 'Connected',
-      position: 'top',
-      duration: 2000,
-    });
- }}>
+  return <>
+    <NavigationContainer>
+      <BottomTabNavigator />
+    </NavigationContainer>
+    <MySnackbar.Portal />
+  </>
+}
+
+// Screen.tsx use anywhere
+import { MySnackbar } from './some-dir-to-global-components';
+
+const Screen = () => {
+  return <View>
+    <Button onPress={() => {
+      MySnackbar.show({
+        title: `Jerry's AirPods`,
+        subtitle: 'Connected',
+        position: 'top',
+        duration: 2000,
+      });
+    }}>
+ </View>
 };
 ```
 
