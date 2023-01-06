@@ -144,6 +144,71 @@ const handlePress = () => {
 
 # Snackbar
 
+<img width="375" alt="snackbar_preview" src="./previews/snackbar_sample.gif">
+
+## Example
+
+```tsx
+import React, { useEffect } from 'react';
+import { Image, TouchableWithoutFeedback, View } from 'react-native';
+import {
+  createSnackbar,
+  Snackbar,
+  SnackbarProps,
+  useFadeAnimationStyle,
+  useUpdateGlobalComponentState,
+  useSlideAnimationStyle,
+} from 'react-native-global-components';
+import Animated from 'react-native-reanimated';
+
+interface MySnackBarProps extends SnackbarProps {
+  title: string;
+  subtitle: string;
+}
+
+const MySnackBar: React.FC<MySnackBarProps> = ({
+  title,
+  subtitle,
+  ...props
+}) => {
+  const { style } = useSlideAnimationStyle({ translateY: -30 });
+
+  const { style: fade } = useFadeAnimationStyle();
+
+  const { hide } = useUpdateGlobalComponentState();
+
+  return (
+    <Snackbar {...props} style={style}>
+      <TouchableWithoutFeedback
+        onPress={() => hide()}>
+        <Animated.View style={fade}>
+          <SnackbarUI />
+        </Animated.View>
+      </TouchableWithoutFeedback>
+    </Snackbar>
+  );
+};
+
+export default createSnackbar({
+  name: 'Snackbar',
+  Component: MySnackBar,
+});
+
+// App.tsx
+import { MySnackbar } from './some-dir-to-global-components';
+
+const App = () => {
+  return <Button onPress={() => {
+    MySnackbar.show({
+      title: `Jerry's AirPods`,
+      subtitle: 'Connected',
+      position: 'top',
+      duration: 2000,
+    });
+ }}>
+};
+```
+
 ## Props
 
 | Key      | Type                         | Default     | Description                                                                                                       |
