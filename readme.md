@@ -7,7 +7,7 @@
 
 > what is global component? 🤔
 
-In this project, global component definition is 'components that used commonly and globally with user interactions'.
+In this project, global component definition is components that used commonly and globally with user interactions.
 
 Global component provides **easy to use and fully customizable** implement of Modal Based UI.
 
