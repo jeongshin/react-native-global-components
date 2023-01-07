@@ -12,7 +12,7 @@
   },
   "publishConfig": {
     "access": "public",
-    "registry": "https://registry.yarnpkg.com"
+    "registry": "https://registry.npmjs.org"
   },
   "plugins": {
     "@release-it/conventional-changelog": {
