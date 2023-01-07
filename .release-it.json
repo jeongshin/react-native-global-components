@@ -16,7 +16,7 @@
         "types": [
           {
             "type": "feat",
-            "section": "✨ Features"
+            "section": "🚀 Features"
           },
           {
             "type": "fix",
@@ -36,7 +36,7 @@
           },
           {
             "type": "refactor",
-            "section": "Refactor ✨"
+            "section": "✨ Refactor"
           }
         ]
       }
