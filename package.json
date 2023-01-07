@@ -1,6 +1,6 @@
 {
   "name": "react-native-global-components",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "react native global components including Snackbar, Popup, BottomSheet",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
