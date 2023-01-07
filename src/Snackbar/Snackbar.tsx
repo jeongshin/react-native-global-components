@@ -4,6 +4,15 @@ import Animated, { AnimatedStyleProp } from 'react-native-reanimated';
 import { timer } from 'rxjs';
 import useUpdateGlobalComponentState from '../hooks/useUpdateGlobalComponentState';
 
+export interface SnackbarProps {
+  // duration?: number;
+  children?: React.ReactNode;
+  duration?: number;
+  position?: 'top' | 'bottom';
+  offsetY?: number;
+  style?: AnimatedStyleProp<ViewStyle>;
+}
+
 const Snackbar: React.FC<SnackbarProps> = ({
   position = 'bottom',
   style,
@@ -40,14 +49,5 @@ const Snackbar: React.FC<SnackbarProps> = ({
     </Animated.View>
   );
 };
-
-export interface SnackbarProps {
-  // duration?: number;
-  children?: React.ReactNode;
-  duration?: number;
-  position?: 'top' | 'bottom';
-  offsetY?: number;
-  style?: AnimatedStyleProp<ViewStyle>;
-}
 
 export default Snackbar;

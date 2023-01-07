@@ -145,10 +145,7 @@ const InputPopup: React.FC<InputPopupProps> = (props) => {
   );
 };
 
-export default createPopup({
-  name: 'InputPopup',
-  Component: InputPopup,
-});
+export default createPopup(InputPopup);
 ```
 
 use anywhere
@@ -249,10 +246,7 @@ const MySnackBar: React.FC<MySnackBarProps> = ({
   );
 };
 
-export default createSnackbar({
-  name: 'Snackbar',
-  Component: MySnackBar,
-});
+export default createSnackbar(MySnackBar);
 
 //  App.tsx don't forget portal
 import { MySnackbar } from './some-dir-to-global-components';

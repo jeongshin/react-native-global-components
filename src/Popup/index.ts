@@ -4,10 +4,11 @@ import { InferFCProps } from '../types/utils';
 import PopupManager from './PopupManager';
 import PopupPortal from './PopupPortal';
 
-function createPopupFactory<
-  T extends React.FC<any>,
-  P extends InferFCProps<T>,
->({ name, Component }: { name: string; Component: T }) {
+function createPopupFactory<T extends React.FC<any>, P extends InferFCProps<T>>(
+  Component: T,
+) {
+  const name = Component.name;
+
   PopupManager.setComponent({ name, Component });
 
   return {

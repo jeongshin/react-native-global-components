@@ -4,13 +4,11 @@ import { InferFCProps } from '../types/utils';
 import SnackbarManager from './SnackbarManager';
 import SnackbarPortal from './SnackbarPortal';
 
-function createSnackbar<T extends React.FC<any>, P extends InferFCProps<T>>({
-  name,
-  Component,
-}: {
-  name: string;
-  Component: T;
-}) {
+function createSnackbar<T extends React.FC<any>, P extends InferFCProps<T>>(
+  Component: T,
+) {
+  const name = Component.name;
+
   SnackbarManager.setComponent({ name, Component });
 
   return {
