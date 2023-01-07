@@ -4,7 +4,9 @@
     "tagName": "v${version}"
   },
   "npm": {
-    "publish": true
+    "publish": true,
+    "publishPath": "./lib/",
+    "skipChecks": true
   },
   "github": {
     "release": true
