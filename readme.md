@@ -3,9 +3,12 @@
 ![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square&colorB=191A17)
 [![npm](https://img.shields.io/npm/v/react-native-global-components.svg?style=flat-square)](https://www.npmjs.com/package/react-native-global-components)
 
+> warning: this project is experimental & currently working hard on it 🧑🏻‍💻.
+> please use when version 1.0.0 released.
+
 ## Overview
 
-> what is global component? 🤔
+### what is global component? 🤔
 
 In this project, global component definition is components that used commonly and globally with user interactions.
 
