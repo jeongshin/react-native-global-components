@@ -8,11 +8,13 @@ import SnackbarManager from './SnackbarManager';
 import useSnackbar from './useSnackbar';
 
 const SnackbarPortal: React.FC<PortalProps> = ({ name }) => {
-  const { state, updateState } = useSnackbar(name);
+  const { state, visible, updateState } = useSnackbar(name);
+
+  if (!visible) return <></>;
 
   const Component = SnackbarManager.getComponent(name);
 
-  if (!Component || !state) return <></>;
+  if (!Component || state === null) return <></>;
 
   return (
     <GlobalComponentContext.Provider value={state}>

@@ -17,7 +17,7 @@ const Snackbar: React.FC<SnackbarProps> = ({
   position = 'bottom',
   style,
   offsetY = 50,
-  duration = 3000,
+  duration = 2000,
   children,
 }) => {
   const { hide } = useUpdateGlobalComponentState();
@@ -36,6 +36,8 @@ const Snackbar: React.FC<SnackbarProps> = ({
   }).current;
 
   useEffect(() => {
+    if (typeof duration !== 'number') return;
+
     const subscription = timer(duration).subscribe(hide);
 
     return () => {
