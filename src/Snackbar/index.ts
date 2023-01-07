@@ -22,7 +22,8 @@ function createSnackbar<T extends React.FC<any>, P extends InferFCProps<T>>(
      *
      * @example
      */
-    show: (props: P): void => SnackbarManager.render({ name, props }),
+    show: (...[props]: undefined extends P ? [] : [P]): void =>
+      SnackbarManager.render({ name, props }),
 
     /**
      * Hide component if component is mounted.

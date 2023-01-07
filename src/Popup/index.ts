@@ -30,7 +30,8 @@ function createPopupFactory<T extends React.FC<any>, P extends InferFCProps<T>>(
      * ConfirmPopup.show({ title: 'hello' });
      * ```
      */
-    show: (props: P): void => PopupManager.render({ name, props }),
+    show: (...[props]: undefined extends P ? [] : [P]): void =>
+      PopupManager.render({ name, props }),
 
     /**
      * Hide component if component is mounted.
