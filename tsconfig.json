@@ -1,6 +1,22 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
-  }
+    "strict": true,
+    "target": "esnext",
+    "module": "esnext",
+    "outDir": "./lib",
+    "lib": ["esnext"],
+    "jsx": "react",
+    "pretty": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "declaration": true,
+    "removeComments": false,
+    "isolatedModules": false,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "noEmit": false
+  },
+  "include": ["packages/**/*.tsx", "packages/**/*.d.ts", "packages/**/*.ts"],
+  "exclude": ["node_modules", "src"],
+  "extends": "expo/tsconfig.base"
 }

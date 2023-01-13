@@ -1,0 +1,50 @@
+{
+  "git": {
+    "commitMessage": "chore: release ${version}",
+    "tagName": "v${version}"
+  },
+  "npm": {
+    "publish": true,
+    "skipChecks": true
+  },
+  "github": {
+    "release": true
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": {
+        "name": "conventionalcommits",
+        "types": [
+          {
+            "type": "feat",
+            "section": "🚀 Features"
+          },
+          {
+            "type": "fix",
+            "section": "🐛 Bug Fixes"
+          },
+          {
+            "type": "perf",
+            "section": "💨 Performance Improvements"
+          },
+          {
+            "type": "chore(deps)",
+            "section": "🛠️ Dependency Upgrades"
+          },
+          {
+            "type": "docs",
+            "section": "📚 Documentation"
+          },
+          {
+            "type": "refactor",
+            "section": "✨ Refactor"
+          }
+        ]
+      }
+    }
+  }
+}
