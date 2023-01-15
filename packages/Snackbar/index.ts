@@ -1,13 +1,14 @@
 import React from 'react';
-import createPortal from '../factory/createPortal';
-import { InferFCProps } from '../types/utils';
 import SnackbarManager from './SnackbarManager';
 import SnackbarPortal from './SnackbarPortal';
+import createPortal from '../factory/createPortal';
+import { InferFCProps } from '../types/utils';
+import { getUniqueComponentName } from '../utils';
 
 function createSnackbar<T extends React.FC<any>, P extends InferFCProps<T>>(
   Component: T,
 ) {
-  const name = Component.name;
+  const name = getUniqueComponentName(Component);
 
   SnackbarManager.setComponent({ name, Component });
 

@@ -1,13 +1,14 @@
 import React from 'react';
-import createPortal from '../factory/createPortal';
-import { InferFCProps } from '../types/utils';
 import PopupManager from './PopupManager';
 import PopupPortal from './PopupPortal';
+import createPortal from '../factory/createPortal';
+import { InferFCProps } from '../types/utils';
+import { getUniqueComponentName } from '../utils';
 
 function createPopupFactory<T extends React.FC<any>, P extends InferFCProps<T>>(
   Component: T,
 ) {
-  const name = Component.name;
+  const name = getUniqueComponentName(Component);
 
   PopupManager.setComponent({ name, Component });
 
