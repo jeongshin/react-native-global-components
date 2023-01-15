@@ -3,7 +3,7 @@
     "strict": true,
     "target": "esnext",
     "module": "esnext",
-    "outDir": "./lib",
+    "outDir": "packages/lib",
     "lib": ["esnext"],
     "jsx": "react-native",
     "pretty": true,
@@ -16,7 +16,5 @@
     "moduleResolution": "node",
     "noEmit": false
   },
-  "include": ["packages/**/*.tsx", "packages/**/*.d.ts", "packages/**/*.ts"],
-  "exclude": ["node_modules", "src"],
   "extends": "expo/tsconfig.base"
 }
