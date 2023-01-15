@@ -5,7 +5,7 @@
     "module": "esnext",
     "outDir": "./lib",
     "lib": ["esnext"],
-    "jsx": "react",
+    "jsx": "react-native",
     "pretty": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
