@@ -11,7 +11,7 @@
     "lib/"
   ],
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "cd .. && husky install",
     "lint": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
     "typescript": "tsc --noemit",
     "patch": "rm -rf lib && yarn build && release-it patch",
