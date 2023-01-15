@@ -16,6 +16,6 @@
     "moduleResolution": "node",
     "noEmit": false
   },
-  "include": ["packages/**/*.tsx", "packages/**/*.d.ts", "packages/**/*.ts"],
-  "exclude": ["node_modules", "src"]
+  "include": ["src/**/*.tsx", "src/**/*.d.ts", "src/**/*.ts"],
+  "exclude": ["node_modules"]
 }

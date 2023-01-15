@@ -1,25 +1,38 @@
 {
+  "author": "JeongShin",
+  "repository": "https://github.com/JeongShin/react-native-global-components",
+  "description": "react native snackbar and popup API generator 🙇🏻‍♂️",
   "name": "react-native-global-components",
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
+  "types": "lib/typescript/index.d.ts",
   "version": "0.0.18",
+  "files": [
+    "lib/"
+  ],
   "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
     "prepare": "husky install",
     "lint": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
-    "typescript": "tsc --noemit"
+    "typescript": "tsc --noemit",
+    "patch": "rm -rf lib && yarn build && release-it patch",
+    "minor": "rm -rf lib && yarn build && release-it minor",
+    "major": "rm -rf lib && yarn build && release-it major",
+    "build": "tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "expo": "^45.0.0",
-    "expo-status-bar": "~1.3.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
-    "react-native-web": "0.17.7",
     "rxjs": "^7.2.0"
   },
+  "keywords": [
+    "react",
+    "react-native",
+    "snackbar",
+    "popup",
+    "bottom-sheet",
+    "reanimated"
+  ],
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@commitlint/cli": "^17.3.0",
@@ -46,6 +59,26 @@
     "react-native-reanimated": "^2.8.0",
     "release-it": "^15.6.0",
     "typescript": "^4.9.4"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "react-native-gesture-handler": ">=1.10.3",
+    "react-native-reanimated": ">=2.8.0"
+  },
+  "react-native-builder-bob": {
+    "source": "packages",
+    "output": "lib",
+    "targets": [
+      [
+        "commonjs",
+        {
+          "copyFlow": true
+        }
+      ],
+      "module",
+      "typescript"
+    ]
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
