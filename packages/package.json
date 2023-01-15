@@ -3,9 +3,9 @@
   "repository": "https://github.com/JeongShin/react-native-global-components",
   "description": "react native snackbar and popup API generator 🙇🏻‍♂️",
   "name": "react-native-global-components",
-  "main": "lib/commonjs/index.js",
-  "module": "lib/module/index.js",
-  "types": "lib/typescript/index.d.ts",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
   "version": "0.0.19",
   "files": [
     "lib/"
