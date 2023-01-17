@@ -1,20 +1,9 @@
 {
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
-    "target": "esnext",
-    "module": "esnext",
-    "outDir": "packages/lib",
-    "lib": ["esnext"],
-    "jsx": "react-native",
-    "pretty": true,
-    "skipLibCheck": true,
-    "strictNullChecks": true,
-    "declaration": true,
-    "removeComments": false,
-    "isolatedModules": false,
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "noEmit": false
-  },
-  "extends": "expo/tsconfig.base"
+    "paths": {
+      "react-native-global-components": ["./packages/src/index"]
+    },
+    "strict": true
+  }
 }

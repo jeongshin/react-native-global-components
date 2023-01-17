@@ -1,7 +1,7 @@
 {
-  "name": "react-native-global-components",
+  "name": "react-native-global-components-expo",
   "main": "node_modules/expo/AppEntry.js",
-  "version": "0.0.18",
+  "version": "1.0.0",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -9,7 +9,11 @@
     "web": "expo start --web",
     "prepare": "husky install",
     "lint": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
-    "typescript": "tsc --noemit"
+    "typescript": "tsc --noemit",
+    "patch": "yarn build && cd lib && release-it patch",
+    "minor": "yarn build && cd lib && release-it minor",
+    "major": "yarn build && cd lib && release-it major",
+    "build": "tsc --project tsconfig.build.json"
   },
   "dependencies": {
     "expo": "^45.0.0",
@@ -17,6 +21,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
+    "react-native-gesture-handler": "~2.2.1",
+    "react-native-reanimated": "~2.8.0",
     "react-native-web": "0.17.7",
     "rxjs": "^7.2.0"
   },
@@ -42,13 +48,13 @@
     "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
     "react-native-builder-bob": "^0.20.3",
-    "react-native-gesture-handler": "^1.10.3",
-    "react-native-reanimated": "^2.8.0",
     "release-it": "^15.6.0",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-reanimated": "^2.8.0"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": [
+    "packages/**/*.{ts,tsx}": [
       "eslint --fix",
       "prettier --write"
     ]
