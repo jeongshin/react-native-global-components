@@ -1,0 +1,27 @@
+{
+  "author": "JeongShin",
+  "repository": "https://github.com/JeongShin/react-native-global-components",
+  "description": "react native snackbar and popup API generator 🙇🏻‍♂️",
+  "name": "react-native-global-components",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "version": "0.0.22",
+  "dependencies": {
+    "rxjs": "^7.2.0"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "snackbar",
+    "popup",
+    "bottom-sheet",
+    "reanimated"
+  ],
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "react-native-gesture-handler": ">=1.10.3",
+    "react-native-reanimated": ">=2.8.0"
+  },
+  "license": "MIT"
+}

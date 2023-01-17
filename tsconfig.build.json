@@ -12,8 +12,9 @@
     "removeComments": false,
     "isolatedModules": false,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "outDir": "./lib"
   },
-  "include": ["src/**/*.tsx", "src/**/*.d.ts", "src/**/*.ts"],
+  "include": ["packages/**/*.tsx", "packages/**/*.d.ts", "packages/**/*.ts"],
   "exclude": ["node_modules"]
 }
