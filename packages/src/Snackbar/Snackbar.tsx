@@ -5,12 +5,12 @@ import { timer } from 'rxjs';
 import useUpdateGlobalComponentState from '../hooks/useUpdateGlobalComponentState';
 
 export interface SnackbarProps {
-  // duration?: number;
   children?: React.ReactNode;
   duration?: number;
   position?: 'top' | 'bottom';
   offsetY?: number;
   style?: AnimatedStyleProp<ViewStyle>;
+  testID?: string;
 }
 
 const Snackbar: React.FC<SnackbarProps> = ({
@@ -19,6 +19,7 @@ const Snackbar: React.FC<SnackbarProps> = ({
   offsetY = 50,
   duration = 2000,
   children,
+  testID,
 }) => {
   const { hide } = useUpdateGlobalComponentState();
 
@@ -46,7 +47,7 @@ const Snackbar: React.FC<SnackbarProps> = ({
   }, []);
 
   return (
-    <Animated.View style={[style, positionStyle[position]]}>
+    <Animated.View testID={testID} style={[style, positionStyle[position]]}>
       {children}
     </Animated.View>
   );

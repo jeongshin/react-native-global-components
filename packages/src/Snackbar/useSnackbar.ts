@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { delay, filter, of, switchMap, tap } from 'rxjs';
-import useGlobalComponent from '../hooks/useGlobalComponent';
 import { SnackbarProps } from './Snackbar';
 import SnackbarManager from './SnackbarManager';
+import useGlobalComponent from '../hooks/useGlobalComponent';
 
 const useSnackbar = <S extends SnackbarProps>(name: string) => {
   const { show, visible, state, updateState, hideImmediate } =
