@@ -13,7 +13,9 @@
     "isolatedModules": false,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "outDir": "./lib"
+    "outDir": "./lib",
+    "esModuleInterop": true,
+    "allowJs": true
   },
   "include": ["packages/**/*.tsx", "packages/**/*.d.ts", "packages/**/*.ts"],
   "exclude": ["node_modules"]
