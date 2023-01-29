@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { filter, tap } from 'rxjs';
-import useGlobalComponent from '../hooks/useGlobalComponent';
-import { Props } from '../types';
 import PopupManager from './PopupManager';
+import useGlobalComponent from '../hooks/useGlobalComponent';
+import { AnyProps } from '../types';
 
-const usePopup = <S extends Props>(name: string) => {
+const usePopup = <S extends AnyProps>(name: string) => {
   const firstRendered = useRef(false);
 
   const { show, state, visible, updateState } = useGlobalComponent(

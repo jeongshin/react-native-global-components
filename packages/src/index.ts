@@ -1,5 +1,5 @@
 export * from './types';
-export * from './components';
+export * from './components/layouts';
 
 export { default as useUpdateGlobalComponentState } from './hooks/useUpdateGlobalComponentState';
 export { default as useGlobalComponentState } from './hooks/useGlobalComponentState';

@@ -125,7 +125,7 @@ import {
   useFadeAnimationStyle,
   KeyboardAvoidingContainer,
   useSlideAnimationStyle,
-} from "react-native-global-components";
+} from 'react-native-global-components';
 
 interface InputPopupProps {
   onConfirm: () => void;
@@ -155,12 +155,12 @@ use anywhere
 
 ```tsx
 // App.tsx
-import { InputPopup } from "./some-dir-to-global-components";
+import { InputPopup } from './some-dir-to-global-components';
 
 const handlePress = () => {
   InputPopup.show({
     onConfirm: () => {
-      console.log("yay!");
+      console.log('yay!');
     },
   });
 };
@@ -258,8 +258,8 @@ const App = () => {
   return <>
     <NavigationContainer>
       <BottomTabNavigator />
+      <MySnackbar.Portal />
     </NavigationContainer>
-    <MySnackbar.Portal />
   </>
 }
 
@@ -279,10 +279,6 @@ const Screen = () => {
  </View>
 };
 ```
-
-### Bottom Sheet
-
-> not yet
 
 ### Others
 

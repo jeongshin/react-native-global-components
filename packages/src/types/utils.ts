@@ -1,4 +1,4 @@
-export type InferFCProps<T> = T extends React.FC<infer Props>
+export type InferProps<T> = T extends React.FC<infer Props>
   ? Props extends Record<string, never>
     ? undefined
     : Props

@@ -2,10 +2,10 @@ import React from 'react';
 import SnackbarManager from './SnackbarManager';
 import SnackbarPortal from './SnackbarPortal';
 import createPortal from '../factory/createPortal';
-import { InferFCProps } from '../types/utils';
+import { InferProps } from '../types/utils';
 import { getUniqueComponentName } from '../utils';
 
-function createSnackbar<T extends React.FC<any>, P extends InferFCProps<T>>(
+function createSnackbar<T extends React.FC<any>, P extends InferProps<T>>(
   Component: T,
 ) {
   const name = getUniqueComponentName(Component);
@@ -47,9 +47,9 @@ function createSnackbar<T extends React.FC<any>, P extends InferFCProps<T>>(
      * <>
      *   <NavigationContainer>
      *     <RootNavigator />
+     *     <ConfirmationPopup.Portal />
+     *     <Snackbar.Portal />
      *   </NavigationContainer>
-     *   <ConfirmationPopup.Portal />
-     *   <Snackbar.Portal />
      * </>
      * ```
      */

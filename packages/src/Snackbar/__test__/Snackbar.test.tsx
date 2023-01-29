@@ -6,7 +6,7 @@ import Snackbar from '../Snackbar';
 let renderAPI: RenderAPI;
 
 describe('[Snackbar]', () => {
-  it('create component without crash', async () => {
+  it('show component without crash', async () => {
     const testID = 'SnackBar';
 
     const { Portal, show } = createSnackbar(() => {

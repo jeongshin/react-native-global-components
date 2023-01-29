@@ -6,8 +6,8 @@ import {
   withTiming,
   WithTimingConfig,
 } from 'react-native-reanimated';
-import { DEFAULT_WITH_TIMING_CONFIG } from '../constant';
 import useUpdateGlobalComponentState from './useUpdateGlobalComponentState';
+import { DEFAULT_WITH_TIMING_CONFIG } from '../constant';
 
 const useSlideAnimationStyle = ({
   animationConfig = DEFAULT_WITH_TIMING_CONFIG,
