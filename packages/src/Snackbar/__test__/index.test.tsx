@@ -5,7 +5,7 @@ import Snackbar from '../Snackbar';
 
 let renderAPI: RenderAPI;
 
-describe('[Snackbar]', () => {
+describe('[SnackbarAPI]', () => {
   it('show component without crash', async () => {
     const testID = 'SnackBar';
 
@@ -21,4 +21,6 @@ describe('[Snackbar]', () => {
       expect(renderAPI.toJSON()).toBeTruthy();
     });
   });
+
+  // TODO: add testing
 });
