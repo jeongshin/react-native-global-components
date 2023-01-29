@@ -42,5 +42,9 @@
   },
   "engines": {
     "node": ">=16.14"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
   }
 }

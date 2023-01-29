@@ -2,35 +2,48 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Getting Started
 
-Let's discover **Docusaurus in less than 5 minutes**.
+![platforms](https://img.shields.io/badge/platforms-Android%20%7C%20iOS-brightgreen.svg?style=flat-square&colorB=191A17)
 
-## Getting Started
+[![npm](https://img.shields.io/npm/v/react-native-global-components.svg?style=flat-square)](https://www.npmjs.com/package/react-native-global-components)
 
-Get started by **creating a new site**.
+Let's make **popup and snackbar in less than 5 minutes**.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## What is global component? 🤔
 
-### What you'll need
+In this project, global component definition is component that used commonly and globally with user interactions.
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+Global component provides **easy to use and fully customizable** implement of Snackbar & Popup.
 
-## Generate a new site
+## Dependencies
+
+- [React](https://reactjs.org/) (>=17.0.2)
+- [React Native](https://reactnative.dev/) (>=0.66.4)
+- [Reanimated v2](https://docs.swmansion.com/react-native-reanimated/) (>=2.8.0)
+- [RxJS](https://rxjs.dev/) (^7.2.0)
+
+## Installation
 
 Generate a new Docusaurus site using the **classic template**.
 
 The classic template will automatically be added to your project after you run the command:
 
 ```bash
-npm init docusaurus@latest my-website classic
+yarn add react-native-global-components
 ```
+
+```bash
+npm install react-native-global-components
+```
+
+<!-- if
 
 You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+The command also installs all necessary dependencies you need to run Docusaurus. -->
 
+<!--
 ## Start your site
 
 Run the development server:
@@ -44,4 +57,4 @@ The `cd` command changes the directory you're working with. In order to work wit
 
 The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes. -->
