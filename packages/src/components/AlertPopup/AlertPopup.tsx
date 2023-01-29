@@ -17,6 +17,7 @@ import {
   Overlay,
 } from 'react-native-global-components';
 import Animated from 'react-native-reanimated';
+import { FadeAnimationConfigs } from '../../hooks/useFadeAnimationStyle';
 
 export interface AlertPopupOption {
   text: string;
@@ -26,59 +27,77 @@ export interface AlertPopupOption {
   testID?: string;
 }
 
+type Styles = {
+  option?: StyleProp<ViewStyle>;
+  container?: StyleProp<ViewStyle>;
+  message?: StyleProp<TextStyle>;
+  title?: StyleProp<TextStyle>;
+  optionContainer?: StyleProp<ViewStyle>;
+  messageContainer?: StyleProp<ViewStyle>;
+};
+
 export interface AlertPopupProps {
   message: string;
   title?: string;
   options?: AlertPopupOption[];
-
-  messageStyle?: StyleProp<TextStyle>;
-
-  titleStyle?: StyleProp<TextStyle>;
-
   touchableOpacityProps?: TouchableOpacityProps;
-
-  optionContainerStyle?: StyleProp<ViewStyle>;
-
-  optionStyle?: StyleProp<ViewStyle>;
-
-  messageContainerStyle?: StyleProp<ViewStyle>;
-
-  style?: StyleProp<ViewStyle>;
-
   vertical?: boolean;
+  styles?: Styles;
+  animation?: FadeAnimationConfigs;
 }
 
 const AlertPopup: React.FC<AlertPopupProps> = ({
   title,
   message,
-  style,
-  optionContainerStyle,
-  optionStyle,
-  titleStyle,
-  messageStyle,
+  styles,
   vertical,
-  messageContainerStyle,
   touchableOpacityProps,
+  animation,
   options = [{ text: 'Ok' }],
 }) => {
   const { hide } = useUpdateGlobalComponentState();
 
-  const { style: fade } = useFadeAnimationStyle();
+  const { style: fade } = useFadeAnimationStyle(animation);
 
   useHideOnAndroidBackPress({ enabled: true });
 
   return (
     <Container>
       <Overlay />
-      <Animated.View style={[styles.container, fade]}>
-        <View style={StyleSheet.flatten([styles.defaultStyle, style])}>
-          <View style={messageContainerStyle}>
-            {!!title && <Text style={titleStyle}>{title}</Text>}
-            {!!message && <Text style={messageStyle}>{message}</Text>}
+      <Animated.View style={[defaultStyles.wrapper, fade]}>
+        <View
+          style={StyleSheet.flatten([
+            defaultStyles.container,
+            styles?.container,
+          ])}>
+          <View
+            style={StyleSheet.flatten([
+              defaultStyles.messageContainer,
+              styles?.messageContainer,
+            ])}>
+            {!!title && (
+              <Text
+                style={StyleSheet.flatten([
+                  defaultStyles.title,
+                  styles?.title,
+                ])}>
+                {title}
+              </Text>
+            )}
+            {!!message && (
+              <Text
+                style={StyleSheet.flatten([
+                  defaultStyles.message,
+                  styles?.message,
+                ])}>
+                {message}
+              </Text>
+            )}
           </View>
           <View
             style={StyleSheet.flatten([
-              optionContainerStyle,
+              defaultStyles.optionContainer,
+              styles?.optionContainer,
               vertical ? { flexDirection: 'column' } : { flexDirection: 'row' },
             ])}>
             {options.map(
@@ -91,7 +110,8 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
                   }}
                   key={`${index}-${text}`}
                   style={StyleSheet.flatten([
-                    optionStyle,
+                    defaultStyles.option,
+                    styles?.option,
                     vertical
                       ? { width: '100%', borderTopWidth: 1 }
                       : { flex: 1, borderTopWidth: 1 },
@@ -100,7 +120,7 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
                   testID={testID}>
                   <Text
                     style={StyleSheet.flatten([
-                      styles.defaultOptionTextStyle,
+                      defaultStyles.optionTextStyle,
                       textStyle,
                       color ? { color } : {},
                     ])}>
@@ -116,8 +136,8 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
+const defaultStyles = StyleSheet.create({
+  wrapper: {
     width: '100%',
     height: '100%',
     justifyContent: 'center',
@@ -128,45 +148,42 @@ const styles = StyleSheet.create({
     bottom: 0,
     top: 0,
   },
-  defaultOptionTextStyle: {
+  optionTextStyle: {
     color: '#3478f6',
     fontWeight: '500',
     textAlign: 'center',
   },
-  defaultStyle: {
+  container: {
     width: '70%',
     borderRadius: 18,
     minWidth: 240,
     alignItems: 'center',
-    backgroundColor: '#ffffffdd',
+    backgroundColor: '#ffffffee',
   },
-});
-
-AlertPopup.defaultProps = {
-  titleStyle: {
+  title: {
     fontWeight: '600',
     fontSize: 18,
     paddingBottom: 8,
   },
-  messageStyle: {
+  message: {
     fontSize: 14,
   },
-  optionContainerStyle: {
+  optionContainer: {
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  optionStyle: {
-    borderColor: '#eeeeeeee',
+  option: {
+    borderColor: '#cccccc44',
     height: 44,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  messageContainerStyle: {
+  messageContainer: {
     padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
-};
+});
 
 export default AlertPopup;

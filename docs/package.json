@@ -1,7 +1,7 @@
 {
-  "name": "docs",
-  "version": "0.0.0",
-  "private": true,
+  "name": "react-native-global-components-docs",
+  "version": "0.0.1",
+  "private": false,
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
@@ -43,8 +43,8 @@
   "engines": {
     "node": ">=16.14"
   },
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
+  "resolutions": {
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2"
   }
 }

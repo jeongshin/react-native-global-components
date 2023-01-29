@@ -9,15 +9,17 @@ import {
 import useUpdateGlobalComponentState from './useUpdateGlobalComponentState';
 import { DEFAULT_WITH_TIMING_CONFIG } from '../constant';
 
+export interface FadeAnimationConfigs {
+  minOpacity?: number;
+  maxOpacity?: number;
+  animationConfig?: WithTimingConfig;
+}
+
 const useFadeAnimationStyle = ({
   minOpacity = 0,
   maxOpacity = 1,
   animationConfig = DEFAULT_WITH_TIMING_CONFIG,
-}: {
-  minOpacity?: number;
-  maxOpacity?: number;
-  animationConfig?: WithTimingConfig;
-} = {}) => {
+}: FadeAnimationConfigs = {}) => {
   const opacity = useSharedValue(minOpacity);
 
   const { addHideAnimation } = useUpdateGlobalComponentState();

@@ -1,12 +1,22 @@
+import image from '../../static/gif/alert-popup-sample.gif';
+
 # AlertPopup
+
+AlertPopup is iOS Alert UI looking popup with multiple options.
+
+Popup hides on user's interaction pressing option.
 
 ## Overview
 
-## Usage
+<div className="sample-gif">
+  <img src={image} className="sample-gif-img" alt="sample-alert-popup" />
+</div>
 
-Using Default
+## API Usage
 
 ### Step 1. create popup
+
+Using Default
 
 ```tsx
 // AlertPopup.tsx
@@ -113,3 +123,38 @@ touchableOpacity props to override default settings
 | Type                  | Default   | Required |
 | --------------------- | --------- | -------- |
 | TouchableOpacityProps | undefined | NO       |
+
+### `vertical`
+
+flag to render options vertically or horizontally
+
+| Type    | Default | Required |
+| ------- | ------- | -------- |
+| boolean | false   | NO       |
+
+### `animtion`
+
+fade animation configuration. see `useFadeAnimationStyle` hooks.
+
+| Type                 | Default   | Required |
+| -------------------- | --------- | -------- |
+| FadeAnimationConfigs | undefined | NO       |
+
+### `styles`
+
+style object to override
+
+| Type   | Default   | Required |
+| ------ | --------- | -------- |
+| Styles | undefined | NO       |
+
+```ts
+type Styles = {
+  option?: StyleProp<ViewStyle>;
+  container?: StyleProp<ViewStyle>;
+  message?: StyleProp<TextStyle>;
+  title?: StyleProp<TextStyle>;
+  optionContainer?: StyleProp<ViewStyle>;
+  messageContainer?: StyleProp<ViewStyle>;
+};
+```
