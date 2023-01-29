@@ -1,1 +1,1 @@
-import '../../packages/src/components/AlertPopup/stories';
+import '../../packages/src/components/AlertPopup/stories/AlertPopup.stories';

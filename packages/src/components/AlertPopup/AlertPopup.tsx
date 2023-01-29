@@ -8,7 +8,6 @@ import {
   TextStyle,
   TouchableOpacityProps,
   TouchableOpacity,
-  Image,
 } from 'react-native';
 import {
   useUpdateGlobalComponentState,
@@ -35,6 +34,7 @@ interface AlertPopupProps {
     onPress?: (text: string) => void;
     color?: string;
     textStyle?: StyleProp<TextStyle>;
+    testID?: string;
   }[];
 
   optionContainerStyle?: StyleProp<ViewStyle>;
@@ -58,6 +58,7 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
   messageStyle,
   vertical,
   messageContainerStyle,
+  touchableOpacityProps,
   options = [{ text: 'Ok' }],
 }) => {
   const { hide } = useUpdateGlobalComponentState();
@@ -80,31 +81,34 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
               optionContainerStyle,
               vertical ? { flexDirection: 'column' } : { flexDirection: 'row' },
             ])}>
-            {options.map(({ text, textStyle, onPress, color }, index) => (
-              <TouchableOpacity
-                onPress={() => {
-                  onPress && onPress(text);
-                  hide();
-                }}
-                key={`${index}-${text}`}
-                style={StyleSheet.flatten([
-                  optionStyle,
-                  vertical
-                    ? { width: '100%', borderTopWidth: 1 }
-                    : { flex: 1, borderTopWidth: 1 },
-                  !(vertical || index === 0) ? { borderLeftWidth: 1 } : {},
-                ])}
-                testID={`option-${index}`}>
-                <Text
+            {options.map(
+              ({ text, textStyle, onPress, color, testID }, index) => (
+                <TouchableOpacity
+                  {...touchableOpacityProps}
+                  onPress={() => {
+                    onPress && onPress(text);
+                    hide();
+                  }}
+                  key={`${index}-${text}`}
                   style={StyleSheet.flatten([
-                    styles.defaultOptionTextStyle,
-                    textStyle,
-                    color ? { color } : {},
-                  ])}>
-                  {text}
-                </Text>
-              </TouchableOpacity>
-            ))}
+                    optionStyle,
+                    vertical
+                      ? { width: '100%', borderTopWidth: 1 }
+                      : { flex: 1, borderTopWidth: 1 },
+                    !(vertical || index === 0) ? { borderLeftWidth: 1 } : {},
+                  ])}
+                  testID={testID}>
+                  <Text
+                    style={StyleSheet.flatten([
+                      styles.defaultOptionTextStyle,
+                      textStyle,
+                      color ? { color } : {},
+                    ])}>
+                    {text}
+                  </Text>
+                </TouchableOpacity>
+              ),
+            )}
           </View>
         </View>
       </Animated.View>
