@@ -12,7 +12,7 @@ import AlertPopup from '../AlertPopup';
 let renderAPI: RenderAPI;
 
 describe('[AlertPopup]', () => {
-  it('should fire onPress on press option', async () => {
+  it('should fire onPress then hide', async () => {
     const testID = 'Option1';
     const text = 'Good!!';
 
