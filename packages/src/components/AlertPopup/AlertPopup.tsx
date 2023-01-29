@@ -18,24 +18,24 @@ import {
 } from 'react-native-global-components';
 import Animated from 'react-native-reanimated';
 
-interface AlertPopupProps {
+export interface AlertPopupOption {
+  text: string;
+  onPress?: (text: string) => void;
+  color?: string;
+  textStyle?: StyleProp<TextStyle>;
+  testID?: string;
+}
+
+export interface AlertPopupProps {
   message: string;
+  title?: string;
+  options?: AlertPopupOption[];
 
   messageStyle?: StyleProp<TextStyle>;
-
-  title?: string;
 
   titleStyle?: StyleProp<TextStyle>;
 
   touchableOpacityProps?: TouchableOpacityProps;
-
-  options?: {
-    text: string;
-    onPress?: (text: string) => void;
-    color?: string;
-    textStyle?: StyleProp<TextStyle>;
-    testID?: string;
-  }[];
 
   optionContainerStyle?: StyleProp<ViewStyle>;
 
