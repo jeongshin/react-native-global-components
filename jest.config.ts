@@ -15,7 +15,10 @@ const config = {
     'node_modules/(?!((jest-)?react-native|react-native-reanimated|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*)',
   ],
   coveragePathIgnorePatterns: ['stories', 'node_modules'],
-  setupFiles: ['./node_modules/react-native-gesture-handler/jestSetup.js'],
+  setupFiles: [
+    './jest-setup.js',
+    './node_modules/react-native-gesture-handler/jestSetup.js',
+  ],
 };
 
 export default config;
