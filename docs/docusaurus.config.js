@@ -66,8 +66,8 @@ const config = {
       navbar: {
         title: 'RN Global Components',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'RN Global Components logo',
+          src: 'img/blue-jerry-3.png',
         },
         items: [
           {
@@ -104,10 +104,6 @@ const config = {
                 href: 'https://stackoverflow.com/questions/tagged/docusaurus',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
                 label: 'Twitter',
                 href: 'https://twitter.com/docusaurus',
               },
@@ -127,7 +123,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Jerry (JeongShin), Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Jerry (JeongShin). Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

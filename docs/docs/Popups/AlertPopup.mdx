@@ -18,16 +18,14 @@ Popup hides on user's interaction pressing option.
 
 Using Default
 
-```tsx
-// AlertPopup.tsx
+```tsx title="AlertPopup.tsx"
 import { AlertPopup, createPopup } from 'react-native-global-components';
 export default createPopup(AlertPopup);
 ```
 
 or you can override
 
-```tsx
-// AlertPopup.tsx
+```tsx title="AlertPopup.tsx"
 import {
   AlertPopup,
   AlertPopupProps,
@@ -45,8 +43,7 @@ export default createPopup((props: Partial<AlertPopupProps>) => (
 
 ### Step 2. register portal
 
-```tsx
-// App.tsx
+```tsx title="App.tsx"
 const App = () => {
   return (
     <NavigationContainer>

@@ -4,55 +4,27 @@ import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
-  description: JSX.Element;
+  image: string;
+  // description: JSX.Element;
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: `Welcome, I'm Blue`,
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
-    description: (
-      <>
-        React Native Global Components provides api for snackbar and popups with
-        sample UI.
-      </>
-    ),
-  },
-  {
-    title: 'Customize',
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        All sample components are customizable or you can make your own
-        components.
-      </>
-    ),
-  },
-  {
-    title: 'Powered by React',
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
-    ),
+    image: require('@site/static/img/blue-jerry-2.png').default,
   },
 ];
 
-function Feature({ title, Svg, description }: FeatureItem) {
+function Feature({ title, image }: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--12')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <img src={image} className={styles.featureSvg} role="img" />
       </div>
       <div className="text--center padding-horiz--md">
-        <h3>{title}</h3>
-        <p>{description}</p>
+        <h1>{title}</h1>
+        <span>{`\tDesigned by Shine`}</span>
       </div>
     </div>
   );
