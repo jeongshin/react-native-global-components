@@ -4,8 +4,8 @@ import usePopup from './usePopup';
 import {
   GlobalComponentContext,
   UpdateGlobalComponentContext,
-} from '../context';
-import { PortalProps } from '../types';
+} from '../../context';
+import { PortalProps } from '../../types';
 
 const PopupPortal: React.FC<PortalProps> = ({ name }) => {
   const { visible, updateState, state } = usePopup(name);

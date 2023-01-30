@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
-interface KeyboardAvoidingContainerProps extends KeyboardAvoidingViewProps {
+interface KeyboardAvoidingLayoutProps extends KeyboardAvoidingViewProps {
   bottomInset?: number;
   topInset?: number;
   children?: React.ReactNode;
@@ -15,22 +15,8 @@ interface KeyboardAvoidingContainerProps extends KeyboardAvoidingViewProps {
 
 /**
  * Full screen container with keyboard avoiding view.
- *
- * Use `keyboardVerticalOffset` props adjust vertical offset of pop up contents.
- *
- * @param {React.ReactNode} p.children
- * @param {number} p.bottomInset bottom padding (default: 0)
- * @param {number} p.topInset top padding (default: 0)
- *
- * @example
- *
- * ```tsx
- * <KeyboardAvoidingContainer behavior="padding" keyboardVerticalOffset={-100}>
- *   <CustomUI />
- * </KeyboardAvoidingContainer>
- * ```
  */
-const KeyboardAvoidingContainer: React.FC<KeyboardAvoidingContainerProps> = ({
+const KeyboardAvoidingContainer: React.FC<KeyboardAvoidingLayoutProps> = ({
   children,
   bottomInset = 0,
   topInset = 0,

@@ -4,8 +4,8 @@ import useSnackbar from './useSnackbar';
 import {
   GlobalComponentContext,
   UpdateGlobalComponentContext,
-} from '../context';
-import { PortalProps } from '../types';
+} from '../../context';
+import { PortalProps } from '../../types';
 
 const SnackbarPortal: React.FC<PortalProps> = ({ name }) => {
   const { state, visible, updateState } = useSnackbar(name);

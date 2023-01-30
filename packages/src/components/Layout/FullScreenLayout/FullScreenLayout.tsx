@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-interface ContainerProps {
+interface FullScreenLayoutProps {
   bottomInset?: number;
   topInset?: number;
   children?: React.ReactNode;
@@ -15,7 +15,7 @@ interface ContainerProps {
  * @param {number} p.topInset top padding (default: 0)
  *
  */
-const Container: React.FC<ContainerProps> = ({
+const FullScreenLayout: React.FC<FullScreenLayoutProps> = ({
   children,
   bottomInset = 0,
   topInset = 0,
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Container;
+export default FullScreenLayout;
