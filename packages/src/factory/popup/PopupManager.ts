@@ -1,7 +1,7 @@
 import { timer } from 'rxjs';
 import GlobalComponentManager, {
   RenderCommand,
-} from '../GlobalComponentManager';
+} from '../../core/manager/GlobalComponentManager';
 
 class PopupManager extends GlobalComponentManager {
   /**

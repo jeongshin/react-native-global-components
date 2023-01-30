@@ -5,5 +5,6 @@
       "react-native-global-components": ["./packages/src/index"]
     },
     "strict": true
-  }
+  },
+  "exclude": ["docs"]
 }

@@ -1,6 +1,6 @@
 import GlobalComponentManager, {
   RenderCommand,
-} from '../GlobalComponentManager';
+} from '../../core/manager/GlobalComponentManager';
 
 class SnackbarManager extends GlobalComponentManager {
   constructor() {

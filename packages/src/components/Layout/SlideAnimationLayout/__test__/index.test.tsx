@@ -1,16 +1,16 @@
 import React from 'react';
 import { render, RenderAPI, waitFor } from '@testing-library/react-native';
-import createSnackbar from '../index';
-import Snackbar from '../Snackbar';
+import createSnackbar from '../../../../factory/snackbar/index';
+import SlideAnimationLayout from '../SlideAnimationLayout';
 
 let renderAPI: RenderAPI;
 
-describe('[SnackbarAPI]', () => {
+describe('[SlideAnimationLayout]', () => {
   it('show component without crash', async () => {
     const testID = 'SnackBar';
 
     const { Portal, show } = createSnackbar(() => {
-      return <Snackbar testID={testID} />;
+      return <SlideAnimationLayout testID={testID} />;
     });
 
     renderAPI = render(<Portal />);

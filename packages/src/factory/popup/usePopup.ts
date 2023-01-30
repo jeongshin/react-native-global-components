@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { filter, tap } from 'rxjs';
 import PopupManager from './PopupManager';
-import useGlobalComponent from '../hooks/useGlobalComponent';
-import { AnyProps } from '../types';
+import useGlobalComponent from '../../core/hooks/useGlobalComponent';
+import { AnyProps } from '../../types';
 
 const usePopup = <S extends AnyProps>(name: string) => {
   const firstRendered = useRef(false);

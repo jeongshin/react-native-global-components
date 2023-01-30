@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { ViewStyle } from 'react-native';
 import Animated, { AnimatedStyleProp } from 'react-native-reanimated';
 import { timer } from 'rxjs';
-import useUpdateGlobalComponentState from '../hooks/useUpdateGlobalComponentState';
+import useUpdateGlobalComponentState from '../../../hooks/useUpdateGlobalComponentState';
 
-export interface SnackbarProps {
+export interface SlideAnimationLayoutProps {
   children?: React.ReactNode;
   duration?: number;
   position?: 'top' | 'bottom';
@@ -13,7 +13,7 @@ export interface SnackbarProps {
   testID?: string;
 }
 
-const Snackbar: React.FC<SnackbarProps> = ({
+const SlideAnimationLayout: React.FC<SlideAnimationLayoutProps> = ({
   position = 'bottom',
   style,
   offsetY = 50,
@@ -53,4 +53,4 @@ const Snackbar: React.FC<SnackbarProps> = ({
   );
 };
 
-export default Snackbar;
+export default SlideAnimationLayout;

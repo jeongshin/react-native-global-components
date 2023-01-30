@@ -2,10 +2,10 @@ import React from 'react';
 import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { WithTimingConfig } from 'react-native-reanimated';
-import useFadeAnimationStyle from '../../hooks/useFadeAnimationStyle';
-import useUpdateGlobalComponentState from '../../hooks/useUpdateGlobalComponentState';
+import useFadeAnimationStyle from '../../../hooks/useFadeAnimationStyle';
+import useUpdateGlobalComponentState from '../../../hooks/useUpdateGlobalComponentState';
 
-export interface OverlayProps {
+export interface FullScreenOverlayProps {
   /**
    * flag to hide global component when overlay pressed
    * default: false
@@ -38,20 +38,8 @@ export interface OverlayProps {
 
 /**
  * Dim overlay with fade animation.
- *
- * @example
- * ```tsx
- *
- * return (
- *   <Container>
- *     <Overlay {...overlayProps} />
- *   </Container>
- * );
- * ```
- *
- * @see {OverlayProps} see OverlayProps for props description.
  */
-const Overlay: React.FC<OverlayProps> = ({
+const FullScreenOverlay: React.FC<FullScreenOverlayProps> = ({
   hideOnPressOverlay = false,
   maxOpacity = 0.5,
   minOpacity,
@@ -81,4 +69,4 @@ const Overlay: React.FC<OverlayProps> = ({
   );
 };
 
-export default Overlay;
+export default FullScreenOverlay;

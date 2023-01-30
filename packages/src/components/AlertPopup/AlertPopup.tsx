@@ -13,8 +13,8 @@ import {
   useUpdateGlobalComponentState,
   useFadeAnimationStyle,
   useHideOnAndroidBackPress,
-  Container,
-  Overlay,
+  FullScreenLayout,
+  FullScreenOverlay,
 } from 'react-native-global-components';
 import Animated from 'react-native-reanimated';
 import { FadeAnimationConfigs } from '../../hooks/useFadeAnimationStyle';
@@ -62,8 +62,8 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
   useHideOnAndroidBackPress({ enabled: true });
 
   return (
-    <Container>
-      <Overlay />
+    <FullScreenLayout>
+      <FullScreenOverlay />
       <Animated.View style={[defaultStyles.wrapper, fade]}>
         <View
           style={StyleSheet.flatten([
@@ -132,7 +132,7 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
           </View>
         </View>
       </Animated.View>
-    </Container>
+    </FullScreenLayout>
   );
 };
 
@@ -149,7 +149,7 @@ const defaultStyles = StyleSheet.create({
     top: 0,
   },
   optionTextStyle: {
-    color: '#3478f6',
+    color: '#111111',
     fontWeight: '500',
     textAlign: 'center',
   },
