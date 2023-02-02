@@ -9,15 +9,9 @@ export default {
 };
 
 const BasicStory = (): ReactElement => {
-  const { Portal, show, clear } = useRef(createPopup(AlertPopup)).current;
+  const { show, Portal } = useRef(createPopup(AlertPopup)).current;
 
   const [selected, setSelected] = useState<string>('');
-
-  useEffect(() => {
-    return () => {
-      clear();
-    };
-  }, []);
 
   return (
     <>
@@ -77,7 +71,4 @@ const BasicStory = (): ReactElement => {
   );
 };
 
-/**
- * Below are stories for app
- */
-storiesOf('AlertPopup', module).add('IOS Style Alert', () => <BasicStory />);
+storiesOf('AlertPopup', module).add('AlertPopup', () => <BasicStory />);

@@ -23,7 +23,7 @@ import { AlertPopup, createPopup } from 'react-native-global-components';
 export default createPopup(AlertPopup);
 ```
 
-or you can override
+or you can override default props
 
 ```tsx title="AlertPopup.tsx"
 import {
@@ -32,12 +32,12 @@ import {
   createPopup,
 } from 'react-native-global-components';
 
-const styles = StyleSheet.create({
+const styles: AlertPopupProps['styles'] = StyleSheet.create({
   // override default styles
 });
 
-export default createPopup((props: Partial<AlertPopupProps>) => (
-  <AlertPopup {...props} style={styles.style} />
+export default createPopup((props: AlertPopupProps) => (
+  <AlertPopup {...props} styles={styles} />
 ));
 ```
 
@@ -57,24 +57,24 @@ const App = () => {
 ### Step 3. use anywhere
 
 ```tsx
-const [selected, setSelected] = useState<string>('');
-
-useEffect(() => {
-  AlertPopup.show({
-    title: `Hi I'm Vertical Popup`,
-    message: 'select how do you feel today',
-    vertical: true,
-    options: [
-      { text: 'Good 😝', onPress: setSelected },
-      {
-        text: 'Not Okay 😢',
-        color: 'green',
-        onPress: setSelected,
-      },
-      { text: `Don't ask me 😡`, color: 'red', onPress: setSelected },
-    ],
-  });
-}, []);
+AlertPopup.show({
+  title: `Hi I'm Vertical Popup`,
+  message: 'select how do you feel today',
+  vertical: true,
+  options: [
+    {
+      text: 'Good 😝',
+    },
+    {
+      text: 'Not Okay 😢',
+      color: 'green',
+    },
+    {
+      text: `Don't ask me 😡`,
+      color: 'red',
+    },
+  ],
+});
 ```
 
 ## UI Props
@@ -115,7 +115,7 @@ interface AlertPopupOption {
 
 ### `touchableOpacityProps`
 
-touchableOpacity props to override default settings
+touchableOpacity props of button to override default settings
 
 | Type                  | Default   | Required |
 | --------------------- | --------- | -------- |
@@ -131,7 +131,7 @@ flag to render options vertically or horizontally
 
 ### `animtion`
 
-fade animation configuration. see `useFadeAnimationStyle` hooks.
+fade animation configuration. see Let's see how to [useFadeAnimationStyle](/docs/hooks/useFadeAnimation). hooks.
 
 | Type                 | Default   | Required |
 | -------------------- | --------- | -------- |
@@ -139,19 +139,19 @@ fade animation configuration. see `useFadeAnimationStyle` hooks.
 
 ### `styles`
 
-style object to override
+style object to override default style
 
 | Type   | Default   | Required |
 | ------ | --------- | -------- |
 | Styles | undefined | NO       |
 
 ```ts
-type Styles = {
+interface Styles {
   option?: StyleProp<ViewStyle>;
   container?: StyleProp<ViewStyle>;
   message?: StyleProp<TextStyle>;
   title?: StyleProp<TextStyle>;
   optionContainer?: StyleProp<ViewStyle>;
   messageContainer?: StyleProp<ViewStyle>;
-};
+}
 ```

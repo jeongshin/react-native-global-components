@@ -9,15 +9,14 @@ import {
   TouchableOpacityProps,
   TouchableOpacity,
 } from 'react-native';
+import Animated from 'react-native-reanimated';
+import { useUpdateGlobalComponentState } from '../../core/hooks';
 import {
-  useUpdateGlobalComponentState,
+  FadeAnimationConfigs,
   useFadeAnimationStyle,
   useHideOnAndroidBackPress,
-  FullScreenLayout,
-  FullScreenOverlay,
-} from 'react-native-global-components';
-import Animated from 'react-native-reanimated';
-import { FadeAnimationConfigs } from '../../hooks/useFadeAnimationStyle';
+} from '../../hooks';
+import { FullScreenLayout, FullScreenOverlay } from '../Layout';
 
 export interface AlertPopupOption {
   text: string;
@@ -44,6 +43,9 @@ export interface AlertPopupProps {
   vertical?: boolean;
   styles?: Styles;
   animation?: FadeAnimationConfigs;
+  // TODO: add below
+  // HeaderElement?: React.ReactElement;
+  // FooterElement?: React.ReactElement;
 }
 
 const AlertPopup: React.FC<AlertPopupProps> = ({

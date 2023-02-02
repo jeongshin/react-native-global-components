@@ -1,5 +1,5 @@
 import React from 'react';
-import { UpdateGlobalComponentContext } from '../context';
+import { UpdateGlobalComponentContext } from '../../context';
 
 const useUpdateGlobalComponentState = () => {
   const context = React.useContext(UpdateGlobalComponentContext);

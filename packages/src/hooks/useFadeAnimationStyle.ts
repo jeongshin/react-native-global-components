@@ -6,7 +6,7 @@ import {
   withTiming,
   WithTimingConfig,
 } from 'react-native-reanimated';
-import useUpdateGlobalComponentState from './useUpdateGlobalComponentState';
+import useUpdateGlobalComponentState from '../core/hooks/useUpdateGlobalComponentState';
 import { DEFAULT_WITH_TIMING_CONFIG } from '../constant';
 
 export interface FadeAnimationConfigs {

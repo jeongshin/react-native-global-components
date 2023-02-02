@@ -3,7 +3,7 @@ import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { WithTimingConfig } from 'react-native-reanimated';
 import useFadeAnimationStyle from '../../../hooks/useFadeAnimationStyle';
-import useUpdateGlobalComponentState from '../../../hooks/useUpdateGlobalComponentState';
+import useUpdateGlobalComponentState from '../../../core/hooks/useUpdateGlobalComponentState';
 
 export interface FullScreenOverlayProps {
   /**

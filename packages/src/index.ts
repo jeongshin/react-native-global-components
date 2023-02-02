@@ -19,17 +19,10 @@ export { default as createSnackbar } from './factory/snackbar';
 /**
  * core hooks
  */
-export { default as useUpdateGlobalComponentState } from './hooks/useUpdateGlobalComponentState';
-export { default as useGlobalComponentState } from './hooks/useGlobalComponentState';
+export { default as useUpdateGlobalComponentState } from './core/hooks/useUpdateGlobalComponentState';
+export { default as useGlobalComponentState } from './core/hooks/useGlobalComponentState';
 
 /**
  * animation hooks
  */
-export { default as useFadeAnimationStyle } from './hooks/useFadeAnimationStyle';
-export { default as useSlideAnimationStyle } from './hooks/useSlideAnimationStyle';
-export { default as useHideOnAndroidBackPress } from './hooks/useHideOnAndroidBackPress';
-
-/**
- * types
- */
-export { FadeAnimationConfigs } from './hooks/useFadeAnimationStyle';
+export * from './hooks';
