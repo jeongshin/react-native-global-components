@@ -12,9 +12,13 @@ import useUpdateGlobalComponentState from '../core/hooks/useUpdateGlobalComponen
 const useSlideAnimationStyle = ({
   animationConfig = DEFAULT_WITH_TIMING_CONFIG,
   translateY = 30,
+  onHidden,
+  onShow,
 }: {
   animationConfig?: WithTimingConfig;
   translateY?: number;
+  onHidden?: () => void;
+  onShow?: () => void;
 }) => {
   const animation = useSharedValue(translateY);
 
@@ -32,13 +36,17 @@ const useSlideAnimationStyle = ({
   );
 
   useEffect(() => {
-    console.log('TranslateY', translateY);
-    animation.value = withTiming(0, animationConfig);
+    animation.value = withTiming(0, animationConfig, () =>
+      runOnJS(() => onShow && onShow())(),
+    );
 
     addHideAnimation(() => {
       return new Promise((resolve) => {
         animation.value = withTiming(translateY, animationConfig, () =>
-          runOnJS(resolve)(),
+          runOnJS(() => {
+            resolve();
+            onHidden && onHidden();
+          })(),
         );
       });
     });
