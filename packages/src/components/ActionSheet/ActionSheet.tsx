@@ -45,6 +45,7 @@ export interface ActionSheetActionItem {
   color?: string;
   onPress?: (text: string) => void;
   style?: StyleProp<TextStyle>;
+  testID?: string;
 }
 
 const ActionSheet: React.FC<ActionSheetProps> = ({
@@ -107,8 +108,9 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
 
   const renderActionItem: (
     option: ActionSheetActionItem,
-  ) => React.ReactElement = ({ text, color, onPress, style }) => (
+  ) => React.ReactElement = ({ text, color, onPress, style, testID }) => (
     <TouchableOpacity
+      testID={testID}
       activeOpacity={0.8}
       {...touchableOpacityProps}
       onPress={() => {
