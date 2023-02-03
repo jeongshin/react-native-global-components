@@ -17,7 +17,7 @@ const SlideAnimationLayout: React.FC<SlideAnimationLayoutProps> = ({
   position = 'bottom',
   style,
   offsetY = 50,
-  duration = 2000,
+  duration,
   children,
   testID,
 }) => {
