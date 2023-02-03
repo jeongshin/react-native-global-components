@@ -13,12 +13,12 @@ const useSlideAnimationStyle = ({
   animationConfig = DEFAULT_WITH_TIMING_CONFIG,
   translateY = 30,
   onHidden,
-  onShow,
+  onShown,
 }: {
   animationConfig?: WithTimingConfig;
   translateY?: number;
   onHidden?: () => void;
-  onShow?: () => void;
+  onShown?: () => void;
 }) => {
   const animation = useSharedValue(translateY);
 
@@ -36,17 +36,21 @@ const useSlideAnimationStyle = ({
   );
 
   useEffect(() => {
-    animation.value = withTiming(0, animationConfig, () =>
-      runOnJS(() => onShow && onShow())(),
-    );
+    animation.value = withTiming(0, animationConfig, () => {
+      if (!onShown) return;
+      runOnJS(onShown)();
+    });
 
     addHideAnimation(() => {
       return new Promise((resolve) => {
+        const callback = () => {
+          resolve();
+          if (!onHidden) return;
+          onHidden();
+        };
+
         animation.value = withTiming(translateY, animationConfig, () =>
-          runOnJS(() => {
-            resolve();
-            onHidden && onHidden();
-          })(),
+          runOnJS(callback)(),
         );
       });
     });

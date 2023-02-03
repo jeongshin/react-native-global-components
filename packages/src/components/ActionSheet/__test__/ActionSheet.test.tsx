@@ -49,7 +49,7 @@ describe('[ActionSheet]', () => {
     });
   });
 
-  it('should trigger onShow callback on mounted', async () => {
+  it('should trigger onShown callback on mounted', async () => {
     const { Portal, show } = createPopup(ActionSheet);
 
     renderAPI = render(<Portal />);
@@ -71,7 +71,7 @@ describe('[ActionSheet]', () => {
             testID,
           },
         ],
-        onShow: () => {
+        onShown: () => {
           mounted = true;
         },
         onHidden: () => {

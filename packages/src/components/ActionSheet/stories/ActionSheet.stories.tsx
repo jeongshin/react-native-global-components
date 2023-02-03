@@ -37,6 +37,9 @@ const BasicStory = (): ReactElement => {
             show({
               title: 'HiHi~ nice to meet you!!',
               description: 'Welcome 👋🏻',
+              onShown: () => {
+                console.log('shown');
+              },
               actions: [
                 { text: 'Action Item 1', onPress: setSelected, color: 'blue' },
                 { text: 'Action Item 2', onPress: setSelected, color: 'red' },
