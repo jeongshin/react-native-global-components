@@ -42,7 +42,7 @@ export interface AlertPopupProps {
   touchableOpacityProps?: TouchableOpacityProps;
   vertical?: boolean;
   styles?: Styles;
-  animation?: FadeAnimationConfigs;
+  fadeAnimationConfig?: FadeAnimationConfigs;
   // TODO: add below
   // HeaderElement?: React.ReactElement;
   // FooterElement?: React.ReactElement;
@@ -54,12 +54,12 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
   styles,
   vertical,
   touchableOpacityProps,
-  animation,
+  fadeAnimationConfig,
   options = [{ text: 'Ok' }],
 }) => {
   const { hide } = useUpdateGlobalComponentState();
 
-  const { style: fade } = useFadeAnimationStyle(animation);
+  const { style: fade } = useFadeAnimationStyle(fadeAnimationConfig);
 
   useHideOnAndroidBackPress({ enabled: true });
 

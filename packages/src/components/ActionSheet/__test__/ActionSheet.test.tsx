@@ -77,7 +77,7 @@ describe('[ActionSheet]', () => {
         onHidden: () => {
           unmounted = true;
         },
-        animation: { duration },
+        animationConfig: { duration },
       });
     });
 

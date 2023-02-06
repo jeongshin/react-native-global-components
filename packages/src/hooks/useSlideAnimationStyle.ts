@@ -8,18 +8,19 @@ import {
 } from 'react-native-reanimated';
 import { DEFAULT_WITH_TIMING_CONFIG } from '../constant';
 import useUpdateGlobalComponentState from '../core/hooks/useUpdateGlobalComponentState';
+import { AnimationBaseConfig } from '../types';
+
+export interface SlideAnimationConfig {
+  animationConfig?: WithTimingConfig;
+  translateY?: number;
+}
 
 const useSlideAnimationStyle = ({
   animationConfig = DEFAULT_WITH_TIMING_CONFIG,
   translateY = 30,
   onHidden,
   onShown,
-}: {
-  animationConfig?: WithTimingConfig;
-  translateY?: number;
-  onHidden?: () => void;
-  onShown?: () => void;
-}) => {
+}: SlideAnimationConfig & AnimationBaseConfig) => {
   const animation = useSharedValue(translateY);
 
   const { addHideAnimation } = useUpdateGlobalComponentState();
@@ -54,6 +55,10 @@ const useSlideAnimationStyle = ({
         );
       });
     });
+
+    return () => {
+      animation.value = translateY;
+    };
   }, []);
 
   return {

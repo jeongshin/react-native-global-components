@@ -14,7 +14,7 @@ const useSnackbar = <S extends AnyProps>(name: string) => {
         filter((v): v is { name: string; props: S } => v.name === name),
         switchMap((v) =>
           // TODO:  without delay??
-          of(v.props).pipe(tap(hideImmediate), delay(16), tap(show)),
+          of(v.props).pipe(tap(hideImmediate), delay(1), tap(show)),
         ),
       )
       .subscribe();

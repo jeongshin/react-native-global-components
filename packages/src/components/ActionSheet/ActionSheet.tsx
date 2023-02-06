@@ -26,7 +26,7 @@ export interface ActionSheetProps {
   hideOnPressOverlay?: boolean;
   touchableOpacityProps?: TouchableOpacityProps;
   styles?: Styles;
-  animation?: WithTimingConfig;
+  animationConfig?: WithTimingConfig;
   onShown?: () => void;
   onHidden?: () => void;
 }
@@ -56,7 +56,7 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
   actions,
   touchableOpacityProps,
   styles,
-  animation,
+  animationConfig,
   onShown,
   onHidden,
   gap = 8,
@@ -73,7 +73,7 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
   const { hide } = useUpdateGlobalComponentState();
 
   const { style: slideAnimation } = useSlideAnimationStyle({
-    animationConfig: animation,
+    animationConfig,
     translateY: height + bottomInset,
     onShown,
     onHidden,
