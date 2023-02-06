@@ -1,10 +1,12 @@
-# ActionSheet
+import image from '../../static/gif/action-sheet-example.gif';
 
-ActionSheet
+# ActionSheet
 
 ## Overview
 
-<div className="sample-gif"></div>
+<div className="sample-gif">
+  <img src={image} className="sample-gif-img" alt="action-sheet-example" />
+</div>
 
 ## API Usage
 
@@ -65,7 +67,7 @@ ActionSheet.show({
 });
 ```
 
-## UI Props
+## Props
 
 ### `title`
 
@@ -97,6 +99,7 @@ interface ActionSheetActionItem {
   color?: string;
   onPress?: (text: string) => void;
   style?: StyleProp<TextStyle>;
+  testID?: string;
 }
 ```
 

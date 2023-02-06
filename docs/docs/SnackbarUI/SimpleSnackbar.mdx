@@ -1,0 +1,200 @@
+import image from '../../static/gif/simple-snackbar-example.gif';
+
+# SimpleSnackbar
+
+## Overview
+
+<div className="sample-gif">
+  <img src={image} className="sample-gif-img" alt="simple-snackbar-example" />
+</div>
+
+## API Usage
+
+### Step 1. create snackbar
+
+Using Default
+
+```tsx title="SimpleSnackbar.tsx"
+import { SimpleSnackbar, createSnackbar } from 'react-native-global-components';
+export default createSnackbar(SimpleSnackbar);
+```
+
+or you can override default props
+
+```tsx title="SimpleSnackbar.tsx"
+import {
+  SimpleSnackbar,
+  SimpleSnackbarProps,
+  createSnackbar,
+} from 'react-native-global-components';
+
+const styles: SimpleSnackbarProps['styles'] = StyleSheet.create({
+  // override default styles
+});
+
+export default createSnackbar((props: SimpleSnackbarProps) => (
+  <SimpleSnackbar {...props} styles={styles} />
+));
+```
+
+### Step 2. register portal
+
+```tsx title="App.tsx"
+const App = () => {
+  return (
+    <NavigationContainer>
+      <RootNavigator />
+      <SimpleSnackbar.Portal />
+    </NavigationContainer>
+  );
+};
+```
+
+### Step 3. use anywhere
+
+```tsx
+SimpleSnackbar.show({
+  title: 'Hello👋🏻',
+  description: 'My name is Jerry',
+});
+```
+
+```tsx
+SimpleSnackbar.show({
+  title: 'Hello👋🏻',
+  description: 'My name is Jerry',
+  leftElement: (
+    <Image
+      source={{
+        uri: 'https://icon2.cleanpng.com/20171220/woq/tom-and-jerry-png-5a3aa9384280b5.4480956315137938482724.jpg',
+      }}
+      style={{
+        width: 30,
+        height: 30,
+        borderRadius: 8,
+      }}
+    />
+  ),
+});
+```
+
+see more on storybook
+
+## Props
+
+### `title`
+
+title text to show
+
+| Type   | Default   | Required |
+| ------ | --------- | -------- |
+| string | undefined | YES      |
+
+### `description`
+
+description text to show below title
+
+| Type   | Default   | Required |
+| ------ | --------- | -------- |
+| string | undefined | NO       |
+
+### `duration`
+
+duration to show snackbar in milliseconds
+
+snackbar automatically hides after given duration
+
+| Type   | Default | Required |
+| ------ | ------- | -------- |
+| number | 2000    | NO       |
+
+### `position`
+
+absolute position of snackbar in screen
+
+| Type              | Default | Required |
+| ----------------- | ------- | -------- |
+| 'top' or 'bottom' | 'top'   | NO       |
+
+### `offsetY`
+
+absolute position of y
+
+snackbar moves from offsetY to offsetY + translateY
+
+| Type   | Default | Required |
+| ------ | ------- | -------- |
+| number | 20      | NO       |
+
+### `translateY`
+
+translateY that snackbar should move
+
+| Type   | Default | Required |
+| ------ | ------- | -------- |
+| number | 30      | NO       |
+
+### `onPress`
+
+translateY that snackbar should move
+
+| Type     | Default   | Required |
+| -------- | --------- | -------- |
+| Function | undefined | NO       |
+
+### `hideOnPress`
+
+flag that should hide snackbar onPress
+
+| Type    | Default | Required |
+| ------- | ------- | -------- |
+| boolean | true    | NO       |
+
+### `leftElement`
+
+ReactElement to render left of contents
+
+| Type         | Default   | Required |
+| ------------ | --------- | -------- |
+| ReactElement | undefined | NO       |
+
+### `rightElement`
+
+ReactElement to render right of contents
+
+| Type         | Default   | Required |
+| ------------ | --------- | -------- |
+| ReactElement | undefined | NO       |
+
+### `slideAnimationConfig`
+
+slide animation configuration. see [useSlideAnimationStyle](/docs/hooks/useSlideAnimationStyle).
+
+| Type                                     | Default   | Required |
+| ---------------------------------------- | --------- | -------- |
+| Omit<SlideAnimationConfig, 'translateY'> | undefined | NO       |
+
+### `fadeAnimationConfig`
+
+fade animation configuration. see [useFadeAnimationStyle](/docs/hooks/useFadeAnimationStyle).
+
+| Type                 | Default   | Required |
+| -------------------- | --------- | -------- |
+| FadeAnimationConfigs | undefined | NO       |
+
+### `styles`
+
+style object to override default style
+
+| Type   | Default   | Required |
+| ------ | --------- | -------- |
+| Styles | undefined | NO       |
+
+```ts
+interface Styles {
+  style?: StyleProp<ViewStyle>;
+  title?: StyleProp<TextStyle>;
+  description?: StyleProp<TextStyle>;
+  titleContainer?: StyleProp<ViewStyle>;
+}
+```

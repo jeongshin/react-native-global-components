@@ -15,6 +15,7 @@ import { FadeAnimationConfigs, useSlideAnimationStyle } from '../../hooks';
 import { SlideAnimationConfig } from '../../hooks/useSlideAnimationStyle';
 
 interface Styles {
+  style?: StyleProp<ViewStyle>;
   title?: StyleProp<TextStyle>;
   description?: StyleProp<TextStyle>;
   titleContainer?: StyleProp<ViewStyle>;
@@ -27,13 +28,13 @@ export interface SimpleSnackbarProps {
   position?: 'top' | 'bottom';
   offsetY?: number;
   translateY?: number;
-  slideAnimationConfig?: Omit<SlideAnimationConfig, 'translateY'>;
-  fadeAnimationConfig?: FadeAnimationConfigs;
-  style?: StyleProp<ViewStyle>;
+  onPress?: () => void;
+  hideOnPress?: boolean;
   testID?: string;
   leftElement?: ReactElement;
   rightElement?: ReactElement;
-  onPress?: () => void;
+  slideAnimationConfig?: Omit<SlideAnimationConfig, 'translateY'>;
+  fadeAnimationConfig?: FadeAnimationConfigs;
   styles?: Styles;
 }
 
@@ -42,12 +43,12 @@ const SimpleSnackbar: React.FC<SimpleSnackbarProps> = ({
   description,
   fadeAnimationConfig,
   testID,
-  style,
   leftElement,
   rightElement,
   onPress,
   styles,
   slideAnimationConfig,
+  hideOnPress = true,
   translateY = 30,
   offsetY = 20,
   duration = 2000,
@@ -88,11 +89,11 @@ const SimpleSnackbar: React.FC<SimpleSnackbarProps> = ({
   return (
     <View
       testID={testID}
-      style={StyleSheet.flatten([style, positionStyle[position]])}>
+      style={StyleSheet.flatten([styles?.style, positionStyle[position]])}>
       <TouchableWithoutFeedback
         onPress={() => {
           onPress && onPress();
-          hide();
+          hideOnPress && hide();
         }}>
         <Animated.View style={[slide, fade]}>
           <View style={defaultStyles.container}>

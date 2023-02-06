@@ -10,6 +10,17 @@ export {
   AlertPopupProps,
 } from './components/AlertPopup/AlertPopup';
 
+export {
+  default as ActionSheet,
+  ActionSheetActionItem,
+  ActionSheetProps,
+} from './components/ActionSheet/ActionSheet';
+
+export {
+  default as SimpleSnackbar,
+  SimpleSnackbarProps,
+} from './components/SimpleSnackbar/SimpleSnackbar';
+
 /**
  * APIs
  */
