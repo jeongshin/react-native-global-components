@@ -33,3 +33,12 @@ yarn add react-native-global-components
 ```bash
 npm install react-native-global-components
 ```
+
+## TODO
+
+- [ ] v1 stable release
+- [ ] RN 0.71 support
+
+## Suggestion
+
+If you need any other UI for snackbar or popup, give me suggestion through issue link below.

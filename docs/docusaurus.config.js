@@ -45,13 +45,13 @@ const config = {
           editUrl:
             'https://github.com/JeongShin/react-native-global-components/tree/main/packages/create-docusaurus/templates/shared/',
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/JeongShin/react-native-global-components/tree/main/packages/create-docusaurus/templates/shared/',
-        },
+        // blog: {
+        //   showReadingTime: true,
+        //   // Please change this to your repo.
+        //   // Remove this to remove the "edit this page" links.
+        //   editUrl:
+        //     'https://github.com/JeongShin/react-native-global-components/tree/main/packages/create-docusaurus/templates/shared/',
+        // },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -77,7 +77,7 @@ const config = {
             position: 'left',
             label: 'Getting Started',
           },
-          { to: '/blog', label: 'Blog', position: 'left' },
+          // { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/JeongShin/react-native-global-components',
             label: 'GitHub',
@@ -101,8 +101,8 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Issues',
+                href: 'https://github.com/JeongShin/react-native-global-components/issues',
               },
               {
                 label: 'Twitter',
@@ -113,10 +113,10 @@ const config = {
           {
             title: 'More',
             items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
+              // {
+              //   label: 'Blog',
+              //   to: '/blog',
+              // },
               {
                 label: 'GitHub',
                 href: 'https://github.com/JeongShin/react-native-global-components',
@@ -124,7 +124,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Jerry (JeongShin). Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Jerry(JeongShin). Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
