@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { Button, View, Text } from 'react-native';
 import { storiesOf } from '@storybook/react-native';
-import { createPopup } from 'react-native-global-components';
+import { createPopup } from '../../..';
 import ActionSheet from '../ActionSheet';
 
 export default {
