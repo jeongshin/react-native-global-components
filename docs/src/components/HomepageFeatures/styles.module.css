@@ -1,13 +1,13 @@
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding-bottom: 2rem;
   width: 100%;
 }
 
 .featureSvg {
-  height: 200px;
-  width: 200px;
+  height: 400px;
+  width: 400px;
 }
 
 table {

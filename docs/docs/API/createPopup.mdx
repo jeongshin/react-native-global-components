@@ -1,0 +1,145 @@
+import image from '../../static/gif/create-popup-example.gif';
+
+# createPopup
+
+## Overview
+
+- Only one popup can be mounted at same time
+- Prevents **overlapped rendering** global components created with `createPopup` using rx observable and queue internally
+- Once screen is occupied by a global component, `show` request is saved in queue and render asynchronously after previous global component is unmounted
+- Global components are grouped by its factory such as `createPopup` or `createSnackbar`. Global components with different factory can be rendered together in screen
+
+## Example
+
+For example, if AlertPopup `show` called twice synchronously, it's handled asynchronously with user interaction and delay between switching popup.
+
+```tsx
+AlertPopup.show(props);
+AlertPopup.show(props);
+```
+
+<div className="sample-gif">
+  <img src={image} className="sample-gif-img" alt="create-popup-example" />
+</div>
+
+## Usage
+
+Assume you are creating popup to show user minimal profile.
+
+### Step 1. create popup
+
+First, implement your custom UI or you can use any PopupUIs we provide
+
+You might need core hooks for state management. see [useUpdateGlobalComponentState](/docs/hooks/useUpdateGlobalComponentState)
+
+```tsx title="MyPopup.tsx"
+import { createPopup } from 'react-native-global-components';
+
+interface MyPopupProps {
+  name: string;
+}
+
+const MyPopup: FC<MyPopupProps> = (props) => {
+  return <View />;
+};
+
+export default createPopup(MyPopup);
+```
+
+### Step 2. register portal
+
+Portal is where your component actually rendered when you call `show` method.
+
+See [ReactDOM Portal](https://reactjs.org/docs/portals.html) concept though internal implementation is different.
+
+If using [React Navigation](https://reactnavigation.org/), highly recommend to put it in `NavigationContainer` to use navigation context in global components.
+
+```tsx title="App.tsx"
+const App = () => {
+  return (
+    <NavigationContainer>
+      <RootNavigator />
+      <MyPopup.Portal />
+      <MySnackbar.Portal />
+    </NavigationContainer>
+  );
+};
+```
+
+then you can do
+
+```tsx title="MyPopup.tsx"
+import { useNavigation } from '@react-navigation/native';
+import {
+  createPopup,
+  useUpdateGlobalComponentState,
+} from 'react-native-global-components';
+
+const MyPopup: FC<MyPopupProps> = ({ name }) => {
+  const navigation = useNavigation();
+  const { hide } = useUpdateGlobalComponentState();
+
+  return (
+    <Button
+      onPress={() => {
+        navigation.navigate('MyProfileScreen', { name });
+        hide();
+      }}
+    />
+  );
+};
+
+export default createPopup(MyPopup);
+```
+
+### Step 3. use anywhere
+
+```tsx
+MyPopup.show({
+  name: 'Jerry and Zeki',
+});
+```
+
+## Methods
+
+### `show`
+
+method to show created global component
+
+generic `T` (`MyPopupProps` for this guide) is inferred from your component props
+
+```ts
+type show = (props: T) => void;
+```
+
+### `hide`
+
+method to hide currently visible global component
+
+```ts
+type hide = () => void;
+```
+
+### `clear`
+
+clear queue and visible global component
+
+```ts
+type clear = () => void;
+```
+
+### `setDelay`
+
+set delay between switching global component in milliseconds (default: 300)
+
+```ts
+type setDelay = (delay: number) => void;
+```
+
+### `Portal`
+
+function component to render global component
+
+```ts
+type Portal = React.FC<{}>;
+```

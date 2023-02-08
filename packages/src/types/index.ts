@@ -26,4 +26,9 @@ export interface UpdateStateProps {
 
 export type Animation = () => Promise<void>;
 
+export interface AnimationBaseConfig {
+  onHidden?: () => void;
+  onShown?: () => void;
+}
+
 export type AnyProps = Record<string, any>;

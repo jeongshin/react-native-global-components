@@ -30,7 +30,7 @@ export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Getting Started | react-native-global-components`}
+      title={`Getting Started | RN Global Components`}
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
       <main>

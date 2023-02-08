@@ -2,6 +2,7 @@
   "name": "react-native-global-components-expo",
   "main": "node_modules/expo/AppEntry.js",
   "version": "1.0.0",
+  "homepage": "https://jeongshin.github.io/",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -49,7 +50,7 @@
     "@storybook/react-native": "^5.3.27",
     "@storybook/react-native-server": "^5.3.23",
     "@testing-library/jest-native": "^5.4.1",
-    "@testing-library/react-native": "^10.1.1",
+    "@testing-library/react-native": "^11.5.1",
     "@types/jest": "^29.4.0",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.67.6",

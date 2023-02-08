@@ -1,0 +1,153 @@
+import image from '../../static/gif/alert-popup-example.gif';
+
+# AlertPopup
+
+## Overview
+
+<div className="sample-gif">
+  <img src={image} className="sample-gif-img" alt="sample-alert-popup" />
+</div>
+
+## API Usage
+
+### Step 1. create popup
+
+Using Default
+
+```tsx title="AlertPopup.tsx"
+import { AlertPopup, createPopup } from 'react-native-global-components';
+export default createPopup(AlertPopup);
+```
+
+or you can override default props
+
+```tsx title="AlertPopup.tsx"
+import {
+  AlertPopup,
+  AlertPopupProps,
+  createPopup,
+} from 'react-native-global-components';
+
+const styles: AlertPopupProps['styles'] = StyleSheet.create({
+  // override default styles
+});
+
+export default createPopup((props: AlertPopupProps) => (
+  <AlertPopup {...props} styles={styles} />
+));
+```
+
+### Step 2. register portal
+
+```tsx title="App.tsx"
+const App = () => {
+  return (
+    <NavigationContainer>
+      <RootNavigator />
+      <AlertPopup.Portal />
+    </NavigationContainer>
+  );
+};
+```
+
+### Step 3. use anywhere
+
+```tsx
+AlertPopup.show({
+  title: `Hi I'm Vertical Popup`,
+  message: 'select how do you feel today',
+  vertical: true,
+  options: [
+    {
+      text: 'Good 😝',
+    },
+    {
+      text: 'Not Okay 😢',
+      color: 'green',
+    },
+    {
+      text: `Don't ask me 😡`,
+      color: 'red',
+    },
+  ],
+});
+```
+
+## Props
+
+### `message`
+
+message to show
+
+| Type   | Default   | Required |
+| ------ | --------- | -------- |
+| string | undefined | YES      |
+
+### `title`
+
+title text to show above message
+
+| Type   | Default   | Required |
+| ------ | --------- | -------- |
+| string | undefined | NO       |
+
+### `options`
+
+options buttons to show. see option interface below
+
+| Type               | Default          | Required |
+| ------------------ | ---------------- | -------- |
+| AlertPopupOption[] | [{ text: 'Ok' }] | NO       |
+
+```ts
+interface AlertPopupOption {
+  text: string;
+  onPress?: (text: string) => void;
+  color?: string;
+  textStyle?: StyleProp<TextStyle>;
+  testID?: string;
+}
+```
+
+### `touchableOpacityProps`
+
+touchableOpacity props of button to override default settings
+
+| Type                  | Default   | Required |
+| --------------------- | --------- | -------- |
+| TouchableOpacityProps | undefined | NO       |
+
+### `vertical`
+
+flag to render options vertically or horizontally
+
+| Type    | Default | Required |
+| ------- | ------- | -------- |
+| boolean | false   | NO       |
+
+### `fadeAnimationConfig`
+
+fade animation configuration. see [useFadeAnimationStyle](/docs/hooks/useFadeAnimationStyle).
+
+| Type                 | Default   | Required |
+| -------------------- | --------- | -------- |
+| FadeAnimationConfigs | undefined | NO       |
+
+### `styles`
+
+style object to override default style
+
+| Type   | Default   | Required |
+| ------ | --------- | -------- |
+| Styles | undefined | NO       |
+
+```ts
+interface Styles {
+  option?: StyleProp<ViewStyle>;
+  container?: StyleProp<ViewStyle>;
+  message?: StyleProp<TextStyle>;
+  title?: StyleProp<TextStyle>;
+  optionContainer?: StyleProp<ViewStyle>;
+  messageContainer?: StyleProp<ViewStyle>;
+}
+```

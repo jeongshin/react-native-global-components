@@ -1,0 +1,41 @@
+import image from '../../static/gif/create-snackbar-example.gif';
+
+# createSnackbar
+
+## Overview
+
+- Only one snackbar can be mounted at same time
+- Prevents **overlapped rendering** global components created with `createSnackbar` using rx observable and queue internally
+- Unlike popup, snackbar switches visible component immediately on `show` request
+
+## Example
+
+For example, if SimpleSnackbar `show` called multiple times, it's handled switching snackbar without delay.
+
+<div className="sample-gif">
+  <img src={image} className="sample-gif-img" alt="create-snackbar-example" />
+</div>
+
+## Usage
+
+Same with [createPopup](/docs/API/createPopup#Usage)
+
+## Methods
+
+### `show`
+
+method to show created global component
+
+generic `T` is inferred from your component props
+
+```ts
+type show = (props: T) => void;
+```
+
+### `hide`
+
+method to hide currently visible global component
+
+```ts
+type hide = () => void;
+```

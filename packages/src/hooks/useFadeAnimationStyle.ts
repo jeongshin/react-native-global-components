@@ -6,8 +6,8 @@ import {
   withTiming,
   WithTimingConfig,
 } from 'react-native-reanimated';
-import useUpdateGlobalComponentState from './useUpdateGlobalComponentState';
 import { DEFAULT_WITH_TIMING_CONFIG } from '../constant';
+import useUpdateGlobalComponentState from '../core/hooks/useUpdateGlobalComponentState';
 
 export interface FadeAnimationConfigs {
   minOpacity?: number;
@@ -38,6 +38,10 @@ const useFadeAnimationStyle = ({
         );
       });
     });
+
+    return () => {
+      opacity.value = minOpacity;
+    };
   }, []);
 
   return {

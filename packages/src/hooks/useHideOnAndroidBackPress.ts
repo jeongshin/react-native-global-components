@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { BackHandler, Platform } from 'react-native';
-import useUpdateGlobalComponentState from './useUpdateGlobalComponentState';
+import useUpdateGlobalComponentState from '../core/hooks/useUpdateGlobalComponentState';
 
 /**
  * use global component action on android hardware back press event

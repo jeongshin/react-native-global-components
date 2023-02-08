@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { ViewStyle } from 'react-native';
 import Animated, { AnimatedStyleProp } from 'react-native-reanimated';
 import { timer } from 'rxjs';
-import useUpdateGlobalComponentState from '../../../hooks/useUpdateGlobalComponentState';
+import useUpdateGlobalComponentState from '../../../core/hooks/useUpdateGlobalComponentState';
 
 export interface SlideAnimationLayoutProps {
   children?: React.ReactNode;
@@ -17,7 +17,7 @@ const SlideAnimationLayout: React.FC<SlideAnimationLayoutProps> = ({
   position = 'bottom',
   style,
   offsetY = 50,
-  duration = 2000,
+  duration,
   children,
   testID,
 }) => {

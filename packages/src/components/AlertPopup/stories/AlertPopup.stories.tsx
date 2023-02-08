@@ -9,15 +9,9 @@ export default {
 };
 
 const BasicStory = (): ReactElement => {
-  const { Portal, show, clear } = useRef(createPopup(AlertPopup)).current;
+  const { show, Portal } = useRef(createPopup(AlertPopup)).current;
 
   const [selected, setSelected] = useState<string>('');
-
-  useEffect(() => {
-    return () => {
-      clear();
-    };
-  }, []);
 
   return (
     <>
@@ -36,6 +30,21 @@ const BasicStory = (): ReactElement => {
         <Button
           title="Open Alert Vertical"
           onPress={() => {
+            show({
+              title: `Hi I'm Vertical Popup`,
+              message: 'select how do you feel today',
+              vertical: true,
+              options: [
+                { text: 'Good 😝', onPress: setSelected },
+                {
+                  text: 'Not Okay 😢',
+                  color: 'green',
+                  onPress: setSelected,
+                },
+                { text: `Don't ask me 😡`, color: 'red', onPress: setSelected },
+              ],
+            });
+
             show({
               title: `Hi I'm Vertical Popup`,
               message: 'select how do you feel today',
@@ -77,7 +86,4 @@ const BasicStory = (): ReactElement => {
   );
 };
 
-/**
- * Below are stories for app
- */
-storiesOf('AlertPopup', module).add('IOS Style Alert', () => <BasicStory />);
+storiesOf('AlertPopup', module).add('AlertPopup', () => <BasicStory />);

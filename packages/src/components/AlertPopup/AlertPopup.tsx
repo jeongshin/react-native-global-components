@@ -9,15 +9,17 @@ import {
   TouchableOpacityProps,
   TouchableOpacity,
 } from 'react-native';
+import Animated from 'react-native-reanimated';
 import {
+  useGlobalComponentState,
   useUpdateGlobalComponentState,
+} from '../../core/hooks';
+import {
+  FadeAnimationConfigs,
   useFadeAnimationStyle,
   useHideOnAndroidBackPress,
-  FullScreenLayout,
-  FullScreenOverlay,
-} from 'react-native-global-components';
-import Animated from 'react-native-reanimated';
-import { FadeAnimationConfigs } from '../../hooks/useFadeAnimationStyle';
+} from '../../hooks';
+import { FullScreenLayout, FullScreenOverlay } from '../Layout';
 
 export interface AlertPopupOption {
   text: string;
@@ -43,7 +45,10 @@ export interface AlertPopupProps {
   touchableOpacityProps?: TouchableOpacityProps;
   vertical?: boolean;
   styles?: Styles;
-  animation?: FadeAnimationConfigs;
+  fadeAnimationConfig?: FadeAnimationConfigs;
+  // TODO: add below
+  // HeaderElement?: React.ReactElement;
+  // FooterElement?: React.ReactElement;
 }
 
 const AlertPopup: React.FC<AlertPopupProps> = ({
@@ -52,12 +57,13 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
   styles,
   vertical,
   touchableOpacityProps,
-  animation,
+  fadeAnimationConfig,
   options = [{ text: 'Ok' }],
 }) => {
   const { hide } = useUpdateGlobalComponentState();
+  const { message: mm } = useGlobalComponentState<AlertPopupProps>();
 
-  const { style: fade } = useFadeAnimationStyle(animation);
+  const { style: fade } = useFadeAnimationStyle(fadeAnimationConfig);
 
   useHideOnAndroidBackPress({ enabled: true });
 
