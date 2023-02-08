@@ -1,16 +1,36 @@
+import image from '../../static/gif/create-popup-example.gif';
+
 # createPopup
 
-## How it works
+## Overview
 
-## API Usage
+- Only one popup can be mounted at same time
+- Prevents **overlapped rendering** global components created with `createPopup` using rx observable and queue internally
+- Once screen is occupied by a global component, `show` request is saved in queue and render asynchronously after previous global component is unmounted
+- Global components are grouped by its factory such as `createPopup` or `createSnackbar`. Global components with different factory can be rendered together in screen
 
-Assume you are creating popup component to show user minimal profile.
+## Example
+
+For example, if AlertPopup `show` called twice synchronously, it's handled asynchronously with user interaction and delay between switching popup.
+
+```tsx
+AlertPopup.show(props);
+AlertPopup.show(props);
+```
+
+<div className="sample-gif">
+  <img src={image} className="sample-gif-img" alt="create-popup-example" />
+</div>
+
+## Usage
+
+Assume you are creating popup to show user minimal profile.
 
 ### Step 1. create popup
 
-First, implement your UI or you can use any PopupUIs we provide
+First, implement your custom UI or you can use any PopupUIs we provide
 
-You might need hooks for state management. see [useUpdateGlobalComponentState](/docs/hooks/useUpdateGlobalComponentState)
+You might need core hooks for state management. see [useUpdateGlobalComponentState](/docs/hooks/useUpdateGlobalComponentState)
 
 ```tsx title="MyPopup.tsx"
 import { createPopup } from 'react-native-global-components';
@@ -90,4 +110,36 @@ generic `T` (`MyPopupProps` for this guide) is inferred from your component prop
 
 ```ts
 type show = (props: T) => void;
+```
+
+### `hide`
+
+method to hide currently visible global component
+
+```ts
+type hide = () => void;
+```
+
+### `clear`
+
+clear queue and visible global component
+
+```ts
+type clear = () => void;
+```
+
+### `setDelay`
+
+set delay between switching global component in milliseconds (default: 300)
+
+```ts
+type setDelay = (delay: number) => void;
+```
+
+### `Portal`
+
+function component to render global component
+
+```ts
+type Portal = React.FC<{}>;
 ```

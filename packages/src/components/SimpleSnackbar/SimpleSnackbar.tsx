@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { timer } from 'rxjs';
-import { useFadeAnimationStyle, useUpdateGlobalComponentState } from '../..';
+import { useUpdateGlobalComponentState } from '../../core/hooks';
+import { useFadeAnimationStyle } from '../../hooks';
 import { FadeAnimationConfigs, useSlideAnimationStyle } from '../../hooks';
 import { SlideAnimationConfig } from '../../hooks/useSlideAnimationStyle';
 

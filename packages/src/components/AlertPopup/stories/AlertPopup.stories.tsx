@@ -44,6 +44,21 @@ const BasicStory = (): ReactElement => {
                 { text: `Don't ask me 😡`, color: 'red', onPress: setSelected },
               ],
             });
+
+            show({
+              title: `Hi I'm Vertical Popup`,
+              message: 'select how do you feel today',
+              vertical: true,
+              options: [
+                { text: 'Good 😝', onPress: setSelected },
+                {
+                  text: 'Not Okay 😢',
+                  color: 'green',
+                  onPress: setSelected,
+                },
+                { text: `Don't ask me 😡`, color: 'red', onPress: setSelected },
+              ],
+            });
           }}
         />
 

@@ -10,7 +10,10 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { useUpdateGlobalComponentState } from '../../core/hooks';
+import {
+  useGlobalComponentState,
+  useUpdateGlobalComponentState,
+} from '../../core/hooks';
 import {
   FadeAnimationConfigs,
   useFadeAnimationStyle,
@@ -58,6 +61,7 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
   options = [{ text: 'Ok' }],
 }) => {
   const { hide } = useUpdateGlobalComponentState();
+  const { message: mm } = useGlobalComponentState<AlertPopupProps>();
 
   const { style: fade } = useFadeAnimationStyle(fadeAnimationConfig);
 

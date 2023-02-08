@@ -177,6 +177,22 @@ touchableOpacity props on action button to override default settings
 | --------------------- | --------- | -------- |
 | TouchableOpacityProps | undefined | NO       |
 
+### `onShown`
+
+callback function on global component show animation ended
+
+| Type     | Default   | Required |
+| -------- | --------- | -------- |
+| Function | undefined | NO       |
+
+### `onHiddien`
+
+callback function on global component hide animation ended
+
+| Type     | Default   | Required |
+| -------- | --------- | -------- |
+| Function | undefined | NO       |
+
 ### `styles`
 
 style object to override default style
@@ -197,19 +213,3 @@ interface Styles {
   divider?: StyleProp<ViewStyle>;
 }
 ```
-
-### `onShown`
-
-callback function on global component show animation ended
-
-| Type     | Default   | Required |
-| -------- | --------- | -------- |
-| Function | undefined | NO       |
-
-### `onHiddien`
-
-callback function on global component hide animation ended
-
-| Type     | Default   | Required |
-| -------- | --------- | -------- |
-| Function | undefined | NO       |

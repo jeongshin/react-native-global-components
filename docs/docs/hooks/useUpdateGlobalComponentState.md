@@ -1,10 +1,10 @@
 # useUpdateGlobalComponentState
 
-## Description
+## Overview
 
 `useUpdateGlobalComponentState` is core hook for global component state management.
 
-Here's how it looks
+Here's how context looks
 
 ```ts
 interface UpdateStateProps {
@@ -13,15 +13,19 @@ interface UpdateStateProps {
 }
 ```
 
-For example, if you want to **add hide animation before component completely dismissed**
+## Example
 
-```tsx title="YourCustomUI.tsx"
+### `addHideAnimation`
+
+For example, if you want to add hide animation before component dismissed
+
+```tsx title="MyCustomPopup.tsx"
 import {
   createPopup,
   useUpdateGlobalComponentState,
 } from 'react-native-global-components';
 
-const MyCustomUI = () => {
+const MyCustomPopup = () => {
   const { addHideAnimation, hide } = useUpdateGlobalComponentState();
 
   useEffect(() => {
@@ -37,12 +41,37 @@ const MyCustomUI = () => {
   return <Button onPress={() => hide()} />;
 };
 
-export default createPopup(MyCustomUI);
+export default createPopup(MyCustomPopup);
 ```
 
-then
+then all registered animations on mount will triggered when `hide` called parallelly with `Promise.all`
 
-- asynchronous animation registered on mounted
-- all registered animations called
-- component unmount when all 
+### `hide`
 
+Hide method is used to hide current component.
+
+For example, if you have callback on button pressed, you should call `hide` after to dismiss popup.
+
+Unless, your component will be visible forever!! 🤯
+
+```tsx title="MyCustomPopup.tsx"
+import {
+  createPopup,
+  useUpdateGlobalComponentState,
+} from 'react-native-global-components';
+
+const MyCustomPopup: React.FC<{ callback: () => void }> = ({ callback }) => {
+  const { hide } = useUpdateGlobalComponentState();
+
+  return (
+    <Button
+      onPress={() => {
+        callback();
+        hide(); // Don't forget!!
+      }}
+    />
+  );
+};
+
+export default createPopup(MyCustomPopup);
+```
