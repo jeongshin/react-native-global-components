@@ -3,6 +3,8 @@
   "main": "node_modules/expo/AppEntry.js",
   "version": "1.0.0",
   "homepage": "https://jeongshin.github.io/",
+  "repository": "https://github.com/JeongShin/react-native-global-components",
+  "author": "JeongShin (https://github.com/JeongShin)",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
