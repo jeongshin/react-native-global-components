@@ -104,10 +104,10 @@ const config = {
                 label: 'Issues',
                 href: 'https://github.com/JeongShin/react-native-global-components/issues',
               },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
+              // {
+              //   label: 'Twitter',
+              //   href: 'https://twitter.com/docusaurus',
+              // },
             ],
           },
           {
