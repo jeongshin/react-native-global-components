@@ -30,7 +30,7 @@ export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Getting Started | RN Global Components`}
+      title={`Getting Started`}
       description="Description will go into a meta tag in <head />">
       <HomepageHeader />
       <main>
