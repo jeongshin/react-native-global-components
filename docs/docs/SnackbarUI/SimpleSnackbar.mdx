@@ -80,6 +80,22 @@ SimpleSnackbar.show({
 
 see more on storybook
 
+## Tips
+
+For `SafeArea`, here's what you can do
+
+```tsx title="SimpleSnackbar.tsx"
+export default createSnackbar((props: SimpleSnackbarProps) => {
+  const { top } = useSafeAreaInsets();
+  return (
+    <SimpleSnackbar
+      offsetY={props.position === 'top' ? top : BOTTOM_TAB_BAR_HEIGHT}
+      {...props}
+    />
+  );
+});
+```
+
 ## Props
 
 ### `title`
@@ -124,7 +140,7 @@ snackbar moves from offsetY to offsetY + translateY
 
 | Type   | Default | Required |
 | ------ | ------- | -------- |
-| number | 20      | NO       |
+| number | 50      | NO       |
 
 ### `translateY`
 

@@ -51,7 +51,7 @@ const SimpleSnackbar: React.FC<SimpleSnackbarProps> = ({
   slideAnimationConfig,
   hideOnPress = true,
   translateY = 30,
-  offsetY = 20,
+  offsetY = 50,
   duration = 2000,
   position = 'top',
 }) => {
