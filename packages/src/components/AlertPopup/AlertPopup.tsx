@@ -10,10 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Animated from 'react-native-reanimated';
-import {
-  useGlobalComponentState,
-  useUpdateGlobalComponentState,
-} from '../../core/hooks';
+import { useUpdateGlobalComponentState } from '../../core/hooks';
 import {
   FadeAnimationConfigs,
   useFadeAnimationStyle,
@@ -46,9 +43,8 @@ export interface AlertPopupProps {
   vertical?: boolean;
   styles?: Styles;
   fadeAnimationConfig?: FadeAnimationConfigs;
-  // TODO: add below
-  // HeaderElement?: React.ReactElement;
-  // FooterElement?: React.ReactElement;
+  headerElement?: React.ReactElement;
+  footerElement?: React.ReactElement;
 }
 
 const AlertPopup: React.FC<AlertPopupProps> = ({
@@ -58,10 +54,11 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
   vertical,
   touchableOpacityProps,
   fadeAnimationConfig,
+  headerElement,
+  footerElement,
   options = [{ text: 'Ok' }],
 }) => {
   const { hide } = useUpdateGlobalComponentState();
-  const { message: mm } = useGlobalComponentState<AlertPopupProps>();
 
   const { style: fade } = useFadeAnimationStyle(fadeAnimationConfig);
 
@@ -76,6 +73,7 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
             defaultStyles.container,
             styles?.container,
           ])}>
+          {headerElement}
           <View
             style={StyleSheet.flatten([
               defaultStyles.messageContainer,
@@ -100,6 +98,7 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
               </Text>
             )}
           </View>
+          {footerElement}
           <View
             style={StyleSheet.flatten([
               defaultStyles.optionContainer,
