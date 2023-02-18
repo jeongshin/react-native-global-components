@@ -8,16 +8,17 @@ module.exports = function (api) {
     ],
     plugins: [
       'react-native-reanimated/plugin',
+      '@babel/plugin-transform-modules-commonjs',
       '@babel/plugin-proposal-export-namespace-from',
-      [
-        'module-resolver',
-        {
-          extensions: ['.tsx', '.ts', '.js', '.json'],
-          alias: {
-            'react-native-global-components': './packages/src',
-          },
-        },
-      ],
+      // [
+      //   'module-resolver',
+      //   {
+      //     extensions: ['.tsx', '.ts', '.js', '.json'],
+      //     alias: {
+      //       'react-native-global-components': './packages/src',
+      //     },
+      //   },
+      // ],
     ],
   };
 };
