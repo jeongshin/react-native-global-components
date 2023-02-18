@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "react-native-global-components-expo",
-    "slug": "react-native-global-components-expo",
+    "name": "react-native-global-components-storybook",
+    "slug": "react-native-global-components-storybook",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

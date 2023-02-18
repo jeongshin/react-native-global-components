@@ -18,7 +18,7 @@ In this project, global component definition is component that used commonly and
 ## Features
 
 - Customizable PopupUI, SnackbarUI
-- Fully customizable with own UI
+- Fully customizable Headless UI with custom hooks
 - Typescript support
 
 ## Storybook

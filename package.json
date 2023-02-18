@@ -24,7 +24,6 @@
     "build-static-webapp": "expo export:web"
   },
   "dependencies": {
-    "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
     "@react-native-async-storage/async-storage": "~1.17.3",
     "expo": "^47.0.0",
     "expo-status-bar": "~1.4.2",
@@ -39,6 +38,7 @@
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
     "@babel/plugin-transform-modules-commonjs": "^7.20.11",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
