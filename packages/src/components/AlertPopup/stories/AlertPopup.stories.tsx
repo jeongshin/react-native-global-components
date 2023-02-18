@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import { Button, View, Text } from 'react-native';
 import { storiesOf } from '@storybook/react-native';
 import { createPopup } from '../../..';
@@ -30,21 +30,6 @@ const BasicStory = (): ReactElement => {
         <Button
           title="Open Alert Vertical"
           onPress={() => {
-            show({
-              title: `Hi I'm Vertical Popup`,
-              message: 'select how do you feel today',
-              vertical: true,
-              options: [
-                { text: 'Good 😝', onPress: setSelected },
-                {
-                  text: 'Not Okay 😢',
-                  color: 'green',
-                  onPress: setSelected,
-                },
-                { text: `Don't ask me 😡`, color: 'red', onPress: setSelected },
-              ],
-            });
-
             show({
               title: `Hi I'm Vertical Popup`,
               message: 'select how do you feel today',

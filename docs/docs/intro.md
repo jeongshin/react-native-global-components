@@ -21,6 +21,10 @@ In this project, global component definition is component that used commonly and
 - Fully customizable with own UI
 - Typescript support
 
+## Storybook
+
+See our [storybook](https://silly-kleicha-72e9c9.netlify.app/)
+
 ## Dependencies
 
 - [React](https://reactjs.org/) (>=17.0.2)
