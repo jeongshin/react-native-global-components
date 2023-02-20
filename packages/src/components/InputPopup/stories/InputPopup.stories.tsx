@@ -1,5 +1,5 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react';
-import { Button, View, Image, TextInput } from 'react-native';
+import React, { ReactElement, useRef, useState } from 'react';
+import { Button, View } from 'react-native';
 import { storiesOf } from '@storybook/react-native';
 import { createPopup } from '../../..';
 import InputPopup from '../InputPopup';

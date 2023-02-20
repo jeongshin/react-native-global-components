@@ -39,11 +39,11 @@ export interface InputPopupProps {
   description?: string;
   inputProps?: TextInputProps;
   buttons?: InputPopupButtonProps[];
-  styles?: Styles;
   renderButtons?: (text?: string) => React.ReactElement;
   fadeAnimationConfig?: FadeAnimationConfigs;
   androidBackBehavior?: AndroidBackBehavior;
   keyboardAvoidingLayoutProps?: KeyboardAvoidingLayoutProps;
+  styles?: Styles;
 }
 
 const InputPopup: React.FC<InputPopupProps> = ({
