@@ -45,6 +45,7 @@ export interface AlertPopupProps {
   fadeAnimationConfig?: FadeAnimationConfigs;
   headerElement?: React.ReactElement;
   footerElement?: React.ReactElement;
+  // TODO: add safe area inset
 }
 
 const AlertPopup: React.FC<AlertPopupProps> = ({
@@ -166,7 +167,6 @@ const defaultStyles = StyleSheet.create({
     backgroundColor: '#ffffffee',
   },
   title: {
-    fontWeight: '600',
     fontSize: 18,
     paddingBottom: 8,
   },
