@@ -69,4 +69,4 @@ const BasicStory = (): ReactElement => {
   );
 };
 
-storiesOf('ActionSheet', module).add('ActionSheet', () => <BasicStory />);
+storiesOf('ActionSheet', module).add('Basic', () => <BasicStory />);

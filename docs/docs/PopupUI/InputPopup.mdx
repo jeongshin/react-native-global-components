@@ -1,0 +1,167 @@
+import image from '../../static/gif/input-popup-example.gif';
+
+# InputPopup
+
+## Overview
+
+<div className="sample-gif">
+  <img src={image} className="sample-gif-img" alt="sample-alert-popup" />
+</div>
+
+## API Usage
+
+### Step 1. create popup
+
+Using Default
+
+```tsx title="InputPopup.tsx"
+import { InputPopup, createPopup } from 'react-native-global-components';
+export default createPopup(InputPopup);
+```
+
+or you can override default props
+
+```tsx title="InputPopup.tsx"
+import {
+  InputPopup,
+  InputPopupProps,
+  createPopup,
+} from 'react-native-global-components';
+
+const styles: InputPopupProps['styles'] = StyleSheet.create({
+  // override default styles
+});
+
+export default createPopup((props: InputPopupProps) => (
+  <InputPopup {...props} styles={styles} />
+));
+```
+
+### Step 2. register portal
+
+```tsx title="App.tsx"
+const App = () => {
+  return (
+    <NavigationContainer>
+      <RootNavigator />
+      <InputPopup.Portal />
+    </NavigationContainer>
+  );
+};
+```
+
+### Step 3. use anywhere
+
+```tsx
+InputPopup.show({
+  title: 'Hello👋🏻',
+  description: 'Please enter your name 🥰',
+  inputProps: { value: 'initial value' },
+  buttons: [
+    { title: 'Cancel' },
+    {
+      title: 'Enter',
+      onPress: (text) => text && setText(text),
+    },
+  ],
+});
+```
+
+## Props
+
+### `title`
+
+title to show
+
+| Type   | Default   | Required |
+| ------ | --------- | -------- |
+| string | undefined | NO       |
+
+### `description`
+
+description text to show below title
+
+| Type   | Default   | Required |
+| ------ | --------- | -------- |
+| string | undefined | NO       |
+
+### `inputProps`
+
+react native text input props
+
+| Type           | Default   | Required |
+| -------------- | --------- | -------- |
+| TextInputProps | undefined | NO       |
+
+### `buttons`
+
+react native button props with overriding `onPress`. use `renderButtons` for custom button UI.
+
+| Type                  | Default                                                     | Required |
+| --------------------- | ----------------------------------------------------------- | -------- |
+| InputPopupButtonProps | [{ title: 'Cancel', color: 'black' },{ title: 'Confirm' },] | NO       |
+
+```ts
+// ButtonProps from react native
+interface InputPopupButtonProps extends Omit<ButtonProps, 'onPress'> {
+  onPress?: (text?: string) => void;
+}
+```
+
+### `renderButtons`
+
+render function for Headless button UI. `buttons` will be ignored when `renderButtons` provided.
+
+| Type                            | Default   | Required |
+| ------------------------------- | --------- | -------- |
+| (text?: string) => ReactElement | undefined | NO       |
+
+### `fadeAnimationConfig`
+
+fade animation configuration. see [useFadeAnimationStyle](/docs/hooks/useFadeAnimationStyle).
+
+| Type                 | Default   | Required |
+| -------------------- | --------- | -------- |
+| FadeAnimationConfigs | undefined | NO       |
+
+### `androidBackBehavior`
+
+behavior on android hardware back button pressed. hide component for default.
+
+| Type             | Default | Required |
+| ---------------- | ------- | -------- |
+| 'hide' or 'none' | 'hide'  | NO       |
+
+### `KeyboardAvoidingLayoutProps`
+
+keyboard related props overriding react native `KeyboardAvoidingViewProps`
+
+| Type                        | Default   | Required |
+| --------------------------- | --------- | -------- |
+| KeyboardAvoidingLayoutProps | undefined | NO       |
+
+```ts
+interface KeyboardAvoidingLayoutProps extends KeyboardAvoidingViewProps {
+  bottomInset?: number;
+  topInset?: number;
+  children?: React.ReactNode;
+}
+```
+
+### `styles`
+
+style object to override default style
+
+| Type   | Default   | Required |
+| ------ | --------- | -------- |
+| Styles | undefined | NO       |
+
+```ts
+type Styles = {
+  title?: StyleProp<TextStyle>;
+  input?: StyleProp<TextStyle>;
+  description?: StyleProp<TextStyle>;
+  container?: StyleProp<ViewStyle>;
+  buttonContainer?: StyleProp<ViewStyle>;
+};
+```

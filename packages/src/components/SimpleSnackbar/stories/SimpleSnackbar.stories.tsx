@@ -86,4 +86,4 @@ const BasicStory = (): ReactElement => {
   );
 };
 
-storiesOf('SimpleSnackbar', module).add('SimpleSnackbar', () => <BasicStory />);
+storiesOf('SimpleSnackbar', module).add('Basic', () => <BasicStory />);

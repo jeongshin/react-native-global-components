@@ -26,6 +26,8 @@ export interface UpdateStateProps {
 
 export type Animation = () => Promise<void>;
 
+export type AndroidBackBehavior = 'hide' | 'none';
+
 export interface AnimationBaseConfig {
   onHidden?: () => void;
   onShown?: () => void;

@@ -71,4 +71,4 @@ const BasicStory = (): ReactElement => {
   );
 };
 
-storiesOf('AlertPopup', module).add('AlertPopup', () => <BasicStory />);
+storiesOf('AlertPopup', module).add('Basic', () => <BasicStory />);

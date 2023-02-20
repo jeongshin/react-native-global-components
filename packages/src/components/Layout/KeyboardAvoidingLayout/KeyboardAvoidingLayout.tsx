@@ -3,11 +3,12 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   KeyboardAvoidingViewProps,
+  Platform,
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
 
-interface KeyboardAvoidingLayoutProps extends KeyboardAvoidingViewProps {
+export interface KeyboardAvoidingLayoutProps extends KeyboardAvoidingViewProps {
   bottomInset?: number;
   topInset?: number;
   children?: React.ReactNode;
@@ -16,14 +17,19 @@ interface KeyboardAvoidingLayoutProps extends KeyboardAvoidingViewProps {
 /**
  * Full screen container with keyboard avoiding view.
  */
-const KeyboardAvoidingContainer: React.FC<KeyboardAvoidingLayoutProps> = ({
+const KeyboardAvoidingLayout: React.FC<KeyboardAvoidingLayoutProps> = ({
   children,
   bottomInset = 0,
   topInset = 0,
+  behavior: givenBehavior,
   ...viewProps
 }) => {
+  const behavior =
+    givenBehavior || (Platform.OS === 'android' ? 'height' : undefined);
+
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback
+      onPress={Platform.OS === 'web' ? undefined : Keyboard.dismiss}>
       <KeyboardAvoidingView
         style={[
           styles.container,
@@ -31,7 +37,7 @@ const KeyboardAvoidingContainer: React.FC<KeyboardAvoidingLayoutProps> = ({
           { paddingBottom: bottomInset, paddingTop: topInset },
         ]}
         {...viewProps}
-        behavior={viewProps.behavior || 'padding'}>
+        behavior={behavior}>
         {children}
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
@@ -46,4 +52,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default KeyboardAvoidingContainer;
+export default KeyboardAvoidingLayout;
