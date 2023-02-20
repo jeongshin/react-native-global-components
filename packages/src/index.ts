@@ -17,6 +17,12 @@ export {
 } from './components/ActionSheet/ActionSheet';
 
 export {
+  default as InputPopup,
+  InputPopupButtonProps,
+  InputPopupProps,
+} from './components/InputPopup/InputPopup';
+
+export {
   default as SimpleSnackbar,
   SimpleSnackbarProps,
 } from './components/SimpleSnackbar/SimpleSnackbar';
