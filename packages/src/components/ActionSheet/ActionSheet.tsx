@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import {
   StyleProp,
   TouchableOpacityProps,
@@ -17,8 +17,8 @@ import { FullScreenOverlay } from '../Layout';
 export interface ActionSheetProps {
   title?: string;
   description?: string;
-  actions: ActionSheetActionItem[];
-  cancelAction?: ActionSheetActionItem;
+  actions: (ActionSheetActionItem | ReactElement)[];
+  cancelAction?: ReactElement | ActionSheetActionItem;
   itemHeight?: number;
   headerHeight?: number;
   gap?: number;
@@ -157,8 +157,10 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
           {actions.map((action, index) => {
             const isLast = index === actions.length - 1;
             return (
-              <View key={`${action.text}-${index}`}>
-                {renderActionItem(action)}
+              <View key={`${index}`}>
+                {React.isValidElement(action)
+                  ? action
+                  : renderActionItem(action)}
                 {!isLast && (
                   <View
                     style={StyleSheet.flatten([
@@ -176,7 +178,9 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
             defaultStyles.actionGroup,
             styles?.cancelAction,
           ])}>
-          {renderActionItem(cancelAction)}
+          {React.isValidElement(cancelAction)
+            ? cancelAction
+            : renderActionItem(cancelAction)}
         </View>
       </Animated.View>
     </View>

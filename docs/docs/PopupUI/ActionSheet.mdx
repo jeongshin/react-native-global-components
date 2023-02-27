@@ -87,11 +87,11 @@ description text to show
 
 ### `actions`
 
-actions to show. see interface below
+actions to show. use `ReactElement` to customize item UI. see interface below
 
-| Type                    | Default   | Required |
-| ----------------------- | --------- | -------- |
-| ActionSheetActionItem[] | undefined | YES      |
+| Type                                      | Default   | Required |
+| ----------------------------------------- | --------- | -------- |
+| (ActionSheetActionItem \| ReactElement)[] | undefined | YES      |
 
 ```ts
 interface ActionSheetActionItem {
@@ -105,11 +105,11 @@ interface ActionSheetActionItem {
 
 ### `cancelAction`
 
-cancel button at bottom of action sheet
+cancel button at bottom of action sheet. use `ReactElement` to customize item UI
 
-| Type                  | Default            | Required |
-| --------------------- | ------------------ | -------- |
-| ActionSheetActionItem | { text: 'Cancel' } | NO       |
+| Type                                    | Default            | Required |
+| --------------------------------------- | ------------------ | -------- |
+| (ActionSheetActionItem \| ReactElement) | { text: 'Cancel' } | NO       |
 
 ### `itemHeight`
 
