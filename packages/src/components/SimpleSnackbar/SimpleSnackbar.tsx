@@ -19,6 +19,7 @@ interface Styles {
   style?: StyleProp<ViewStyle>;
   title?: StyleProp<TextStyle>;
   description?: StyleProp<TextStyle>;
+  container?: StyleProp<TextStyle>;
   titleContainer?: StyleProp<ViewStyle>;
 }
 
@@ -97,7 +98,11 @@ const SimpleSnackbar: React.FC<SimpleSnackbarProps> = ({
           hideOnPress && hide();
         }}>
         <Animated.View style={[slide, fade]}>
-          <View style={defaultStyles.container}>
+          <View
+            style={StyleSheet.flatten([
+              defaultStyles.container,
+              styles?.container,
+            ])}>
             {leftElement}
             <View
               style={StyleSheet.flatten([
