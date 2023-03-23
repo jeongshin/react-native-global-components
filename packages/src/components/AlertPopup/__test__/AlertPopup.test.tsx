@@ -18,7 +18,7 @@ describe('[AlertPopup]', () => {
 
     let pressedText: string | undefined;
 
-    const { Portal, show } = createPopup(AlertPopup);
+    const { Portal, show } = createPopup(AlertPopup, 'AlertPopup');
 
     renderAPI = render(<Portal />);
 

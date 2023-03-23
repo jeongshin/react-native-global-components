@@ -18,7 +18,7 @@ describe('[InputPopup]', () => {
 
     let pressedText: string | undefined;
 
-    const { Portal, show } = createPopup(InputPopup);
+    const { Portal, show } = createPopup(InputPopup, 'InputPopup');
 
     renderAPI = render(<Portal />);
 

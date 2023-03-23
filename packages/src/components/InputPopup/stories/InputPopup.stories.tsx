@@ -9,7 +9,9 @@ export default {
 };
 
 const BasicStory = (): ReactElement => {
-  const { show, Portal } = useRef(createPopup(InputPopup)).current;
+  const [{ show, Portal }] = useState(() =>
+    createPopup(InputPopup, 'InputPopup'),
+  );
 
   const [text, setText] = useState<string>('');
 

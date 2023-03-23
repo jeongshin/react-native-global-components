@@ -55,7 +55,7 @@ class GlobalComponentManager {
   }): void {
     if (this.map.has(name)) {
       logger.log(
-        'Component already registered. name should be unique.\nBut it is safe to ignore this warning if it occurred because of hot module replacement.',
+        `Component already registered. ${name} name should be unique.\nBut it is safe to ignore this warning if it occurred because of hot module replacement.`,
       );
       return;
     }
