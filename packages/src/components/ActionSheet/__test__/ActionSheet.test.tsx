@@ -13,7 +13,7 @@ let renderAPI: RenderAPI;
 
 describe('[ActionSheet]', () => {
   it('should fire onPress for action item', async () => {
-    const { Portal, show } = createPopup(ActionSheet);
+    const { Portal, show } = createPopup(ActionSheet, 'ActionSheet');
     renderAPI = render(<Portal />);
 
     const testID = 'ACTION_1';
@@ -50,7 +50,7 @@ describe('[ActionSheet]', () => {
   });
 
   it('should trigger onShown callback on mounted', async () => {
-    const { Portal, show } = createPopup(ActionSheet);
+    const { Portal, show } = createPopup(ActionSheet, 'ActionSheet');
 
     renderAPI = render(<Portal />);
 

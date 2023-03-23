@@ -3,6 +3,12 @@ import GlobalComponentManager, {
   RenderCommand,
 } from '../../core/manager/GlobalComponentManager';
 
+export type PopupManagerConfigs = {
+  delay?: number;
+  useLock?: boolean;
+  useMultiple?: boolean;
+};
+
 class PopupManager extends GlobalComponentManager {
   /**
    * delay in milliseconds to render next component
@@ -15,23 +21,37 @@ class PopupManager extends GlobalComponentManager {
   private locked = false;
 
   /**
+   * use lock
+   */
+  private useLock = false;
+
+  /**
+   * allow multiple global components in screen
+   */
+  private useMultiple = true;
+
+  /**
+   * component name using screen
+   */
+  private component: string | null = null;
+
+  /**
    * component props list queue
    */
   private queue: RenderCommand[] = [];
 
-  constructor(options: { delay: number }) {
+  constructor({
+    delay = 300,
+    useLock = false,
+    useMultiple = true,
+  }: PopupManagerConfigs = {}) {
     super();
-    this.delay = options.delay;
+    this.delay = delay;
+    this.useLock = useLock;
+    this.useMultiple = useMultiple;
   }
 
-  /**
-   * render component
-   * if screen in use, push props and render later when screen is free.
-   *
-   * @param  {RenderCommand} command
-   * @returns {void} of component props in queue
-   */
-  public render(command: RenderCommand): void {
+  private renderWithLock(command: RenderCommand) {
     if (this.locked) {
       this.queue.push(command);
       return;
@@ -40,8 +60,32 @@ class PopupManager extends GlobalComponentManager {
     this.locked = true;
 
     this.render$.next(command);
+  }
 
-    return;
+  private renderWithoutLock(command: RenderCommand) {
+    // TODO: how to do async?
+    if (this.component) {
+      this.remove({ name: this.component });
+    }
+
+    if (!this.useMultiple) {
+      this.component = command.name;
+    }
+
+    this.render$.next(command);
+  }
+
+  /**
+   * render component
+   *
+   * @param  {RenderCommand} command
+   */
+  public render(command: RenderCommand): void {
+    if (this.useLock) {
+      return this.renderWithLock(command);
+    }
+
+    return this.renderWithoutLock(command);
   }
 
   /**
@@ -72,12 +116,12 @@ class PopupManager extends GlobalComponentManager {
   }
 
   /**
-   * change delay in ms
-   * @param {number} delay
+   * change configuration
+   * @param {PopupManagerConfigs} configs
    */
-  public setDelay(delay: number) {
-    this.delay = delay;
+  public setConfigs(configs: PopupManagerConfigs) {
+    Object.assign(this, configs);
   }
 }
 
-export default new PopupManager({ delay: 300 });
+export default new PopupManager();

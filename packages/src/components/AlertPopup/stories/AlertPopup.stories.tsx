@@ -9,7 +9,9 @@ export default {
 };
 
 const BasicStory = (): ReactElement => {
-  const { show, Portal } = useRef(createPopup(AlertPopup)).current;
+  const [{ show, Portal }] = useState(() =>
+    createPopup(AlertPopup, 'AlertPopupBasicStory'),
+  );
 
   const [selected, setSelected] = useState<string>('');
 

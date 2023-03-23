@@ -1,5 +1,5 @@
 import React from 'react';
-import PopupManager from './PopupManager';
+import PopupManager, { PopupManagerConfigs } from './PopupManager';
 import PopupPortal from './PopupPortal';
 import { InferProps } from '../../types/utils';
 import { getUniqueComponentName } from '../../utils';
@@ -7,8 +7,9 @@ import createPortal from '../portal';
 
 function createPopupFactory<T extends React.FC<any>, P extends InferProps<T>>(
   Component: T,
+  givenName?: string,
 ) {
-  const name = getUniqueComponentName(Component);
+  const name = givenName ?? getUniqueComponentName(Component);
 
   PopupManager.setComponent({ name, Component });
 
@@ -48,16 +49,10 @@ function createPopupFactory<T extends React.FC<any>, P extends InferProps<T>>(
     clear: (): void => PopupManager.clear(),
 
     /**
-     * Set min delay in milliseconds before render next.
-     *
-     * Delay is **shared value between same global component manager**.
-     *
-     * For example, every global components created by `createPopup` has shared delay value.
-     * therefore, consider side effects of changing default delay value.
-     *
-     * @param {number} delay (default: 300)
+     * change PopupManagerConfigs
      */
-    setDelay: (delay: number): void => PopupManager.setDelay(delay),
+    setConfigs: (configs: PopupManagerConfigs): void =>
+      PopupManager.setConfigs(configs),
 
     /**
      * Portal to render component.

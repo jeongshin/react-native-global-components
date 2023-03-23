@@ -9,7 +9,7 @@ describe('[Popup API]', () => {
   it('show component without crash', async () => {
     const { Portal, show } = createPopup(() => {
       return <View />;
-    });
+    }, 'Popup');
 
     renderAPI = render(<Portal />);
 
