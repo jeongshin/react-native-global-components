@@ -2,19 +2,9 @@ import image from '../../static/gif/create-popup-example.gif';
 
 # createPopup
 
-## Overview
-
-- Only one popup can be mounted at same time
-- Prevents **overlapped rendering** global components created with `createPopup` using rx observable and queue internally
-- Once screen is occupied by a global component, `show` request is saved in queue and render asynchronously after previous global component is unmounted
-- Global components are grouped by its factory such as `createPopup` or `createSnackbar`. Global components with different factory can be rendered together in screen
-
 ## Example
 
-For example, if AlertPopup `show` called twice synchronously, it's handled asynchronously with user interaction and delay between switching popup.
-
 ```tsx
-AlertPopup.show(props);
 AlertPopup.show(props);
 ```
 
@@ -128,12 +118,19 @@ clear queue and visible global component
 type clear = () => void;
 ```
 
-### `setDelay`
+### `setConfigs`
 
-set delay between switching global component in milliseconds (default: 300)
+change popup configuration
 
 ```ts
-type setDelay = (delay: number) => void;
+type PopupManagerConfigs = {
+  // delay when switching components
+  delay?: number;
+  // disable overlapped rendering
+  useLock?: boolean;
+  // flag visible only one component or multiple components
+  useMultiple?: boolean;
+};
 ```
 
 ### `Portal`
