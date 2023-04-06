@@ -12,14 +12,14 @@ const LINKING_ERROR =
   '- You are not using Expo Go\n';
 
 type GlobalComponentsProps = {
-  color: string;
-  style: ViewStyle;
+  style?: ViewStyle;
+  children?: React.ReactNode;
 };
 
 const ComponentName = 'GlobalComponentsView';
 
 export const GlobalComponentsView =
-  UIManager.getViewManagerConfig(ComponentName) != null
+  UIManager.getViewManagerConfig(ComponentName) !== null
     ? requireNativeComponent<GlobalComponentsProps>(ComponentName)
     : () => {
         throw new Error(LINKING_ERROR);
