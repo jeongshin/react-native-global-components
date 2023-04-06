@@ -4,11 +4,18 @@ import { Button, StyleSheet, View } from 'react-native';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { SimpleSnackbar, createSnackbar } from 'react-native-global-components';
+import {
+  SimpleSnackbar,
+  createSnackbar,
+  createPopup,
+  AlertPopup,
+} from 'react-native-global-components';
 
 const Stack = createStackNavigator();
 
 const Snackbar = createSnackbar(SimpleSnackbar);
+
+const Alert = createPopup(AlertPopup);
 
 export default function App() {
   const nav = React.useRef<any>(null);
@@ -50,7 +57,11 @@ export default function App() {
                     title={'navigate'}
                     onPress={() => {
                       console.log('pressed!!');
-                      Snackbar.show({ title: 'Hello from NativeView' });
+                      // Snackbar.show({ title: 'Hello from NativeView' });
+                      Alert.show({
+                        title: 'pressed!',
+                        message: 'successful!!',
+                      });
                     }}
                   />
                 </View>
@@ -60,6 +71,7 @@ export default function App() {
         </Stack.Navigator>
       </NavigationContainer>
       <Snackbar.Portal />
+      <Alert.Portal />
     </>
   );
 }
