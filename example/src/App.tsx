@@ -1,15 +1,15 @@
 import * as React from 'react';
 
 import { Button, StyleSheet, View } from 'react-native';
-import { GlobalComponentsView } from 'react-native-global-components';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+// import { NativeView } from 'react-native-global-components';
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  const [visible, setVisible] = React.useState(false);
+  const [, setVisible] = React.useState(false);
 
   const nav = React.useRef<any>(null);
 
@@ -57,11 +57,11 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-      {visible && (
+      {/* {visible && (
         <GlobalComponentsView style={styles.gView}>
           <View style={styles.box} />
         </GlobalComponentsView>
-      )}
+      )} */}
     </>
   );
 }

@@ -57,7 +57,6 @@ To edit the Objective-C or Swift files, open `example/ios/GlobalComponentsExampl
 
 To edit the Java or Kotlin files, open `example/android` in Android studio and find the source files at `react-native-global-components` under `Android`.
 
-
 ### Commit message convention
 
 We follow the [conventional commits specification](https://www.conventionalcommits.org/en) for our commit messages:
@@ -94,7 +93,7 @@ yarn release
 The `package.json` file contains various scripts for common tasks:
 
 - `yarn bootstrap`: setup project by installing all dependencies and pods.
-- `yarn typecheck`: type-check files with TypeScript.
+- `yarn typescript`: type-check files with TypeScript.
 - `yarn lint`: lint files with ESLint.
 - `yarn test`: run unit tests with Jest.
 - `yarn example start`: start the Metro server for the example app.

@@ -1,31 +1,8 @@
 # react-native-global-components
 
-Popup
+> warning: this project is experimental & currently working hard on it 🧑🏻‍💻.
+> please use when version 1.0.0 released.
 
-## Installation
+## Getting Started
 
-```sh
-npm install react-native-global-components
-```
-
-## Usage
-
-```js
-import { GlobalComponentsView } from "react-native-global-components";
-
-// ...
-
-<GlobalComponentsView color="tomato" />
-```
-
-## Contributing
-
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
-
-## License
-
-MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
+Check out the [documentation](https://jeongshin.github.io/)

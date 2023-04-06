@@ -1,14 +1,14 @@
 {
   "name": "react-native-global-components",
-  "version": "0.1.0",
-  "description": "test",
+  "version": "0.2.0",
+  "description": "react native snackbar and popup API generator 🙇🏻‍♂️",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/index.d.ts",
-  "react-native": "src/index",
-  "source": "src/index",
+  "react-native": "packages/index",
+  "source": "packages/index",
   "files": [
-    "src",
+    "packages",
     "lib",
     "android",
     "ios",
@@ -51,11 +51,15 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "dependencies": {
+    "rxjs": "^7.2.0"
+  },
   "devDependencies": {
-    "@evilmartians/lefthook": "^1.2.2",
     "@commitlint/config-conventional": "^17.0.2",
+    "@evilmartians/lefthook": "^1.2.2",
     "@react-native-community/eslint-config": "^3.0.2",
     "@release-it/conventional-changelog": "^5.0.0",
+    "@testing-library/react-native": "^12.0.1",
     "@types/jest": "^28.1.2",
     "@types/react": "~17.0.21",
     "@types/react-native": "0.70.0",
@@ -70,6 +74,7 @@
     "react": "18.2.0",
     "react-native": "0.71.5",
     "react-native-builder-bob": "^0.20.4",
+    "react-native-reanimated": "^3.0.2",
     "release-it": "^15.0.0",
     "typescript": "^4.5.2"
   },
@@ -78,7 +83,8 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-reanimated": ">=2.8.0"
   },
   "engines": {
     "node": ">= 16.0.0"
@@ -109,7 +115,35 @@
     },
     "plugins": {
       "@release-it/conventional-changelog": {
-        "preset": "angular"
+        "preset": {
+          "name": "conventionalcommits",
+          "types": [
+            {
+              "type": "feat",
+              "section": "🚀 Features"
+            },
+            {
+              "type": "fix",
+              "section": "🐛 Bug Fixes"
+            },
+            {
+              "type": "perf",
+              "section": "💨 Performance Improvements"
+            },
+            {
+              "type": "chore(deps)",
+              "section": "🛠️ Dependency Upgrades"
+            },
+            {
+              "type": "docs",
+              "section": "📚 Documentation"
+            },
+            {
+              "type": "refactor",
+              "section": "✨ Refactor"
+            }
+          ]
+        }
       }
     }
   },
@@ -120,6 +154,9 @@
       "prettier"
     ],
     "rules": {
+      "react-hooks/exhaustive-deps": "off",
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "off",
       "prettier/prettier": [
         "error",
         {
@@ -144,7 +181,7 @@
     "useTabs": false
   },
   "react-native-builder-bob": {
-    "source": "src",
+    "source": "packages",
     "output": "lib",
     "targets": [
       "commonjs",

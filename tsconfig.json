@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "react-native-global-components": ["./src/index"]
+      "react-native-global-components": ["./packages/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
