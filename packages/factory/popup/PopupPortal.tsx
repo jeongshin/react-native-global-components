@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PopupManager from './PopupManager';
 import usePopup from './usePopup';
 import {
@@ -10,9 +10,9 @@ import type { PortalProps } from '../../types';
 const PopupPortal: React.FC<PortalProps> = ({ name }) => {
   const { visible, updateState, state } = usePopup(name);
 
-  if (!visible) return <></>;
+  const [Component] = useState(() => PopupManager.getComponent(name));
 
-  const Component = PopupManager.getComponent(name);
+  if (!visible) return <></>;
 
   if (!Component || state === null) return <></>;
 
