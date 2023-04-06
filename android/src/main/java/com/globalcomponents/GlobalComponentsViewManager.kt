@@ -2,19 +2,15 @@ package com.globalcomponents
 
 import android.graphics.Color
 import android.view.View
-import com.facebook.react.uimanager.SimpleViewManager
+import android.widget.FrameLayout
+import com.facebook.react.uimanager.ViewGroupManager
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.annotations.ReactProp
 
-class GlobalComponentsViewManager : SimpleViewManager<View>() {
+class GlobalComponentsViewManager : ViewGroupManager<FrameLayout>() {
   override fun getName() = "GlobalComponentsView"
 
-  override fun createViewInstance(reactContext: ThemedReactContext): View {
-    return View(reactContext)
-  }
-
-  @ReactProp(name = "color")
-  fun setColor(view: View, color: String) {
-    view.setBackgroundColor(Color.parseColor(color))
+  override fun createViewInstance(reactContext: ThemedReactContext): FrameLayout {
+    return FrameLayout(reactContext)
   }
 }

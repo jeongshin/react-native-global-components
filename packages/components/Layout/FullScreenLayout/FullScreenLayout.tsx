@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, ViewStyle } from 'react-native';
+import NativeView from '../NativeView/NativeView';
 
 interface FullScreenLayoutProps {
   bottomInset?: number;
@@ -20,15 +21,15 @@ const FullScreenLayout: React.FC<FullScreenLayoutProps> = ({
   bottomInset = 0,
   topInset = 0,
 }) => (
-  <View
-    style={[
+  <NativeView
+    style={StyleSheet.flatten<ViewStyle>([
       styles.container,
       StyleSheet.absoluteFill,
       { paddingBottom: bottomInset, paddingTop: topInset },
-    ]}
+    ])}
   >
     {children}
-  </View>
+  </NativeView>
 );
 
 const styles = StyleSheet.create({

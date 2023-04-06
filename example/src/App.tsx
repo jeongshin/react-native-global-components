@@ -4,13 +4,13 @@ import { Button, StyleSheet, View } from 'react-native';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-// import { NativeView } from 'react-native-global-components';
+import { SimpleSnackbar, createSnackbar } from 'react-native-global-components';
 
 const Stack = createStackNavigator();
 
-export default function App() {
-  const [, setVisible] = React.useState(false);
+const Snackbar = createSnackbar(SimpleSnackbar);
 
+export default function App() {
   const nav = React.useRef<any>(null);
 
   return (
@@ -30,6 +30,7 @@ export default function App() {
                   <Button
                     title={'navigate'}
                     onPress={() => {
+                      console.log('pressed!!');
                       nav.current.navigate('Modal');
                     }}
                   />
@@ -48,7 +49,8 @@ export default function App() {
                   <Button
                     title={'navigate'}
                     onPress={() => {
-                      setVisible(true);
+                      console.log('pressed!!');
+                      Snackbar.show({ title: 'Hello from NativeView' });
                     }}
                   />
                 </View>
@@ -57,11 +59,7 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-      {/* {visible && (
-        <GlobalComponentsView style={styles.gView}>
-          <View style={styles.box} />
-        </GlobalComponentsView>
-      )} */}
+      <Snackbar.Portal />
     </>
   );
 }
@@ -71,20 +69,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  gView: {
-    // width: '100%',
-    // height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    left: 0,
-    top: 0,
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-    backgroundColor: 'pink',
   },
 });

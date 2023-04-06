@@ -11,3 +11,5 @@ export {
   default as SlideAnimationLayout,
   SlideAnimationLayoutProps,
 } from './SlideAnimationLayout/SlideAnimationLayout';
+
+export { default as NativeView } from './NativeView/NativeView';

@@ -14,6 +14,7 @@ import { useUpdateGlobalComponentState } from '../../core/hooks';
 import { useFadeAnimationStyle } from '../../hooks';
 import { FadeAnimationConfigs, useSlideAnimationStyle } from '../../hooks';
 import type { SlideAnimationConfig } from '../../hooks/useSlideAnimationStyle';
+import { NativeView } from '../Layout';
 
 interface Styles {
   style?: StyleProp<ViewStyle>;
@@ -44,7 +45,6 @@ const SimpleSnackbar: React.FC<SimpleSnackbarProps> = ({
   title,
   description,
   fadeAnimationConfig,
-  testID,
   leftElement,
   rightElement,
   onPress,
@@ -89,8 +89,7 @@ const SimpleSnackbar: React.FC<SimpleSnackbarProps> = ({
   }, []);
 
   return (
-    <View
-      testID={testID}
+    <NativeView
       style={StyleSheet.flatten([styles?.style, positionStyle[position]])}
     >
       <TouchableWithoutFeedback
@@ -133,7 +132,7 @@ const SimpleSnackbar: React.FC<SimpleSnackbarProps> = ({
           </View>
         </Animated.View>
       </TouchableWithoutFeedback>
-    </View>
+    </NativeView>
   );
 };
 
