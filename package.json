@@ -1,6 +1,6 @@
 {
   "name": "react-native-global-components",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "react native snackbar and popup API generator 🙇🏻‍♂️",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
