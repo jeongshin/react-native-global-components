@@ -11,14 +11,14 @@ const Stack = createStackNavigator();
 export default function App() {
   const [visible, setVisible] = React.useState(false);
 
-  const nav = React.useRef(null);
+  const nav = React.useRef<any>(null);
 
   return (
     <>
       <NavigationContainer
-      // ref={(ref) => {
-      //   nav.current = ref;
-      // }}
+        ref={(ref) => {
+          nav.current = ref;
+        }}
       >
         <Stack.Navigator>
           <Stack.Screen
