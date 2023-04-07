@@ -23,7 +23,7 @@ function createPopupFactory<T extends React.FC<any>, P extends InferProps<T>>(
     setConfigs: (configs: PopupManagerConfigs): void =>
       PopupManager.setConfigs(configs),
 
-    Portal: createElement(PopupPortal, { name }),
+    Portal: () => createElement(PopupPortal, { name }),
   };
 }
 

@@ -17,7 +17,7 @@ function createSnackbar<T extends React.FC<any>, P extends InferProps<T>>(
 
     hide: (): void => SnackbarManager.remove({ name }),
 
-    Portal: createElement(SnackbarPortal, { name }),
+    Portal: () => createElement(SnackbarPortal, { name }),
   };
 }
 
