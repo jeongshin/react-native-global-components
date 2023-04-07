@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SnackbarManager from './SnackbarManager';
 import useSnackbar from './useSnackbar';
 import {
@@ -10,9 +10,9 @@ import { PortalProps } from '../../types';
 const SnackbarPortal: React.FC<PortalProps> = ({ name }) => {
   const { state, visible, updateState } = useSnackbar(name);
 
-  if (!visible) return <></>;
+  const [Component] = useState(() => SnackbarManager.getComponent(name));
 
-  const Component = SnackbarManager.getComponent(name);
+  if (!visible) return <></>;
 
   if (!Component || state === null) return <></>;
 
