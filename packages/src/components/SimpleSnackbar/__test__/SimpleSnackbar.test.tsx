@@ -1,12 +1,12 @@
 import React from 'react';
 import { act, render, RenderAPI, waitFor } from '@testing-library/react-native';
-import { createSnackbar, SimpleSnackbar } from '../../..';
+import { createSnackbar, SimpleSnackbarUI } from '../../..';
 
 let renderAPI: RenderAPI;
 
 describe('[SimpleSnackbar]', () => {
   it('should render without crash', async () => {
-    const { show, Portal } = createSnackbar(SimpleSnackbar);
+    const { show, Portal } = createSnackbar(SimpleSnackbarUI);
 
     renderAPI = render(<Portal />);
 
