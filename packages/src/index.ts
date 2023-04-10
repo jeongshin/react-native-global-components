@@ -5,25 +5,25 @@ export * from './components/Layout';
  * UIs
  */
 export {
-  default as AlertPopup,
+  default as AlertPopupUI,
   AlertPopupOption,
   AlertPopupProps,
 } from './components/AlertPopup/AlertPopup';
 
 export {
-  default as ActionSheet,
+  default as ActionSheetUI,
   ActionSheetActionItem,
   ActionSheetProps,
 } from './components/ActionSheet/ActionSheet';
 
 export {
-  default as InputPopup,
+  default as InputPopupUI,
   InputPopupButtonProps,
   InputPopupProps,
 } from './components/InputPopup/InputPopup';
 
 export {
-  default as SimpleSnackbar,
+  default as SimpleSnackbarUI,
   SimpleSnackbarProps,
 } from './components/SimpleSnackbar/SimpleSnackbar';
 
