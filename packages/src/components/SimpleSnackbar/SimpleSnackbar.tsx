@@ -9,6 +9,7 @@ import {
   TextStyle,
 } from 'react-native';
 import Animated from 'react-native-reanimated';
+import { FullWindowOverlay } from 'react-native-screens';
 import { timer } from 'rxjs';
 import { useUpdateGlobalComponentState } from '../../core/hooks';
 import { useFadeAnimationStyle } from '../../hooks';
@@ -89,48 +90,50 @@ const SimpleSnackbar: React.FC<SimpleSnackbarProps> = ({
   }, []);
 
   return (
-    <View
-      testID={testID}
-      style={StyleSheet.flatten([styles?.style, positionStyle[position]])}>
-      <TouchableWithoutFeedback
-        onPress={() => {
-          onPress && onPress();
-          hideOnPress && hide();
-        }}>
-        <Animated.View style={[slide, fade]}>
-          <View
-            style={StyleSheet.flatten([
-              defaultStyles.container,
-              styles?.container,
-            ])}>
-            {leftElement}
+    <FullWindowOverlay>
+      <View
+        testID={testID}
+        style={StyleSheet.flatten([styles?.style, positionStyle[position]])}>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            onPress && onPress();
+            hideOnPress && hide();
+          }}>
+          <Animated.View style={[slide, fade]}>
             <View
               style={StyleSheet.flatten([
-                defaultStyles.titleContainer,
-                styles?.titleContainer,
+                defaultStyles.container,
+                styles?.container,
               ])}>
-              <Text
+              {leftElement}
+              <View
                 style={StyleSheet.flatten([
-                  defaultStyles.title,
-                  styles?.title,
+                  defaultStyles.titleContainer,
+                  styles?.titleContainer,
                 ])}>
-                {title}
-              </Text>
-              {!!description && (
                 <Text
                   style={StyleSheet.flatten([
-                    defaultStyles.description,
-                    styles?.description,
+                    defaultStyles.title,
+                    styles?.title,
                   ])}>
-                  {description}
+                  {title}
                 </Text>
-              )}
+                {!!description && (
+                  <Text
+                    style={StyleSheet.flatten([
+                      defaultStyles.description,
+                      styles?.description,
+                    ])}>
+                    {description}
+                  </Text>
+                )}
+              </View>
+              {rightElement}
             </View>
-            {rightElement}
-          </View>
-        </Animated.View>
-      </TouchableWithoutFeedback>
-    </View>
+          </Animated.View>
+        </TouchableWithoutFeedback>
+      </View>
+    </FullWindowOverlay>
   );
 };
 

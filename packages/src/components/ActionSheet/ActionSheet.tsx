@@ -10,6 +10,7 @@ import {
   TextStyle,
 } from 'react-native';
 import Animated, { WithTimingConfig } from 'react-native-reanimated';
+import { FullWindowOverlay } from 'react-native-screens';
 import { useUpdateGlobalComponentState } from '../../core/hooks';
 import { useSlideAnimationStyle } from '../../hooks';
 import { FullScreenOverlay } from '../Layout';
@@ -135,55 +136,57 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
   );
 
   return (
-    <View style={defaultStyles.wrapper}>
-      <FullScreenOverlay hideOnPressOverlay={hideOnPressOverlay} />
-      <Animated.View
-        style={[
-          slideAnimation,
-          StyleSheet.flatten([
-            defaultStyles.container,
-            styles?.container,
-            { bottom: bottomInset },
-            { height },
-          ]),
-        ]}>
-        <View
-          style={StyleSheet.flatten([
-            defaultStyles.actionGroup,
-            { marginBottom: gap },
-          ])}>
-          {renderHeader()}
+    <FullWindowOverlay>
+      <View style={defaultStyles.wrapper}>
+        <FullScreenOverlay hideOnPressOverlay={hideOnPressOverlay} />
+        <Animated.View
+          style={[
+            slideAnimation,
+            StyleSheet.flatten([
+              defaultStyles.container,
+              styles?.container,
+              { bottom: bottomInset },
+              { height },
+            ]),
+          ]}>
+          <View
+            style={StyleSheet.flatten([
+              defaultStyles.actionGroup,
+              { marginBottom: gap },
+            ])}>
+            {renderHeader()}
 
-          {actions.map((action, index) => {
-            const isLast = index === actions.length - 1;
-            return (
-              <View key={`${index}`}>
-                {React.isValidElement(action)
-                  ? action
-                  : renderActionItem(action)}
-                {!isLast && (
-                  <View
-                    style={StyleSheet.flatten([
-                      defaultStyles.divider,
-                      styles?.divider,
-                    ])}
-                  />
-                )}
-              </View>
-            );
-          })}
-        </View>
-        <View
-          style={StyleSheet.flatten([
-            defaultStyles.actionGroup,
-            styles?.cancelAction,
-          ])}>
-          {React.isValidElement(cancelAction)
-            ? cancelAction
-            : renderActionItem(cancelAction)}
-        </View>
-      </Animated.View>
-    </View>
+            {actions.map((action, index) => {
+              const isLast = index === actions.length - 1;
+              return (
+                <View key={`${index}`}>
+                  {React.isValidElement(action)
+                    ? action
+                    : renderActionItem(action as ActionSheetActionItem)}
+                  {!isLast && (
+                    <View
+                      style={StyleSheet.flatten([
+                        defaultStyles.divider,
+                        styles?.divider,
+                      ])}
+                    />
+                  )}
+                </View>
+              );
+            })}
+          </View>
+          <View
+            style={StyleSheet.flatten([
+              defaultStyles.actionGroup,
+              styles?.cancelAction,
+            ])}>
+            {React.isValidElement(cancelAction)
+              ? cancelAction
+              : renderActionItem(cancelAction as ActionSheetActionItem)}
+          </View>
+        </Animated.View>
+      </View>
+    </FullWindowOverlay>
   );
 };
 

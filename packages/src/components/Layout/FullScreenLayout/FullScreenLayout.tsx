@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { FullWindowOverlay } from 'react-native-screens';
 
 interface FullScreenLayoutProps {
   bottomInset?: number;
@@ -20,14 +21,16 @@ const FullScreenLayout: React.FC<FullScreenLayoutProps> = ({
   bottomInset = 0,
   topInset = 0,
 }) => (
-  <View
-    style={[
-      styles.container,
-      StyleSheet.absoluteFill,
-      { paddingBottom: bottomInset, paddingTop: topInset },
-    ]}>
-    {children}
-  </View>
+  <FullWindowOverlay>
+    <View
+      style={[
+        styles.container,
+        StyleSheet.absoluteFill,
+        { paddingBottom: bottomInset, paddingTop: topInset },
+      ]}>
+      {children}
+    </View>
+  </FullWindowOverlay>
 );
 
 const styles = StyleSheet.create({
