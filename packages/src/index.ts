@@ -27,6 +27,8 @@ export {
   SimpleSnackbarProps,
 } from './components/SimpleSnackbar/SimpleSnackbar';
 
+export { default as FullWindowOverlay } from './components/Layout/FullWindowOverlay/FullWindowOverlay';
+
 /**
  * APIs
  */

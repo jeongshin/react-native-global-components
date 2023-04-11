@@ -10,10 +10,10 @@ import {
   TextStyle,
 } from 'react-native';
 import Animated, { WithTimingConfig } from 'react-native-reanimated';
-import { FullWindowOverlay } from 'react-native-screens';
 import { useUpdateGlobalComponentState } from '../../core/hooks';
 import { useSlideAnimationStyle } from '../../hooks';
 import { FullScreenOverlay } from '../Layout';
+import FullWindowOverlay from '../Layout/FullWindowOverlay/FullWindowOverlay';
 
 export interface ActionSheetProps {
   title?: string;
@@ -30,6 +30,7 @@ export interface ActionSheetProps {
   animationConfig?: WithTimingConfig;
   onShown?: () => void;
   onHidden?: () => void;
+  windowOverlayEnabledIOS?: boolean;
 }
 
 interface Styles {
@@ -66,6 +67,7 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
   headerHeight: givenHeaderHeight,
   itemHeight = 54,
   cancelAction = { text: 'Cancel' },
+  windowOverlayEnabledIOS,
 }) => {
   const headerHeight = givenHeaderHeight ?? (title || description) ? 80 : 0;
 
@@ -136,7 +138,7 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
   );
 
   return (
-    <FullWindowOverlay>
+    <FullWindowOverlay windowOverlayEnabledIOS={windowOverlayEnabledIOS}>
       <View style={defaultStyles.wrapper}>
         <FullScreenOverlay hideOnPressOverlay={hideOnPressOverlay} />
         <Animated.View

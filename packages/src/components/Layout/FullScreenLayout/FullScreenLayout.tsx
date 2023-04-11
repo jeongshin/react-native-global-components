@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { FullWindowOverlay } from 'react-native-screens';
+import FullWindowOverlay from '../FullWindowOverlay/FullWindowOverlay';
 
 interface FullScreenLayoutProps {
+  windowOverlayEnabledIOS?: boolean;
   bottomInset?: number;
   topInset?: number;
   children?: React.ReactNode;
@@ -18,10 +19,11 @@ interface FullScreenLayoutProps {
  */
 const FullScreenLayout: React.FC<FullScreenLayoutProps> = ({
   children,
+  windowOverlayEnabledIOS,
   bottomInset = 0,
   topInset = 0,
 }) => (
-  <FullWindowOverlay>
+  <FullWindowOverlay windowOverlayEnabledIOS={windowOverlayEnabledIOS}>
     <View
       style={[
         styles.container,

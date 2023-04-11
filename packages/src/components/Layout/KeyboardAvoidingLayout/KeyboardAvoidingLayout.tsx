@@ -7,11 +7,12 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from 'react-native';
-import { FullWindowOverlay } from 'react-native-screens';
+import FullWindowOverlay from '../FullWindowOverlay/FullWindowOverlay';
 
 export interface KeyboardAvoidingLayoutProps extends KeyboardAvoidingViewProps {
   bottomInset?: number;
   topInset?: number;
+  windowOverlayEnabledIOS?: boolean;
   children?: React.ReactNode;
 }
 
@@ -23,13 +24,14 @@ const KeyboardAvoidingLayout: React.FC<KeyboardAvoidingLayoutProps> = ({
   bottomInset = 0,
   topInset = 0,
   behavior: givenBehavior,
+  windowOverlayEnabledIOS,
   ...viewProps
 }) => {
   const behavior =
     givenBehavior || (Platform.OS === 'android' ? 'height' : undefined);
 
   return (
-    <FullWindowOverlay>
+    <FullWindowOverlay windowOverlayEnabledIOS={windowOverlayEnabledIOS}>
       <TouchableWithoutFeedback
         onPress={Platform.OS === 'web' ? undefined : Keyboard.dismiss}>
         <KeyboardAvoidingView
