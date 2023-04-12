@@ -30,11 +30,11 @@ export function createPopup<T>(Component: React.FC<T>) {
   return {
     show,
     hide,
-    Portal: () =>
+    Portal: ({ children }: { children?: React.ReactNode }) =>
       createElement(
         context.Provider,
         { value: { show, hide } },
-        createElement(Provider<T>, { Component, internalRef }),
+        createElement(Provider<T>, { Component, internalRef }, children),
       ),
   };
 }

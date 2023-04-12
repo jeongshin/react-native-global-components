@@ -10,6 +10,7 @@ module.exports = {
   ignorePatterns: ['**/*.js'],
   plugins: ['@typescript-eslint', 'react-hooks', 'prettier', 'import'],
   rules: {
+    '@typescript-eslint/ban-ts-comment': 'warn',
     'import/order': [
       'warn',
       {

@@ -1,9 +1,9 @@
 import React, {
   useImperativeHandle,
-  forwardRef,
   useMemo,
   useRef,
   useState,
+  useEffect,
 } from 'react';
 import { ExternalPopupContext } from '../context';
 import { PopupContext, Animation } from '../types';
@@ -14,6 +14,8 @@ interface ProviderProps<T> {
 }
 
 function Provider<T>({ Component, internalRef }: ProviderProps<T>) {
+  const prevRef = useRef(internalRef.current);
+
   const [props, setProps] = useState<T | null>(null);
 
   const animations = useRef<Animation[]>([]);
@@ -33,6 +35,13 @@ function Provider<T>({ Component, internalRef }: ProviderProps<T>) {
   );
 
   useImperativeHandle(internalRef, () => context, []);
+
+  useEffect(() => {
+    return () => {
+      //@ts-ignore
+      internalRef.current = prevRef.current;
+    };
+  }, []);
 
   if (!props) return null;
 
