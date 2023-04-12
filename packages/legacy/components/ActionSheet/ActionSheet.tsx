@@ -160,7 +160,7 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
               <View key={`${index}`}>
                 {React.isValidElement(action)
                   ? action
-                  : renderActionItem(action)}
+                  : renderActionItem(action as ActionSheetActionItem)}
                 {!isLast && (
                   <View
                     style={StyleSheet.flatten([
@@ -180,7 +180,7 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
           ])}>
           {React.isValidElement(cancelAction)
             ? cancelAction
-            : renderActionItem(cancelAction)}
+            : renderActionItem(cancelAction as ActionSheetActionItem)}
         </View>
       </Animated.View>
     </View>
