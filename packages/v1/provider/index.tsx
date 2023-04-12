@@ -36,6 +36,9 @@ function Provider<T>({ Component, internalRef }: ProviderProps<T>) {
 
   useImperativeHandle(internalRef, () => context, []);
 
+  /**
+   * FIXME: any other way to do this??😭
+   */
   useEffect(() => {
     return () => {
       //@ts-ignore
