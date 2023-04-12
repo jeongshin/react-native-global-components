@@ -6,7 +6,7 @@
   "name": "react-native-global-components",
   "main": "index.js",
   "types": "index.d.ts",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "dependencies": {
     "rxjs": "^7.2.0"
   },
