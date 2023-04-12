@@ -11,6 +11,8 @@ This project is created by junior developer for side-projects and very experimen
 Recommend to not use this project for production
 :::
 
+## Working on V1 docs! 🧑🏻‍💻
+
 ## Overview
 
 In this project, global component definition is component that used commonly and globally with user interactions.

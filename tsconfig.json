@@ -2,7 +2,7 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "paths": {
-      "react-native-global-components": ["./packages/legacy/index"]
+      "react-native-global-components": ["./packages/v1/index"]
     },
     "strict": true
   },
