@@ -17,6 +17,10 @@
     "esModuleInterop": true,
     "allowJs": true
   },
-  "include": ["packages/**/*.tsx", "packages/**/*.d.ts", "packages/**/*.ts"],
+  "include": [
+    "packages/v1/**/*.tsx",
+    "packages/v1/**/*.d.ts",
+    "packages/v1/**/*.ts"
+  ],
   "exclude": ["node_modules"]
 }
