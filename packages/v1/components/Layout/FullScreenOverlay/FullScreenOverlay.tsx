@@ -6,6 +6,7 @@ import { usePopupContext } from '../../../context';
 import useFadeAnimationStyle from '../../../hooks/useFadeAnimationStyle';
 
 export interface FullScreenOverlayProps {
+  onPress?: () => void;
   /**
    * flag to hide global component when overlay pressed
    * default: false
@@ -45,6 +46,7 @@ const FullScreenOverlay: React.FC<FullScreenOverlayProps> = ({
   minOpacity,
   overlayColor = '#000000',
   animationConfig,
+  onPress,
 }) => {
   const { style } = useFadeAnimationStyle({
     maxOpacity,
@@ -55,7 +57,9 @@ const FullScreenOverlay: React.FC<FullScreenOverlayProps> = ({
   const { hide } = usePopupContext();
 
   return (
-    <TouchableWithoutFeedback disabled={!hideOnPressOverlay} onPress={hide}>
+    <TouchableWithoutFeedback
+      disabled={!hideOnPressOverlay && !onPress}
+      onPress={onPress || hide}>
       <Animated.View
         style={[
           style,
