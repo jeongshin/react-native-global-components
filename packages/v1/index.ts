@@ -42,3 +42,5 @@ export { usePopupContext } from './context';
  * animation hooks
  */
 export * from './hooks';
+
+export { default as PopupManager } from './manager';

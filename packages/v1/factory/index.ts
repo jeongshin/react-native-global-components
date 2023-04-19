@@ -1,4 +1,5 @@
 import React, { createElement } from 'react';
+import PopupManager from '../manager';
 import Provider from '../provider';
 import { PopupContext } from '../types';
 
@@ -27,6 +28,8 @@ export function createPopup<T>(Component: React.FC<T>) {
     await internalRef.current.hide();
   }
 
+  PopupManager.registerRef(genUniqueComponentName(Component), internalRef);
+
   return {
     show,
     hide,
@@ -37,4 +40,11 @@ export function createPopup<T>(Component: React.FC<T>) {
         createElement(Provider<T>, { Component, internalRef }, children),
       ),
   };
+}
+
+function genUniqueComponentName<T extends React.FC<any>>(Component: T) {
+  const unique = Math.round(Math.random() * 1234567890);
+  return `${
+    Component.name || Component.displayName || `GlobalComponent`
+  }${unique}`;
 }

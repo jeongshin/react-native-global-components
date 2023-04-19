@@ -1,23 +1,28 @@
 import React, { useEffect } from 'react';
+import {
+  createPopup,
+  AlertPopupUI,
+  ActionSheetUI,
+  PopupManager,
+} from './packages/v1';
 // import StorybookUIRoot from './storybook';
-import { View } from 'react-native';
-import { createPopup, AlertPopupUI } from './packages/v1';
 
 const Alert = createPopup(AlertPopupUI);
+const ActionSheet = createPopup(ActionSheetUI);
 
 export default function App() {
   // useEffect(() => {
   //   Alert.show({ title: 'please!!', message: 'helpme' });
-
+  //   ActionSheet.show({ actions: [] });
   //   setTimeout(() => {
-  //     Alert.hide();
+  //     PopupManager.hideAll();
   //   }, 3000);
   // }, []);
 
   return (
     <>
-      <View></View>
       <Alert.Portal />
+      <ActionSheet.Portal />
     </>
   );
 }
