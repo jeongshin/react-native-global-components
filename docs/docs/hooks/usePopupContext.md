@@ -1,8 +1,8 @@
-# useUpdateGlobalComponentState
+# usePopupContext
 
 ## Overview
 
-`useUpdateGlobalComponentState` is core hook for global component state management.
+`usePopupContext` is core hook for global component state management.
 
 Here's how context looks
 
@@ -20,13 +20,10 @@ interface UpdateStateProps {
 For example, if you want to add hide animation before component dismissed
 
 ```tsx title="MyCustomPopup.tsx"
-import {
-  createPopup,
-  useUpdateGlobalComponentState,
-} from 'react-native-global-components';
+import { createPopup, usePopupContext } from 'react-native-global-components';
 
 const MyCustomPopup = () => {
-  const { addHideAnimation, hide } = useUpdateGlobalComponentState();
+  const { addHideAnimation, hide } = usePopupContext();
 
   useEffect(() => {
     opacity.value = withTiming(1);
@@ -55,13 +52,10 @@ For example, if you have callback on button pressed, you should call `hide` afte
 Unless, your component will be visible forever!! 🤯
 
 ```tsx title="MyCustomPopup.tsx"
-import {
-  createPopup,
-  useUpdateGlobalComponentState,
-} from 'react-native-global-components';
+import { createPopup, usePopupContext } from 'react-native-global-components';
 
 const MyCustomPopup: React.FC<{ callback: () => void }> = ({ callback }) => {
-  const { hide } = useUpdateGlobalComponentState();
+  const { hide } = usePopupContext();
 
   return (
     <Button

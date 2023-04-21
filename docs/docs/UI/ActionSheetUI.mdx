@@ -1,6 +1,6 @@
 import image from '../../static/gif/action-sheet-example.gif';
 
-# ActionSheet
+# ActionSheetUI
 
 ## Overview
 
@@ -15,15 +15,15 @@ import image from '../../static/gif/action-sheet-example.gif';
 Using Default
 
 ```tsx title="ActionSheet.tsx"
-import { ActionSheet, createPopup } from 'react-native-global-components';
-export default createPopup(ActionSheet);
+import { ActionSheetUI, createPopup } from 'react-native-global-components';
+export default createPopup(ActionSheetUI);
 ```
 
 or you can override default props
 
 ```tsx title="ActionSheet.tsx"
 import {
-  ActionSheet,
+  ActionSheetUI,
   ActionSheetProps,
   createPopup,
 } from 'react-native-global-components';
@@ -33,7 +33,7 @@ const styles: ActionSheetProps['styles'] = StyleSheet.create({
 });
 
 export default createPopup((props: ActionSheetProps) => (
-  <ActionSheet {...props} styles={styles} />
+  <ActionSheetUI {...props} styles={styles} />
 ));
 ```
 
@@ -176,22 +176,6 @@ touchableOpacity props on action button to override default settings
 | Type                  | Default   | Required |
 | --------------------- | --------- | -------- |
 | TouchableOpacityProps | undefined | NO       |
-
-### `onShown`
-
-callback function on global component show animation ended
-
-| Type     | Default   | Required |
-| -------- | --------- | -------- |
-| Function | undefined | NO       |
-
-### `onHiddien`
-
-callback function on global component hide animation ended
-
-| Type     | Default   | Required |
-| -------- | --------- | -------- |
-| Function | undefined | NO       |
 
 ### `styles`
 

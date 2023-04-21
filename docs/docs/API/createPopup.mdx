@@ -14,8 +14,6 @@ AlertPopup.show(props);
 
 ## Usage
 
-Assume you are creating popup to show user minimal profile.
-
 ### Step 1. create popup
 
 First, implement your custom UI or you can use any PopupUIs we provide
@@ -40,8 +38,6 @@ export default createPopup(MyPopup);
 
 Portal is where your component actually rendered when you call `show` method.
 
-See [ReactDOM Portal](https://reactjs.org/docs/portals.html) concept though internal implementation is different.
-
 If using [React Navigation](https://reactnavigation.org/), highly recommend to put it in `NavigationContainer` to use navigation context in global components.
 
 ```tsx title="App.tsx"
@@ -60,14 +56,11 @@ then you can do
 
 ```tsx title="MyPopup.tsx"
 import { useNavigation } from '@react-navigation/native';
-import {
-  createPopup,
-  useUpdateGlobalComponentState,
-} from 'react-native-global-components';
+import { createPopup, usePopupContext } from 'react-native-global-components';
 
 const MyPopup: FC<MyPopupProps> = ({ name }) => {
   const navigation = useNavigation();
-  const { hide } = useUpdateGlobalComponentState();
+  const { hide } = usePopupContext();
 
   return (
     <Button
@@ -108,29 +101,6 @@ method to hide currently visible global component
 
 ```ts
 type hide = () => void;
-```
-
-### `clear`
-
-clear queue and visible global component
-
-```ts
-type clear = () => void;
-```
-
-### `setConfigs`
-
-change popup configuration
-
-```ts
-type PopupManagerConfigs = {
-  // delay when switching components
-  delay?: number;
-  // disable overlapped rendering
-  useLock?: boolean;
-  // flag visible only one component or multiple components
-  useMultiple?: boolean;
-};
 ```
 
 ### `Portal`
