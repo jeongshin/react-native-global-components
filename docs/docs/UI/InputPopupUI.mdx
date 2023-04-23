@@ -15,15 +15,15 @@ import image from '../../static/gif/input-popup-example.gif';
 Using Default
 
 ```tsx title="InputPopup.tsx"
-import { InputPopup, createPopup } from 'react-native-global-components';
-export default createPopup(InputPopup);
+import { InputPopupUI, createPopup } from 'react-native-global-components';
+export default createPopup(InputPopupUI);
 ```
 
 or you can override default props
 
 ```tsx title="InputPopup.tsx"
 import {
-  InputPopup,
+  InputPopupUI,
   InputPopupProps,
   createPopup,
 } from 'react-native-global-components';
@@ -33,7 +33,7 @@ const styles: InputPopupProps['styles'] = StyleSheet.create({
 });
 
 export default createPopup((props: InputPopupProps) => (
-  <InputPopup {...props} styles={styles} />
+  <InputPopupUI {...props} styles={styles} />
 ));
 ```
 
