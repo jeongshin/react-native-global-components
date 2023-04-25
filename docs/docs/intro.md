@@ -25,7 +25,6 @@ See our [storybook](https://silly-kleicha-72e9c9.netlify.app/)
 - [React](https://reactjs.org/) (>=17.0.2)
 - [React Native](https://reactnative.dev/) (>=0.66.4)
 - [Reanimated v2](https://docs.swmansion.com/react-native-reanimated/) (>=2.8.0)
-- [RxJS](https://rxjs.dev/) (^7.2.0)
 
 ## Installation
 

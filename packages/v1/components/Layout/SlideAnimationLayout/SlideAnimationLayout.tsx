@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { ViewStyle } from 'react-native';
 import Animated, { AnimatedStyleProp } from 'react-native-reanimated';
-import { timer } from 'rxjs';
 import { usePopupContext } from '../../../context';
 
 export interface SlideAnimationLayoutProps {
@@ -39,11 +38,11 @@ const SlideAnimationLayout: React.FC<SlideAnimationLayoutProps> = ({
   useEffect(() => {
     if (typeof duration !== 'number') return;
 
-    const subscription = timer(duration).subscribe(hide);
+    const timer = setTimeout(() => {
+      hide();
+    }, duration);
 
-    return () => {
-      subscription.unsubscribe();
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   return (

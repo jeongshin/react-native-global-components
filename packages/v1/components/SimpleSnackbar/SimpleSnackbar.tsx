@@ -9,7 +9,6 @@ import {
   TextStyle,
 } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { timer } from 'rxjs';
 import { usePopupContext } from '../../context';
 import { useFadeAnimationStyle } from '../../hooks';
 import { FadeAnimationConfigs, useSlideAnimationStyle } from '../../hooks';
@@ -79,13 +78,11 @@ const SimpleSnackbar: React.FC<SimpleSnackbarProps> = ({
   const { style: fade } = useFadeAnimationStyle(fadeAnimationConfig);
 
   useEffect(() => {
-    const subscription = timer(duration).subscribe(() => {
+    const timer = setTimeout(() => {
       hide();
-    });
+    }, duration);
 
-    return () => {
-      subscription.unsubscribe();
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   return (

@@ -12,7 +12,7 @@
     "web": "expo start --web",
     "prepare": "husky install",
     "lint": "eslint '**/*.{ts,tsx}' --ext .ts,.tsx --fix",
-    "typescript": "tsc --noemit",
+    "typescript": "tsc --project tsconfig.build.json --noemit",
     "patch": "yarn build && cd lib && release-it patch",
     "minor": "yarn build && cd lib && release-it minor",
     "major": "yarn build && cd lib && release-it major",
@@ -32,8 +32,7 @@
     "react-native": "0.70.5",
     "react-native-gesture-handler": "~2.8.0",
     "react-native-reanimated": "~2.12.0",
-    "react-native-web": "~0.18.9",
-    "rxjs": "^7.2.0"
+    "react-native-web": "~0.18.9"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
