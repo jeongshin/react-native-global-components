@@ -1,10 +1,19 @@
 # react-native-global-components
 
-> warning: this project is experimental & currently working hard on it 🧑🏻‍💻.
-> please use when version 1.0.0 released.
+![blue](./docs/static/img/blue-jerry-3.png)
 
 ## Getting Started
 
-Check out the [documentation](https://jeongshin.github.io/)
+see [documentation](https://jeongshin.github.io/)
 
-Check out the [storybook](https://silly-kleicha-72e9c9.netlify.app/)
+see [storybook](https://silly-kleicha-72e9c9.netlify.app/)
+
+## Installation 👋🏻
+
+```bash
+yarn add react-native-global-components
+```
+
+```bash
+npm install react-native-global-components
+```
