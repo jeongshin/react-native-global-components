@@ -26,7 +26,7 @@ const MyCustomUI = () => {
     maxOpacity: 1,
   });
 
-  return <Animated.View style={[fade, { backgroundColor: '#000' }]} />;
+  return <Animated.View style={[fade, { backgroundColor: '#000000' }]} />;
 };
 ```
 

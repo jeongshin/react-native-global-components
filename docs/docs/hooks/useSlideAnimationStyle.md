@@ -22,15 +22,12 @@ import Animated from 'react-native-reanimated';
 import { useSlideAnimationStyle } from 'react-native-global-components';
 
 interface MyCustomUIProps {
-  onShown: () => void;
-  onHidden: () => void;
+  //
 }
 
-const MyCustomUI: React.FC<MyCustomUIProps> = ({ onShown, onHidden }) => {
+const MyCustomUI: React.FC<MyCustomUIProps> = () => {
   const { style: slide } = useSlideAnimationStyle({
-    translateY: 100,
-    onShown,
-    onHidden,
+    translateY: 30,
   });
 
   return <Animated.View style={[slide, { position: 'absolute', bottom: 0 }]} />;

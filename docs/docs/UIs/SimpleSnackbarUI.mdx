@@ -15,11 +15,8 @@ import image from '../../static/gif/simple-snackbar-example.gif';
 Using Default
 
 ```tsx title="SimpleSnackbar.tsx"
-import {
-  SimpleSnackbarUI,
-  createSnackbar,
-} from 'react-native-global-components';
-export default createSnackbar(SimpleSnackbarUI);
+import { SimpleSnackbarUI, createPopup } from 'react-native-global-components';
+export default createPopup(SimpleSnackbarUI);
 ```
 
 or you can override default props
@@ -28,14 +25,14 @@ or you can override default props
 import {
   SimpleSnackbarUI,
   SimpleSnackbarProps,
-  createSnackbar,
+  createPopup,
 } from 'react-native-global-components';
 
 const styles: SimpleSnackbarProps['styles'] = StyleSheet.create({
   // override default styles
 });
 
-export default createSnackbar((props: SimpleSnackbarProps) => (
+export default createPopup((props: SimpleSnackbarProps) => (
   <SimpleSnackbarUI {...props} styles={styles} />
 ));
 ```
@@ -88,7 +85,7 @@ see more on storybook
 For `SafeArea`, here's what you can do
 
 ```tsx title="SimpleSnackbar.tsx"
-export default createSnackbar((props: SimpleSnackbarProps) => {
+export default createPopup((props: SimpleSnackbarProps) => {
   const { top } = useSafeAreaInsets();
   return (
     <SimpleSnackbar

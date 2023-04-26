@@ -1,0 +1,174 @@
+# Customize
+
+## Reusing UIs
+
+Override UI props see example below
+
+```tsx title="SimpleSnackbar.tsx"
+import {
+  SimpleSnackbarUI,
+  SimpleSnackbarProps,
+  createPopup,
+} from 'react-native-global-components';
+
+const styles: SimpleSnackbarProps['styles'] = StyleSheet.create({
+  // override default styles
+});
+
+export default createPopup((props: SimpleSnackbarProps) => (
+  <SimpleSnackbarUI {...props} styles={styles} />
+));
+```
+
+or you can create your own UI
+
+## Create UI
+
+### 1. create popup
+
+```tsx title="Popup.tsx"
+import { createPopup } from 'react-native-global-components';
+
+// show method requires props for first argument
+// and types will automatically inferred
+interface PopupUIProps {
+  title: string;
+}
+
+const PopupUI = (props: PopupUIProps) => {
+  return <View>{}</View>;
+};
+
+const Popup = createPopup(PopupUI);
+
+// Popup.show({ title: 'hi~' });
+
+export default Popup;
+```
+
+### 2. render portal
+
+decide where to render your Popup when `show` called
+
+```tsx title="App.tsx"
+import Popup from './Popup';
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen />
+        <Popup.Portal />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+```
+
+### 3. use anywhere
+
+then, ready to go
+
+```tsx title="MyCustomHook.ts"
+import Popup from './Popup';
+
+const MyCustomHook = () => {
+  const myLogic = async () => {
+    await logic();
+    Popup.show({ title: 'done! 😋' });
+  };
+
+  return { myLogic };
+};
+```
+
+### + add animation
+
+example with reanimated
+
+```tsx
+import { useEffect } from 'react';
+import Animated, {
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+  WithTimingConfig,
+} from 'react-native-reanimated';
+
+interface PopupUIProps {
+  title: string;
+}
+
+const PopupUI = (props: PopupUIProps) => {
+  const { addHideAnimation, hide } = usePopupContext();
+
+  const animation = useSharedValue(translateY);
+
+  const style = useAnimatedStyle(
+    () => ({
+      transform: [
+        {
+          translateY: animation.value,
+        },
+      ],
+    }),
+    [],
+  );
+
+  useEffect(() => {
+    // 1. start animation on mount
+    animation.value = withTiming(0, animationConfig);
+
+    // 2. register hide animation
+    addHideAnimation(() => {
+      return new Promise<void>((resolve) => {
+        const callback = () => {
+          resolve();
+        };
+
+        animation.value = withTiming(translateY, animationConfig, () =>
+          runOnJS(callback)(),
+        );
+      });
+    });
+
+    // 3. clean up to reset animation value
+    return () => {
+      animation.value = translateY;
+    };
+  }, []);
+
+  return (
+    <Animated.View style={style}>
+      <Button
+        title={'Hide'}
+        onPress={() => {
+          hide(); // hide popup with animation
+        }}
+      />
+    </Animated.View>
+  );
+};
+```
+
+### + with PopupManager
+
+```tsx title="MyCustomHook.ts"
+import Popup from './Popup';
+import { PopupManager } from 'react-native-global-components';
+
+const MyCustomHook = () => {
+  const myLogic = async () => {
+    try {
+      await logic();
+      Popup.show({ title: 'done! 😋' });
+    } catch (error) {
+      PopupManager.hideAll();
+      Popup.show({ title: 'fatal error 🤯' });
+    }
+  };
+
+  return { myLogic };
+};
+```
