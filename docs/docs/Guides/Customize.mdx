@@ -1,4 +1,4 @@
-# Customize
+# Customize ⭐️
 
 ## Reusing UIs
 
@@ -24,7 +24,7 @@ or you can create your own UI
 
 ## Create UI
 
-### 1. create popup
+### Step 1. create popup
 
 ```tsx title="Popup.tsx"
 import { createPopup } from 'react-native-global-components';
@@ -46,7 +46,7 @@ const Popup = createPopup(PopupUI);
 export default Popup;
 ```
 
-### 2. render portal
+### Step 2. render portal
 
 decide where to render your Popup when `show` called
 
@@ -65,7 +65,7 @@ const App = () => {
 };
 ```
 
-### 3. use anywhere
+### Step 3. use anywhere
 
 then, ready to go
 
@@ -82,7 +82,7 @@ const MyCustomHook = () => {
 };
 ```
 
-### + add animation
+### Tips. add animation
 
 example with reanimated
 
@@ -152,7 +152,7 @@ const PopupUI = (props: PopupUIProps) => {
 };
 ```
 
-### + with PopupManager
+### Tips. with PopupManager
 
 ```tsx title="MyCustomHook.ts"
 import Popup from './Popup';
