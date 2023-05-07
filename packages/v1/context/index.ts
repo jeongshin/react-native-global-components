@@ -14,3 +14,15 @@ export function usePopupContext() {
 
   return context;
 }
+
+export const InternalPopupContext = createContext<number>(0);
+
+export function usePopupId() {
+  const context = useContext(InternalPopupContext);
+
+  if (typeof context !== 'number') {
+    throw new Error('[react-native-global-components]  can not find context');
+  }
+
+  return context;
+}

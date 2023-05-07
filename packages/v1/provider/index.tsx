@@ -20,13 +20,19 @@ function Provider<T>({ Component, internalRef }: ProviderProps<T>) {
 
   const animations = useRef<Animation[]>([]);
 
+  const hide = async () => {
+    await Promise.all(animations.current.map((fn) => fn()));
+    animations.current = [];
+    setProps(null);
+  };
+
   const context = useMemo(
     () => ({
-      show: (p: T) => setProps(p),
-      hide: async () => {
-        await Promise.all(animations.current.map((fn) => fn()));
-        setProps(null);
+      show: async (p: T) => {
+        await hide();
+        setProps(p);
       },
+      hide,
       addHideAnimation: (a: Animation) => {
         animations.current.push(a);
       },
@@ -41,8 +47,11 @@ function Provider<T>({ Component, internalRef }: ProviderProps<T>) {
    */
   useEffect(() => {
     return () => {
-      //@ts-ignore
-      internalRef.current = prevRef.current;
+      if (prevRef.current) {
+        //@ts-ignore
+        internalRef.current = prevRef.current;
+      }
+      animations.current = [];
     };
   }, []);
 

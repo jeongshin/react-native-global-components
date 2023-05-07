@@ -9,7 +9,7 @@ import {
   TextStyle,
 } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { usePopupContext } from '../../context';
+import { usePopupContext, usePopupId } from '../../context';
 import { useFadeAnimationStyle } from '../../hooks';
 import { FadeAnimationConfigs, useSlideAnimationStyle } from '../../hooks';
 import { SlideAnimationConfig } from '../../hooks/useSlideAnimationStyle';
@@ -55,6 +55,8 @@ const SimpleSnackbar: React.FC<SimpleSnackbarProps> = ({
   duration = 2000,
   position = 'top',
 }) => {
+  const timer = useRef<NodeJS.Timer | null>(null);
+
   const positionStyle = useRef<Record<string, ViewStyle>>({
     bottom: {
       bottom: offsetY,
@@ -78,11 +80,13 @@ const SimpleSnackbar: React.FC<SimpleSnackbarProps> = ({
   const { style: fade } = useFadeAnimationStyle(fadeAnimationConfig);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      hide();
-    }, duration);
+    if (timer.current) clearTimeout(timer.current);
 
-    return () => clearTimeout(timer);
+    timer.current = setTimeout(hide, duration);
+
+    return () => {
+      if (timer.current) clearTimeout(timer.current);
+    };
   }, []);
 
   return (
