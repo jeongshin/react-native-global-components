@@ -27,9 +27,12 @@ const useFadeAnimationStyle = ({
 
   const { addHideAnimation } = usePopupContext();
 
-  const style = useAnimatedStyle(() => ({
-    opacity: opacity.value,
-  }));
+  const style = useAnimatedStyle(
+    () => ({
+      opacity: opacity.value,
+    }),
+    [],
+  );
 
   useEffect(() => {
     opacity.value = withTiming(maxOpacity, animationConfig);

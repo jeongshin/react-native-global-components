@@ -7,10 +7,6 @@
 
 ![blue](./docs/static/img/blue-jerry-3.png)
 
-## Archived
-
-Moved to [https://github.com/WRTN-Technologies/react-native-popups](https://github.com/WRTN-Technologies/react-native-popups)
-
 ## Getting Started
 
 see [documentation](https://jeongshin.github.io/)
