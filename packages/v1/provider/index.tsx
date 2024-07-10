@@ -1,10 +1,4 @@
-import React, {
-  useImperativeHandle,
-  useMemo,
-  useRef,
-  useState,
-  useEffect,
-} from 'react';
+import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { ExternalPopupContext } from '../context';
 import { PopupContext, Animation } from '../types';
 
@@ -14,9 +8,9 @@ interface ProviderProps<T> {
 }
 
 function Provider<T>({ Component, internalRef }: ProviderProps<T>) {
-  const prevRef = useRef(internalRef.current);
-
   const [props, setProps] = useState<T | null>(null);
+
+  const resolverRef = useRef<(() => void) | null>(null);
 
   const animations = useRef<Animation[]>([]);
 
@@ -24,13 +18,15 @@ function Provider<T>({ Component, internalRef }: ProviderProps<T>) {
     await Promise.all(animations.current.map((fn) => fn()));
     animations.current = [];
     setProps(null);
+    resolverRef.current && resolverRef.current();
   };
 
   const context = useMemo(
     () => ({
-      show: async (p: T) => {
+      show: async (p: T, resolver: () => void) => {
         await hide();
         setProps(p);
+        resolverRef.current = resolver;
       },
       hide,
       addHideAnimation: (a: Animation) => {
@@ -41,19 +37,6 @@ function Provider<T>({ Component, internalRef }: ProviderProps<T>) {
   );
 
   useImperativeHandle(internalRef, () => context, []);
-
-  /**
-   * FIXME: any other way to do this??😭
-   */
-  useEffect(() => {
-    return () => {
-      if (prevRef.current) {
-        //@ts-ignore
-        internalRef.current = prevRef.current;
-      }
-      animations.current = [];
-    };
-  }, []);
 
   if (!props) return null;
 

@@ -9,7 +9,7 @@ import {
   TextStyle,
 } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { usePopupContext, usePopupId } from '../../context';
+import { usePopupContext } from '../../context';
 import { useFadeAnimationStyle } from '../../hooks';
 import { FadeAnimationConfigs, useSlideAnimationStyle } from '../../hooks';
 import { SlideAnimationConfig } from '../../hooks/useSlideAnimationStyle';

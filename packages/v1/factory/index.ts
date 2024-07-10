@@ -8,14 +8,23 @@ export function createPopup<T>(Component: React.FC<T>) {
 
   const internalRef = React.createRef<PopupContext<T>>();
 
-  function show(props: T) {
-    if (!internalRef.current) {
-      return console.warn(
-        '[react-native-global-components] can not find context make sure rendering Provider',
-      );
-    }
+  let promise: Promise<void> | null = null;
 
-    internalRef.current.show(props);
+  async function show(props: T) {
+    promise = new Promise((resolver, reject) => {
+      if (
+        !internalRef.current ||
+        typeof internalRef.current.show !== 'function'
+      ) {
+        return reject(
+          '[react-native-global-components] can not find context make sure rendering Provider',
+        );
+      }
+
+      internalRef.current.show(props, resolver);
+    });
+
+    return await promise;
   }
 
   async function hide() {

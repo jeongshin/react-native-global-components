@@ -20,11 +20,15 @@ const BasicStory = (): ReactElement => {
         }}>
         <Button
           title="title only"
-          onPress={() =>
-            show({
+          onPress={async () => {
+            console.log('show!!', Date.now());
+
+            await show({
               title: 'Hello👋🏻',
-            })
-          }
+            });
+
+            console.log('done!!', Date.now());
+          }}
         />
 
         <Button

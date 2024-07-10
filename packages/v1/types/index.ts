@@ -1,5 +1,5 @@
 export interface PopupContext<T = any> {
-  show: (props: T) => void;
+  show: (props: T, resolve: () => void) => void;
   hide: () => Promise<void>;
 }
 
