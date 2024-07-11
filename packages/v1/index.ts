@@ -31,7 +31,7 @@ export {
 /**
  * APIs
  */
-export { createPopup } from './factory';
+export { createPopup, PopupOptions } from './factory';
 
 /**
  * core hooks

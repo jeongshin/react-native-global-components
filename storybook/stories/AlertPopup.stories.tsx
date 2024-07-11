@@ -8,7 +8,9 @@ export default {
 };
 
 const BasicStory = (): ReactElement => {
-  const [{ show, Portal }] = useState(() => createPopup(AlertPopupUI));
+  const [{ show, Portal, hide }] = useState(() =>
+    createPopup(AlertPopupUI, { shouldWaitForUserInteraction: true }),
+  );
 
   const [selected, setSelected] = useState<string>('');
 
@@ -65,6 +67,26 @@ const BasicStory = (): ReactElement => {
                 },
                 { text: `Don't ask me 😡`, color: 'red', onPress: setSelected },
               ],
+            });
+          }}
+        />
+        <Button
+          title="Async"
+          onPress={async () => {
+            show({
+              title: `first`,
+              message: 'first',
+              options: [{ text: 'Good 😝', onPress: setSelected }],
+            }).then(() => {
+              console.log('done!!', Date.now());
+            });
+
+            show({
+              title: `second`,
+              message: 'second',
+              options: [{ text: 'Good 😝', onPress: setSelected }],
+            }).then(() => {
+              console.log('done!!', Date.now());
             });
           }}
         />

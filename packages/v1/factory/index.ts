@@ -3,28 +3,57 @@ import PopupManager from '../manager';
 import Provider from '../provider';
 import { PopupContext } from '../types';
 
-export function createPopup<T>(Component: React.FC<T>) {
+interface Queue<T> {
+  props: T;
+  promise: Promise<void>;
+}
+
+export interface PopupOptions {
+  /**
+   * if true, multiple popup show request will
+   * wait for currently active popup to hide then show
+   *
+   * if false, popup will show immediately
+   *
+   * @default false
+   */
+  shouldWaitForUserInteraction?: boolean;
+}
+
+export function createPopup<T>(
+  Component: React.FC<T>,
+  { shouldWaitForUserInteraction }: PopupOptions = {
+    shouldWaitForUserInteraction: false,
+  },
+) {
   const context = React.createContext<PopupContext<T>>({} as any);
 
   const internalRef = React.createRef<PopupContext<T>>();
 
-  let promise: Promise<void> | null = null;
+  const queue: Queue<T>[] = [];
 
   async function show(props: T) {
-    promise = new Promise((resolver, reject) => {
-      if (
-        !internalRef.current ||
-        typeof internalRef.current.show !== 'function'
-      ) {
-        return reject(
-          '[react-native-global-components] can not find context make sure rendering Provider',
-        );
-      }
+    queue.push({
+      props,
+      promise: new Promise(async (resolver, reject) => {
+        if (
+          !internalRef.current ||
+          typeof internalRef.current.show !== 'function'
+        ) {
+          return reject(
+            '[react-native-global-components] can not find context make sure rendering Provider',
+          );
+        }
 
-      internalRef.current.show(props, resolver);
+        if (shouldWaitForUserInteraction) {
+          await Promise.allSettled(queue.map((item) => item.promise));
+        }
+
+        internalRef.current.show(props, resolver);
+      }),
     });
 
-    return await promise;
+    return await Promise.allSettled(queue.map((item) => item.promise));
   }
 
   async function hide() {

@@ -14,18 +14,22 @@ function Provider<T>({ Component, internalRef }: ProviderProps<T>) {
 
   const animations = useRef<Animation[]>([]);
 
-  const hide = async () => {
+  const hideAnimation = async () => {
     await Promise.all(animations.current.map((fn) => fn()));
     animations.current = [];
     setProps(null);
+  };
+
+  const hide = async () => {
+    await hideAnimation();
     resolverRef.current && resolverRef.current();
     resolverRef.current = null;
   };
 
-  const context = useMemo(
+  const methods = useMemo(
     () => ({
       show: async (p: T, resolver: () => void) => {
-        await hide();
+        await hideAnimation();
 
         requestAnimationFrame(() => {
           setProps(p);
@@ -40,12 +44,12 @@ function Provider<T>({ Component, internalRef }: ProviderProps<T>) {
     [],
   );
 
-  useImperativeHandle(internalRef, () => context, []);
+  useImperativeHandle(internalRef, () => methods, []);
 
   if (!props) return null;
 
   return (
-    <ExternalPopupContext.Provider value={context}>
+    <ExternalPopupContext.Provider value={methods}>
       <Component {...props} />
     </ExternalPopupContext.Provider>
   );
