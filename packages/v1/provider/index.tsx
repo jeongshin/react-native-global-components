@@ -19,14 +19,18 @@ function Provider<T>({ Component, internalRef }: ProviderProps<T>) {
     animations.current = [];
     setProps(null);
     resolverRef.current && resolverRef.current();
+    resolverRef.current = null;
   };
 
   const context = useMemo(
     () => ({
       show: async (p: T, resolver: () => void) => {
         await hide();
-        setProps(p);
-        resolverRef.current = resolver;
+
+        requestAnimationFrame(() => {
+          setProps(p);
+          resolverRef.current = resolver;
+        });
       },
       hide,
       addHideAnimation: (a: Animation) => {
