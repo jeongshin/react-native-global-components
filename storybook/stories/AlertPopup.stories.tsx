@@ -28,8 +28,10 @@ const BasicStory = (): ReactElement => {
 
         <Button
           title="Open Alert Vertical"
-          onPress={() => {
-            show({
+          onPress={async () => {
+            console.log('show!!', Date.now());
+
+            await show({
               title: `Hi I'm Vertical Popup`,
               message: 'select how do you feel today',
               vertical: true,
@@ -43,6 +45,8 @@ const BasicStory = (): ReactElement => {
                 { text: `Don't ask me 😡`, color: 'red', onPress: setSelected },
               ],
             });
+
+            console.log('done!!', Date.now());
           }}
         />
 
