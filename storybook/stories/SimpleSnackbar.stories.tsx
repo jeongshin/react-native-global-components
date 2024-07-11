@@ -9,7 +9,7 @@ export default {
 
 const BasicStory = (): ReactElement => {
   const [{ show, Portal }] = useState(() =>
-    createPopup(SimpleSnackbarUI, { shouldWaitForUserInteraction: false }),
+    createPopup(SimpleSnackbarUI, { shouldWaitForUserInteraction: true }),
   );
 
   return (

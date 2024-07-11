@@ -5,12 +5,34 @@ import image from '../../static/gif/create-popup-example.gif';
 ## Example
 
 ```tsx
-AlertPopup.show(props);
+// AlertPopup.tsx
+createPopup(AlertPopupUI, { shouldWaitForUserInteraction: true });
+
+// other file
+await AlertPopup.show(props);
 ```
 
 <div className="sample-gif">
   <img src={image} className="sample-gif-img" alt="create-popup-example" />
 </div>
+
+## PopupOptions
+
+```ts
+createPopup(SimpleSnackbarUI, { shouldWaitForUserInteraction: true });
+```
+
+### shouldWaitForUserInteraction
+
+if `shouldWaitForUserInteraction` set to **true**,
+
+multiple popup show request will wait for currently active popup to hide then show
+
+if set to **false**, currently active popup will hide immediately
+
+| Type    | Default | Required |
+| ------- | ------- | -------- |
+| boolean | false   | NO       |
 
 ## Usage
 
@@ -78,7 +100,7 @@ export default createPopup(MyPopup);
 ### Step 3. use anywhere
 
 ```tsx
-MyPopup.show({
+await MyPopup.show({
   name: 'Jerry and Zeki',
 });
 ```
@@ -92,7 +114,7 @@ method to show created global component
 generic `T` (`MyPopupProps` for this guide) is inferred from your component props
 
 ```ts
-type show = (props: T) => void;
+type show = (props: T) => Promise<void>;
 ```
 
 ### `hide`
@@ -100,7 +122,7 @@ type show = (props: T) => void;
 method to hide currently visible global component
 
 ```ts
-type hide = () => void;
+type hide = () => Promise<void>;
 ```
 
 ### `Portal`
