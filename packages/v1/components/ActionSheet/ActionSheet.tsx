@@ -55,7 +55,6 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
   touchableOpacityProps,
   styles,
   animationConfig,
-
   gap = 8,
   bottomInset = 8,
   hideOnPressOverlay = true,
@@ -137,15 +136,16 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
           slideAnimation,
           StyleSheet.flatten([
             defaultStyles.container,
-            styles?.container,
             { bottom: bottomInset },
-            { height },
+            { minHeight: height },
+            styles?.container,
           ]),
         ]}>
         <View
           style={StyleSheet.flatten([
             defaultStyles.actionGroup,
             { marginBottom: gap },
+            styles?.actionGroup,
           ])}>
           {renderHeader()}
 
