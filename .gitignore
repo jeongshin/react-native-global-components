@@ -15,3 +15,5 @@ web-build/
 
 # macOS
 .DS_Store
+
+.npmrc
