@@ -9,6 +9,7 @@
 ```ts
 interface SlideAnimationConfig {
   animationConfig?: WithTimingConfig;
+  springConfig?: WithSpringConfig;
   translateY?: number; // how much it should animate translateY from original position (default: 30)
   onHidden?: () => void;
   onShown?: () => void;

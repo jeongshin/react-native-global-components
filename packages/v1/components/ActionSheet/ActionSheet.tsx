@@ -9,7 +9,7 @@ import {
   Text,
   TextStyle,
 } from 'react-native';
-import Animated, { WithTimingConfig } from 'react-native-reanimated';
+import Animated, { WithSpringConfig, WithTimingConfig } from 'react-native-reanimated';
 import { usePopupContext } from '../../context';
 import { useSlideAnimationStyle } from '../../hooks';
 import { FullScreenOverlay } from '../Layout';
@@ -27,6 +27,7 @@ export interface ActionSheetProps {
   touchableOpacityProps?: TouchableOpacityProps;
   styles?: Styles;
   animationConfig?: WithTimingConfig;
+  springConfig?: WithSpringConfig;
 }
 
 interface Styles {
@@ -55,6 +56,7 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
   touchableOpacityProps,
   styles,
   animationConfig,
+  springConfig,
   gap = 8,
   bottomInset = 8,
   hideOnPressOverlay = true,
@@ -70,11 +72,12 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
 
   const { style: slideAnimation } = useSlideAnimationStyle({
     animationConfig,
+    springConfig,
     translateY: height + bottomInset,
   });
 
   const renderHeader = () => {
-    if (!title && !description) return <></>;
+    if (!title && !description) return null;
 
     return (
       <View>
