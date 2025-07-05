@@ -28,6 +28,7 @@ export interface ActionSheetProps {
   styles?: Styles;
   animationConfig?: WithTimingConfig;
   springConfig?: WithSpringConfig;
+  overlayOpacity?: number;
 }
 
 interface Styles {
@@ -66,6 +67,7 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
   headerHeight: givenHeaderHeight,
   itemHeight = 54,
   cancelAction = { text: 'Cancel' },
+  overlayOpacity = 0.5,
 }) => {
   const headerHeight = givenHeaderHeight ?? (title || description) ? 80 : 0;
 
@@ -139,7 +141,7 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
 
   return (
     <View style={defaultStyles.wrapper}>
-      <FullScreenOverlay hideOnPressOverlay={hideOnPressOverlay} />
+      <FullScreenOverlay maxOpacity={overlayOpacity} hideOnPressOverlay={hideOnPressOverlay} />
       <Animated.View
         style={[
           slideAnimation,
