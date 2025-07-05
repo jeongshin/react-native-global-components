@@ -46,6 +46,7 @@ export interface ActionSheetActionItem {
   color?: string;
   onPress?: (text: string) => void;
   style?: StyleProp<TextStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
   testID?: string;
   leftElement?: ReactElement;
   rightElement?: ReactElement;
@@ -113,7 +114,7 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
 
   const renderActionItem: (
     option: ActionSheetActionItem,
-  ) => React.ReactElement = ({ text, color, onPress, style, testID, leftElement, rightElement }) => (
+  ) => React.ReactElement = ({ text, color, onPress, style, testID, leftElement, rightElement, containerStyle }) => (
     <TouchableOpacity
       testID={testID}
       activeOpacity={0.8}
@@ -126,6 +127,7 @@ const ActionSheet: React.FC<ActionSheetProps> = ({
         { height: itemHeight },
         defaultStyles.action,
         styles?.action,
+        containerStyle,
       ])}>
       {leftElement}
       <Text style={StyleSheet.flatten([defaultStyles.text, { color }, style])}>
